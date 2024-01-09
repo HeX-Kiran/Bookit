@@ -25,6 +25,7 @@ exports.addUser = async(req,res)=>{
         const newUser = await Users.create({...userData,password:hashedPassword})
         return res.status(201).json({
             success:true,
+            message:"User registered successfully",
             data :{
                 newUser
             }

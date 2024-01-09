@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* ********************************************************************************************* */
+
+/* Registration page styles */
+
+.register-grid{
+  grid-template-columns: 500px 1fr;
+}
+
+.input-border{
+  border: 2px solid rgb(155, 16, 247);
+}
+
+/* input::placeholder,input::-ms-input-placeholder 
+{
+ font-weight: 500;
+ color: black;
+ margin-left: 20px;
+  
+} */
+
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Style the icon */
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px; /* Adjust the left property to set the icon's position */
+}
+
+/* Style the input field */
+.input-field {
+  padding-left: 50px; /* Adjust the padding to make room for the icon */
+  width: 500px; /* Set the width of the input field as needed */
+}
+
+.input-field::placeholder {
+  
+  color: #000;
+  font-style: italic;
+}
+
+/* ************************************************************************************************** */
+
