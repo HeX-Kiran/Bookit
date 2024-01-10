@@ -56,7 +56,7 @@ export const showToast = (status,message)=>{
                 theme: "colored",
                 });
 
-        default : return toast.default(message, {
+        default :  return toast(message, {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -90,5 +90,14 @@ export const checkPassword = (password,confirmPassword)=>{
     } 
 
     
+    return true;
+}
+
+export const checkLoginPassword =(password)=>{
+    if(password.length < 8){
+        showToast(TOAST_STATUS.ERROR,"Password should atleast have 8 characters");
+        return false;
+    }
+
     return true;
 }

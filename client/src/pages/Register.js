@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import registerImg from "../assets/images/register-2.png"
 import { TOAST_STATUS, checkEmail, checkPassword, showToast } from '../util';
-import { registerUser } from '../apicalls/registerUser';
+import { registerUser } from '../apicalls/user';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -32,7 +32,12 @@ function Register() {
                 
                 // check the response
                 if(data.success){
-                     showToast(TOAST_STATUS.SUCCESS,data.message);
+                    showToast(TOAST_STATUS.SUCCESS,data.message);
+
+                    const token = localStorage.getItem('token')
+                    //if there is a token in local storage then the token will be the prev user id
+                    //so we delete the token here
+                    if(token)localStorage.removeItem('token')
                     navigate("/login")
                 
                 }

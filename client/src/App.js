@@ -6,14 +6,17 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import store from "./store/store"
 
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <BrowserRouter> 
         <Routes>
-            <Route path='/' element = {<ProtectedRoute><Home /></ProtectedRoute>} />
+            <Route path='/' element = {<ProtectedRoute><Home/></ProtectedRoute>} />
             <Route path='/login' element = {<Login />} />
             <Route path='/register' element = {<Register />} />
         </Routes>
@@ -21,6 +24,7 @@ function App() {
 
       </BrowserRouter>
     </div>
+    </Provider>
   );
 }
 

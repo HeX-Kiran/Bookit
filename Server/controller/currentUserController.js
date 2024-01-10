@@ -9,10 +9,10 @@ exports.getCurrentUser = async(req,res)=>{
     try {
         //get the details of the userID from db
         const user = await Users.findOne({_id:userID});
-        console.log(user);
+        
         //if user not found then send a error response
         if(!user){
-            res.status(404).json({
+            res.status(200).json({
                 success:false,
                 message:"User not found"
             })
@@ -25,7 +25,7 @@ exports.getCurrentUser = async(req,res)=>{
             data: user
     })
     } catch (error) {
-        return res.status(404).json({
+        return res.json({
             success:false,
             message:"Internal server error occured"
         })
