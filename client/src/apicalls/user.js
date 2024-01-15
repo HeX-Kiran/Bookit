@@ -6,7 +6,7 @@ import { TOAST_STATUS, showToast } from "../util";
 
 export const registerUser = async (userDetails)=>{
     try{
-        const response = await axiosInstance.post("api/user/register",userDetails);
+        const response = await axios.post("api/user/register",userDetails);
         return response.data;
     }
     catch(e){

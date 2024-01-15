@@ -34,7 +34,7 @@ exports.addUser = async(req,res)=>{
     catch(e){
         return res.status(404).json({
             success:false,
-            message :"Internal error occur",
+            message :"Internal error occured",
             error : e.message
         })
     }

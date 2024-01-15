@@ -25,7 +25,7 @@ function Login() {
 
           if(data.success){
             localStorage.setItem("token",data.data.token);
-            showToast(TOAST_STATUS.SUCCESS,data.message);
+            // showToast(TOAST_STATUS.SUCCESS,data.message);
             navigate("/")
           }
           else{

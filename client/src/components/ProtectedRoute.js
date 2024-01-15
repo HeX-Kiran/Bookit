@@ -16,6 +16,7 @@ function ProtectedRoute({children}) {
 
 
     const authorizeUser = useCallback(async ()=>{
+      
       //get token from local storage
       const token = localStorage.getItem('token');
       //if token exisit then get the currUser from api call
@@ -26,12 +27,14 @@ function ProtectedRoute({children}) {
         //get the response data
         const data = await getcurrUser(token);
         
-        //hide the loader 
-        dispatch(hideLoader());
+        
         //if the api response is successfull
         if(data.success){
           //add the data in store
           dispatch(addUser(data.data))
+          //hide the loader 
+          dispatch(hideLoader());
+          if(data.data.isAdmin) navigate("/admin")
           
         }
         //if the reponse is not successfull
@@ -39,7 +42,11 @@ function ProtectedRoute({children}) {
           //show toast
           showToast(TOAST_STATUS.ERROR,data.message);
           //delete token from localstorage
-          localStorage.removeItem("token")
+          localStorage.removeItem("token");
+
+          //hide the loader 
+          dispatch(hideLoader());
+
           //redirect to login page
            navigate("/login")
         }
@@ -47,8 +54,12 @@ function ProtectedRoute({children}) {
 
       //if token doesnot exsist
       else{
-        showToast(TOAST_STATUS.ERROR,"Please login");
+        // showToast(TOAST_STATUS.ERROR,"Please login");
         //redirect to login
+
+        //hide the loader 
+        dispatch(hideLoader());
+
         navigate("/login")
       }
     },[dispatch,navigate]) 
