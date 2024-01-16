@@ -81,7 +81,38 @@ code {
   border-bottom: 2px solid rgb(174, 140, 255);
 }
 
+
+
 /* ************************************************************************************************** */
 /* Search bar styles */
+
+.search-bar .icon{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-55%);
+  left: 30px;
+}
+
+.search-bar{
+  border: 1px solid rgb(122, 65, 255);
+  box-shadow: 0px 2px 2px 1px rgb(122, 65, 255);
+}
+
+.search-bar input::placeholder {
+  font-size: 18px;
+  color: #555;
+  font-style: italic;
+  
+}
+
+.search-bar input{
+  border: 2px solid rgb(122, 65, 255);
+}
+
+.search-bar button{
+  border: 1px solid rgb(161, 121, 255);;
+}
+
+
 
 

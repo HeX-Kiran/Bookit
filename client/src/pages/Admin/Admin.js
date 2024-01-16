@@ -9,7 +9,7 @@ function Admin() {
     <div className='bg-gradient-to-br from-violet-200 to-violet-100 h-[100vh]'>
         <AdminNavbar tab = {tab} setTab={setTab}/>
         <Searchbar/>
-        <AdminBody></AdminBody>
+        <AdminBody/>
         
     </div>
   )
