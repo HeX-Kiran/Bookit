@@ -30,26 +30,40 @@ const columns = [
     id: "duration",
     label: "Duration",
     minWidth: 170,
-    align: "right",
+    align: "center",
   },
   {
     id: "genre",
     label: "Genre",
     minWidth: 170,
-    align: "right",
+    align: "center",
   },
   {
     id: "language",
     label: "Language",
     minWidth: 170,
-    align: "right",
+    align: "center",
     // format: (value) => value.toFixed(2),
   },
   {
     id: "releaseDate",
     label: "Release Date",
     minWidth: 170,
-    align: "right",
+    align: "center",
+    // format: (value) => value.toFixed(2),
+  },
+  {
+    id: "delete",
+    label: "",
+    minWidth: 50,
+    align: "center",
+    // format: (value) => value.toFixed(2),
+  },
+  {
+    id: "edit",
+    label: "",
+    minWidth: 50,
+    align: "center",
     // format: (value) => value.toFixed(2),
   },
 ];
@@ -101,19 +115,27 @@ export default function AdminTable(props) {
                     {columns.map((column) => {
                       const value = row[column.id];
                       
-                      return column.id === "poster" ? (
-                        <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)"}}>
-                           <img src={value} alt="movie pic" width={"250px"} height={"250px"}  style={{backgroundColor:"rgb(221 214 254)"}}></img>
+                      return column.id === "poster" ?  (
+                         <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)"}}>
+                           <img src={value} alt="movie pic" width={"200px"} height={"200px"}  style={{backgroundColor:"rgb(221 214 254)"}}></img>
                         </TableCell>
                      
                       ) : (
-                        <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)",fontSize:"18px",fontWeight:"600",color:"rgb(75 85 99)"}}>
+                        column.id === "delete" || column.id === "edit"
+                        ? 
+                        <TableCell style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"600",color:"black"}}><button>{column.id}</button></TableCell>
+                        
+                        : 
+                        <>
+                        <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"600",color:"black"}}>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
                         </TableCell>
+                        </>
                       );
                     })}
+                   
                   </TableRow>
                 );
               })}

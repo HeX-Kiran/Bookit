@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getMovies } from '../../../apicalls/movies';
 import AdminTable from './AdminTable';
+import AdminMovieCard from './AdminMovieCard';
+
 
 function AdminBody() {
 
@@ -23,6 +25,8 @@ function AdminBody() {
 
         {movies && 
           <AdminTable data={movies} key={1}/>
+          // movies.map((movie)=><AdminMovieCard data={movie}/>)
+          
         }
     </div>
   )
