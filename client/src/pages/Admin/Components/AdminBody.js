@@ -3,6 +3,7 @@ import { getMovies } from '../../../apicalls/movies';
 import AdminTable from './AdminTable';
 import AdminMovieCard from './AdminMovieCard';
 import AdminModal from './AdminModal';
+import { TOAST_STATUS, showToast } from '../../../util';
 
 
 function AdminBody() {
@@ -10,14 +11,20 @@ function AdminBody() {
   // Function to get all movies
   const getAllMovies = async()=>{
     // api call
-    const data = await getMovies();
-    console.log(data);
-    setMovies(data);
+    try {
+      const data = await getMovies();
+      setMovies(data);
+    } catch (error) {
+      showToast(TOAST_STATUS.ERROR,"Internal error")
+    }
+    
   }
 
   const[movies,setMovies] = useState([]);
   const[type,setType] = useState("add");
-  const[isOpen,setIsOpen] = useState(false)
+  const[isOpen,setIsOpen] = useState(false);
+  const[currMovie,setCurrMovie] = useState({})
+
   useEffect(()=>{
     getAllMovies();
   },[])
@@ -26,11 +33,11 @@ function AdminBody() {
         <h1 className='uppercase text-4xl font-medium text-violet-800 text-center tracking-widest'>Movies</h1>
 
         {movies && 
-          <AdminTable data={movies} getAllMovies={getAllMovies} key={1}/>
+          <AdminTable data={movies} setType={setType} getAllMovies={getAllMovies} setCurrMovie={setCurrMovie}  setIsOpen={setIsOpen} key={1}/>
           // movies.map((movie)=><AdminMovieCard data={movie}/>)
           
         }
-        <AdminModal type = {type} isOpen={isOpen}/>
+        {isOpen && <AdminModal type = {type} setIsOpen={setIsOpen} currMovie = {currMovie} getAllMovies={getAllMovies}/>}
     </div>
   )
 }

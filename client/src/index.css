@@ -18,6 +18,7 @@ code {
     monospace;
 }
 
+
 /* ********************************************************************************************* */
 
 /* Registration page styles */
@@ -31,7 +32,7 @@ code {
 }
 
 .input-border:focus{
-  border: 3px solid rgb(155, 16, 247);
+  /* border: 3px solid rgb(155, 16, 247); */
   box-shadow: 0px 1px 1px 2px rgb(229, 200, 255);
 }
 

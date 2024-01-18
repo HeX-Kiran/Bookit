@@ -78,24 +78,42 @@ const columns = [
 export default function AdminTable(props) {
 
     const rows = props.data;
-    const {getAllMovies} = props;
+    const {getAllMovies,setCurrMovie,setIsOpen,setType} = props;
    
   const dispatcher = useDispatch();  
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+
+  // Handle delete button
   const handleDeleteBtn = async(id)=>{
-    dispatcher(showLoader());
-    const response = await deleteMovie(id);
-    if(response.success){
-        showToast(TOAST_STATUS.SUCCESS,response.message);
-        //get the updated movies
-        getAllMovies();
-        dispatcher(hideLoader())
+    try {
+      dispatcher(showLoader());
+      const response = await deleteMovie(id);
+      if(response.success){
+          showToast(TOAST_STATUS.SUCCESS,response.message);
+          //get the updated movies
+          getAllMovies();
+          dispatcher(hideLoader())
+      }
+      else{
+        showToast(TOAST_STATUS.ERROR,response.message)
+      } 
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Internal error")
     }
-    else{
-      showToast(TOAST_STATUS.ERROR,response.message)
-    } 
+    
+  }
+
+  // Handle edit button
+  const handleEditBtn = (movie)=>{
+    // set curr movie as the clicked movie
+    setCurrMovie(movie);
+    // open modalk box
+    setIsOpen(true);
+    // set the type as edit
+    setType("edit")
+
   }
 
   const handleChangePage = (event, newPage) => {
@@ -130,8 +148,7 @@ export default function AdminTable(props) {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row,index) => {
-                const id = row._id
-        
+                const id = row._id;
                 const releaseDate = row.releaseDate
                 row = {...row,id:index+1,releaseDate:moment(releaseDate).format('MMMM Do YYYY')}
                 return (
@@ -152,7 +169,7 @@ export default function AdminTable(props) {
                           ?
                            <button><i className="ri-delete-bin-6-line text-xl" onClick={()=>handleDeleteBtn(id)}></i></button>
                            : 
-                           <button><i className="ri-pencil-line text-xl"></i></button>}
+                           <button><i className="ri-pencil-line text-xl" onClick={()=> handleEditBtn({...row,_id:id,releaseDate:releaseDate})}></i></button>}
                           
                           </TableCell>
                         
