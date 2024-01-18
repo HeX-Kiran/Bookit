@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getMovies } from '../../../apicalls/movies';
 import AdminTable from './AdminTable';
 import AdminMovieCard from './AdminMovieCard';
+import AdminModal from './AdminModal';
 
 
 function AdminBody() {
@@ -15,7 +16,8 @@ function AdminBody() {
   }
 
   const[movies,setMovies] = useState([]);
-
+  const[type,setType] = useState("add");
+  const[isOpen,setIsOpen] = useState(false)
   useEffect(()=>{
     getAllMovies();
   },[])
@@ -24,10 +26,11 @@ function AdminBody() {
         <h1 className='uppercase text-4xl font-medium text-violet-800 text-center tracking-widest'>Movies</h1>
 
         {movies && 
-          <AdminTable data={movies} key={1}/>
+          <AdminTable data={movies} getAllMovies={getAllMovies} key={1}/>
           // movies.map((movie)=><AdminMovieCard data={movie}/>)
           
         }
+        <AdminModal type = {type} isOpen={isOpen}/>
     </div>
   )
 }

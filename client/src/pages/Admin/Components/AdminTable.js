@@ -7,7 +7,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import moment from 'moment'
+import moment from 'moment';
+import { deleteMovie, getMovies } from "../../../apicalls/movies";
+import {useDispatch} from "react-redux";
+import {showLoader,hideLoader} from "../../../store/loadingSlice"
+import { TOAST_STATUS, showToast } from "../../../util";
+
 
 const columns = [
   {
@@ -72,9 +77,26 @@ const columns = [
 
 export default function AdminTable(props) {
 
-    const rows = props.data
+    const rows = props.data;
+    const {getAllMovies} = props;
+   
+  const dispatcher = useDispatch();  
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleDeleteBtn = async(id)=>{
+    dispatcher(showLoader());
+    const response = await deleteMovie(id);
+    if(response.success){
+        showToast(TOAST_STATUS.SUCCESS,response.message);
+        //get the updated movies
+        getAllMovies();
+        dispatcher(hideLoader())
+    }
+    else{
+      showToast(TOAST_STATUS.ERROR,response.message)
+    } 
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -108,6 +130,8 @@ export default function AdminTable(props) {
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row,index) => {
+                const id = row._id
+        
                 const releaseDate = row.releaseDate
                 row = {...row,id:index+1,releaseDate:moment(releaseDate).format('MMMM Do YYYY')}
                 return (
@@ -123,7 +147,14 @@ export default function AdminTable(props) {
                       ) : (
                         column.id === "delete" || column.id === "edit"
                         ? 
-                        <TableCell style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"600",color:"black"}}><button>{column.id}</button></TableCell>
+                        <TableCell style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"600",color:"black"}}>
+                          {column.id === "delete" 
+                          ?
+                           <button><i className="ri-delete-bin-6-line text-xl" onClick={()=>handleDeleteBtn(id)}></i></button>
+                           : 
+                           <button><i className="ri-pencil-line text-xl"></i></button>}
+                          
+                          </TableCell>
                         
                         : 
                         <>

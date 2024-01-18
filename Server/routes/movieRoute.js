@@ -10,7 +10,7 @@ router.route("/getMovieById/:id").get(getMovieById);
 router.route("/updateMovie").put(updateMovie);
 
 
-router.route("/deleteMovie").delete(deleteMovie)
+router.route("/deleteMovie").post(deleteMovie)
 
 
 module.exports = router

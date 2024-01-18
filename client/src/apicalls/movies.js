@@ -12,3 +12,14 @@ export const getMovies = async()=>{
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
     }
 }
+
+export const deleteMovie = async(id)=>{
+   
+    try {
+        const response = await axios.post("api/movie/deleteMovie",{_id:id})
+        console.log(response);
+        return response.data
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Somthing went wrong")
+    }
+}

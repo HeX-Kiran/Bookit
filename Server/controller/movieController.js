@@ -4,13 +4,27 @@ const Movie = require("../models/movieModel");
 exports.addMovie = async(req,res)=>{
     const movieDetails = req.body;
     try {
-        //add movie into DB
-        const newMovie = await Movie.create(movieDetails);
-        res.status(201).json({
-            success:true,
-            message:"Movie added successfully",
-            data: movieDetails
-        })
+
+        //check if movie already exsist
+        const movieAlreadyExsist = await Movie.findOne({title:movieDetails.title});
+        if(movieAlreadyExsist){
+            // if movie already exsist
+            res.send({
+                success:false,
+                message:"Movie already exsist"
+            })
+        }
+        // if movie doesnt exsist then add it
+        else{
+                //add movie into DB
+                const newMovie = await Movie.create(movieDetails);
+                res.status(201).json({
+                    success:true,
+                    message:"Movie added successfully",
+                    data: movieDetails
+                })
+        }
+        
     } catch (error) {
         res.send({
             success:false,
@@ -114,6 +128,7 @@ exports.updateMovie = async(req,res)=>{
 exports.deleteMovie = async(req,res)=>{
     
     const movieDetails = req.body;
+   
     const id = movieDetails._id;
     
     try {
