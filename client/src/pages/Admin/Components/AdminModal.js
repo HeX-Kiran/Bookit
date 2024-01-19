@@ -94,7 +94,7 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
                         <div className='flex item-center justify-around multi-input gap-2'>
                             {/* Duration */}
                             <div className="input-container">
-                            <i className="ri-time-line icon"></i>
+                                <i className="ri-time-line icon"></i>
                                 <input type='number' placeholder='duration' className='input-field outline-none p-4 rounded-xl input-border w-[200px]' value={duration} onChange={(e)=>setDuration(e.target.value)}/>
                             </div>
 

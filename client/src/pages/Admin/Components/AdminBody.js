@@ -39,19 +39,23 @@ function AdminBody() {
     getAllMovies();
   },[])
   return (
-    <div className='admin-body px-6 py-20 '>
+    <div className='admin-body px-32 '>
         <div className='flex items-center justify-between'>
-          <h1 className='uppercase text-4xl font-medium text-violet-800 text-center tracking-widest'>Movies</h1>
+          <h1 className='uppercase text-4xl font-medium text-black text-center tracking-widest py-4 '>Movies</h1>
           {/* Add movie button */}
-          <button className='ml-10 px-8 py-2 rounded-full bg-gradient-to-bl from-violet-800 to-violet-400  text-violet-100 font-medium  text-lg' onClick={handleAddMovie}>Add movie</button>
+          <button className='ml-10 px-4 py-2 rounded-full bg-gradient-to-bl from-violet-800 to-violet-400  text-violet-100 font-medium  text-lg' onClick={handleAddMovie}>Add movie</button>
         </div>
         
+        <div className='admin-body-cards'>
 
-        {movies && 
-          <AdminTable data={movies} setType={setType} getAllMovies={getAllMovies} setCurrMovie={setCurrMovie}  setIsOpen={setIsOpen} key={1}/>
-          // movies.map((movie)=><AdminMovieCard data={movie}/>)
+            {movies && 
+              // <AdminTable data={movies} setType={setType} getAllMovies={getAllMovies} setCurrMovie={setCurrMovie}  setIsOpen={setIsOpen} key={1}/>
           
-        }
+              movies.map((movie)=><AdminMovieCard data={movie} setType={setType} getAllMovies={getAllMovies} setCurrMovie={setCurrMovie}  setIsOpen={setIsOpen} key={movie._id}/>)
+              
+              
+            }
+        </div>
         {isOpen && <AdminModal type = {type} setIsOpen={setIsOpen} currMovie = {currMovie} getAllMovies={getAllMovies}/>}
     </div>
   )

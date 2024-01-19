@@ -6,9 +6,9 @@ import Searchbar from '../../components/Searchbar'
 function Admin() {
     const [tab,setTab] = useState("movies")
   return (
-    <div className='bg-gradient-to-br from-violet-200 to-violet-100 h-[100vh]'>
+    <div className=''>
         <AdminNavbar tab = {tab} setTab={setTab}/>
-        <Searchbar/>
+        {/* <Searchbar/> */}
         <AdminBody/>
         
     </div>

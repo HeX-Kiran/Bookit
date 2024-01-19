@@ -83,6 +83,25 @@ code {
   border-bottom: 2px solid rgb(174, 140, 255);
 }
 
+/* ************************************************************************************************** */
+/* Nav bar  styles */
+  .bg-color-nav{
+    background-color: rgb(227, 84, 92);
+  }
+
+  .nav-bar-tabs{
+    
+    border: 1px solid white;
+  }
+
+  .admin-tabs .input-container{
+    margin-bottom: 0;
+  }
+
+  .admin-tabs .input-container input::placeholder{
+    color: white;
+  }
+
 
 
 /* ************************************************************************************************** */
@@ -115,6 +134,44 @@ code {
   border: 1px solid rgb(161, 121, 255);;
 }
 
+/* ************************************************************************************************** */
+/* Admin body styles */
+
+.admin-body-cards{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  margin: 40px 0;
+  gap: 5rem;
+  /* border: 1px solid black; */
+}
+
+.admin-body-card{
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border: 3px solid rgb(227, 84, 92);;
+  background-color: #fcf4f0
+}
+
+.censor{
+  padding: 2px 4px;
+  border: 1px solid black;
+  font-size: 14px;
+}
+
+.tag{
+  
+  padding: 4px 8px;
+  background-color: #f9ddde;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  
+  
+}
+
+.action-btns{
+  grid-column: span 2;
+}
 
 /* ************************************************************************************************** */
 /* Modal box styles */
