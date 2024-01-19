@@ -25,7 +25,7 @@ export const deleteMovie = async(id)=>{
 }
 
 export const editMovie = async(editedMovieDetails)=>{
-    console.log(editedMovieDetails);
+    
     try {
         const response = await axios.put("api/movie/updateMovie",editedMovieDetails);
         return response.data
@@ -33,4 +33,13 @@ export const editMovie = async(editedMovieDetails)=>{
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
     }
     
+}
+
+export const addMovie = async(newMovie)=>{
+    try {
+        const response = await axios.post("api/movie/addMovie",newMovie);
+        return response.data
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
 }

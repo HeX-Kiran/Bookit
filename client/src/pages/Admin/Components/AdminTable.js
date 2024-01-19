@@ -169,13 +169,13 @@ export default function AdminTable(props) {
                           ?
                            <button><i className="ri-delete-bin-6-line text-xl" onClick={()=>handleDeleteBtn(id)}></i></button>
                            : 
-                           <button><i className="ri-pencil-line text-xl" onClick={()=> handleEditBtn({...row,_id:id,releaseDate:releaseDate})}></i></button>}
+                           <button><i className="ri-pencil-line text-xl" onClick={()=> handleEditBtn({...row,_id:id,releaseDate:moment(releaseDate).format('YYYY-MM-DD')})}></i></button>}
                           
                           </TableCell>
                         
                         : 
                         <>
-                        <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"600",color:"black"}}>
+                        <TableCell key={column.id} align={column.align} style={{backgroundColor:"rgb(221 214 254)",fontSize:"16px",fontWeight:"500",color:"black"}}>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
