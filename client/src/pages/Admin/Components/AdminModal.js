@@ -68,12 +68,13 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
 
 
     const handleClose = ()=>{
+        
         setIsOpen(false);
     }
 
   return (
     <div className='modal-box absolute left-0 top-0 h-[100vh] w-[100%] transparent z-10'>
-        <div className='form bg-gradient-to-bl from-violet-800 to-violet-400 text-violet-100 relative'>
+        <div className='form modal-gradient text-white relative'>
             {type === "add" ? <h1 className='heading text-2xl font-medium uppercase'>Add movie</h1> : <h1 className='heading text-2xl font-medium uppercase'>Edit movie</h1>}
             {/* <button><i className="ri-close-fill text-4xl font-bold absolute right-5 top-5"></i></button> */}
             <form className=' flex flex-col items-center justify-between mt-16 gap-2 text-black' action='' method='post' onSubmit={handleSubmit}>
@@ -122,8 +123,8 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
                         
                         
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full w-[500px] font-bold text-violet-800 bg-violet-50 text-xl hover:bg-violet-200 input-border' />
-                        <button  className='p-4 cursor-pointer rounded-full w-[500px] font-bold text-violet-800 bg-violet-50 text-xl hover:bg-violet-200 input-border' onClick={handleClose}>Cancel</button>
+                        <input type='submit' className='p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-800 text-white text-xl hover:bg-rose-400 input-border' />
+                        <button  className='p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-600 text-white text-xl hover:bg-rose-400 input-border' onClick={handleClose}>Cancel</button>
                        
                         
 

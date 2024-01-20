@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import moment from 'moment';
-import { deleteMovie, getMovies } from "../../../apicalls/movies";
+import { deleteMovie } from "../../../apicalls/movies";
 import {useDispatch} from "react-redux";
 import {showLoader,hideLoader} from "../../../store/loadingSlice"
 import { TOAST_STATUS, showToast } from "../../../util";

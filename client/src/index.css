@@ -83,6 +83,20 @@ code {
   border-bottom: 2px solid rgb(174, 140, 255);
 }
 
+.copyright{
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  font-size: 20rem;
+  z-index: -1;
+  font-family: 'Tektur', "sans-serif";
+  color:#e3545c;
+  opacity: 0.2;
+}
+
+
+
 /* ************************************************************************************************** */
 /* Nav bar  styles */
   .bg-color-nav{
@@ -137,6 +151,27 @@ code {
 /* ************************************************************************************************** */
 /* Admin body styles */
 
+.length-zero.copyright{
+  font-size: 8rem;
+  opacity: 1;
+  transform: translateX(-50%);
+  top: 40%;
+  border: 3px solid #e3545c;
+  padding: 5px 10px;
+  
+}
+
+
+.bg-base-red{
+  background-color: rgb(227, 84, 92);
+}
+
+.modal-gradient{
+  background: linear-gradient(#e6656c,#e3545c);
+}
+
+
+
 .admin-body-cards{
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -148,7 +183,7 @@ code {
 .admin-body-card{
   display: grid;
   grid-template-columns: 3fr 2fr;
-  border: 3px solid rgb(227, 84, 92);;
+  border: 3px solid rgb(227, 84, 92);
   background-color: #fcf4f0
 }
 
@@ -179,6 +214,10 @@ code {
   background-color: rgba(0, 0, 0, 0.525);
 }
 
+.modal-gradient{
+  background: linear-gradient(#e6656c,#ee989d);
+}
+
 .form{
   min-width: 700px;
   
@@ -196,6 +235,15 @@ code {
   left: 50%;
   top: 10%;
   transform: translateX(-50%);
+}
+
+.modal-box .input-border{
+  border: 2px solid #e6656c;
+}
+
+.modal-box .input-border:focus{
+  border: 5px solid #e6656c;
+  box-shadow: none;
 }
 
 
