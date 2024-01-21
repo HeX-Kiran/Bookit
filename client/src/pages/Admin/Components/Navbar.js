@@ -1,12 +1,69 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {  useNavigate } from 'react-router-dom';
 import {useSelector} from "react-redux"
+import { useDebouncer } from '../../../customHooks/useDebouncer';
+import { getMovies } from '../../../apicalls/movies';
+import { showToast } from '../../../util';
+import { TOAST_STATUS } from '../../../util';
 
 
-function AdminNavbar({tab,setTab}) {
+function AdminNavbar({tab,setTab,setMovies,theatre,setTheatre}) {
+
+
+   
+
+
+   
+   
 
     const user = useSelector(state=>state.user);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [searchMovie,setSearchMovie] = useState("");
+    // const [searchTheatre,setSearchTheatre] = useState("");
+
+    const debouncedMovie = useDebouncer(searchMovie);
+    // const debouncedTheatre = useDebouncer(searchTheatre,500,theatre)
+
+
+     // This function is similar to getAllMovies in Admin.js, difference is here the data is returned whereas in Admin.js the value is used to setState
+        const getAllMovies = async()=>{
+            // api call
+            try {
+            const data = await getMovies();
+            return data;
+            } catch (error) {
+            showToast(TOAST_STATUS.ERROR,"Internal error")
+            }
+            
+        }
+        
+        // This function is to update the UI with the deboucned value,here we used setMovies ie the global state.
+        // if the global movies state was used then when updated with the debounced value the whole movie will be lost to avoid that we use getAllMovies
+        const updateMovieWithDebouncedValue = async()=>{
+            // an api call to get all movies
+            const movies = await getAllMovies();
+            
+            // check if the debouncedvalue has only whitespaces ,if yes then display all movies
+            if(debouncedMovie === "" || debouncedMovie?.split("")[0] === " "){
+                
+                setMovies(movies)  
+            } 
+
+            // otherwise display the debounced movies
+            else{
+                let filteredArray = movies.filter((item)=>
+                {
+                    
+                    return item.title.toLowerCase().includes(debouncedMovie?.toLowerCase());
+                })
+                setMovies(filteredArray)
+            }
+        }
+
+    useEffect(()=>{
+        updateMovieWithDebouncedValue();
+       
+    },[debouncedMovie])
 
     
 
@@ -48,7 +105,7 @@ function AdminNavbar({tab,setTab}) {
                         <>
                             <i className="ri-search-line text-md font-normal text-white icon"></i>
                             {/* Search input */}
-                            <input type='text' placeholder='Movies' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg' />
+                            <input type='text' placeholder='Movies' value={searchMovie} onChange={(e)=>setSearchMovie(e.target.value)}  className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg' />
                         </>
                         :
                         <p className='text-sm'>Movies</p>
@@ -63,7 +120,7 @@ function AdminNavbar({tab,setTab}) {
                         <>
                             <i className="ri-search-line text-md font-normal text-white icon"></i>
                             {/* Search input */}
-                            <input type='text' placeholder='Theatre' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg' />
+                            <input type='text' placeholder='Theatre' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg'  />
                         </>
                         :
                         <p className='text-sm'>Theatre</p>

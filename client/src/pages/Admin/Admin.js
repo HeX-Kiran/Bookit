@@ -21,9 +21,12 @@ function Admin() {
     
   }
 
+
+
   
 
   const[movies,setMovies] = useState([]);
+  const[theatre,setTheatre] = useState([])
   const[type,setType] = useState("add");
   const[isOpen,setIsOpen] = useState(false);
   const[currMovie,setCurrMovie] = useState({})
@@ -63,7 +66,7 @@ function Admin() {
   return (
     <div className=''>
       {/* Nav BAR */}
-        <AdminNavbar tab = {tab} setTab={setTab}/>
+        <AdminNavbar tab = {tab} setTab={setTab}  setMovies={setMovies} theatre={theatre} setTheatre={setTheatre} />
 
         {/* Admin body */}
         <div className='admin-body px-32 '>
