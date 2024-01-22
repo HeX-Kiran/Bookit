@@ -7,7 +7,7 @@ router.route("/getTheatreById/:id").get(getTheatreById)
 router.route("/addTheatre").post(addTheatre);
 
 router.route("/updateTheatre").put(updateTheatre);
-router.route("/deleteTheatre").delete(deleteTheatre);
+router.route("/deleteTheatre").post(deleteTheatre);
 
 
 

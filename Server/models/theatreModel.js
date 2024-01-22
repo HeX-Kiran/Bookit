@@ -20,8 +20,8 @@ const theatreSchema = mongoose.Schema({
         required:[true,"Owner is mandatory"]
     },
     isActive :{
-        type:Boolean,
-        default:false,
+        type:String,
+        default:"pending",
         
     }
 })

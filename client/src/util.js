@@ -9,6 +9,13 @@ export const TOAST_STATUS = {
     DEFAULT :"default"
 }
 
+export const THEATRE_STATUS = {
+    ACTIVE :"active",
+    PENDING:"pending",
+    REJECTED :"rejected"
+    
+}
+
 export const showToast = (status,message)=>{
 
     switch(status){

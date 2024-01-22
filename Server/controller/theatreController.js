@@ -103,7 +103,7 @@ exports.updateTheatre = async(req,res)=>{
             const updatedTheatre = await Theatre.findByIdAndUpdate(id,theatreDetails)
             res.status(200).json({
                 success:true,
-                message:"Movie updated successfully",
+                message:"Theatre updated successfully",
                 data: updatedTheatre
             })
         }
@@ -111,7 +111,7 @@ exports.updateTheatre = async(req,res)=>{
         else{
             res.send({
                 success:false,
-                message:"Movie not found"
+                message:"Theatre not found"
             })
         }
         
@@ -132,6 +132,7 @@ exports.deleteTheatre = async(req,res)=>{
     const theatreDetails = req.body;
    
     const id = theatreDetails._id;
+   
     
     try {
         //add theatre into DB
@@ -142,7 +143,7 @@ exports.deleteTheatre = async(req,res)=>{
             const updatedTheatre = await Theatre.findOneAndDelete({_id:id});
             res.status(200).json({
                 success:true,
-                message:"Movie deleted successfully",
+                message:"Theatre deleted successfully",
                 data: updatedTheatre
             })
         }
@@ -150,7 +151,7 @@ exports.deleteTheatre = async(req,res)=>{
         else{
             res.send({
                 success:false,
-                message:"Movie not found"
+                message:"Theatre not found"
             })
         }
         
