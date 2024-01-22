@@ -23,6 +23,36 @@ exports.getAllTheatres = async(req,res)=>{
     }
 }
 
+exports.getTheatreById = async(req,res)=>{
+    const {id} = req.params;
+    try {
+        //add theatre into DB
+        const theatre = await Theatre.findOne({_id:id}).populate("owner");
+        if(theatre){
+            res.status(200).json({
+                success:true,
+                message:"Theatre fetched successfully",
+                data: theatre
+            })
+        }
+        else{
+            res.send({
+                success:false,
+                message:"Theatre doesnt exsist"
+            })
+        }
+        
+    } catch (error) {
+        res.send({
+            success:false,
+            message:"Internal error occured",
+            data:error.message
+
+        })
+    }
+    
+}
+
 exports.addTheatre = async(req,res)=>{
     const theatreDetails = req.body;
     try {
@@ -45,6 +75,83 @@ exports.addTheatre = async(req,res)=>{
                     message:"Theatre added successfully",
                     data: theatreDetails
                 })
+        }
+        
+    } catch (error) {
+        res.send({
+            success:false,
+            message:"Internal error occured",
+            data:error.message
+
+        })
+    }
+   
+}
+
+
+exports.updateTheatre = async(req,res)=>{
+    
+    const theatreDetails = req.body;
+    const id = theatreDetails._id;
+    delete theatreDetails._id
+    try {
+        //add theatre into DB
+        const theatre = await Theatre.findOne({_id:id});
+        //if theatre exsist in DB
+        if(theatre){
+            
+            const updatedTheatre = await Theatre.findByIdAndUpdate(id,theatreDetails)
+            res.status(200).json({
+                success:true,
+                message:"Movie updated successfully",
+                data: updatedTheatre
+            })
+        }
+        //if theatre doesnt exsist in DB
+        else{
+            res.send({
+                success:false,
+                message:"Movie not found"
+            })
+        }
+        
+    } catch (error) {
+        res.send({
+            success:false,
+            message:"Internal error occured",
+            data:error.message
+
+        })
+    }
+   
+}
+
+
+exports.deleteTheatre = async(req,res)=>{
+    
+    const theatreDetails = req.body;
+   
+    const id = theatreDetails._id;
+    
+    try {
+        //add theatre into DB
+        const theatre = await Theatre.findOne({_id:id});
+        //if theatre exsist in DB
+        if(theatre){
+            
+            const updatedTheatre = await Theatre.findOneAndDelete({_id:id});
+            res.status(200).json({
+                success:true,
+                message:"Movie deleted successfully",
+                data: updatedTheatre
+            })
+        }
+        //if theatre doesnt exsist in DB
+        else{
+            res.send({
+                success:false,
+                message:"Movie not found"
+            })
         }
         
     } catch (error) {
