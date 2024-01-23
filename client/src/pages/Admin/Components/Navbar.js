@@ -1,27 +1,24 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  useNavigate } from 'react-router-dom';
 import {useSelector} from "react-redux"
 import { useDebouncer } from '../../../customHooks/useDebouncer';
 import { getMovies } from '../../../apicalls/movies';
 import { showToast } from '../../../util';
 import { TOAST_STATUS } from '../../../util';
+import { getTheatre } from '../../../apicalls/theatre';
 
 
-function AdminNavbar({tab,setTab,setMovies,theatre,setTheatre}) {
+function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
 
-
-   
-
-
-   
-   
 
     const user = useSelector(state=>state.user);
     const navigate = useNavigate();
     const [searchMovie,setSearchMovie] = useState("");
+    const [searchTheatre,setSearchTheatre] = useState("")
     // const [searchTheatre,setSearchTheatre] = useState("");
 
     const debouncedMovie = useDebouncer(searchMovie);
+    const debouncedTheatre = useDebouncer(searchTheatre);
     // const debouncedTheatre = useDebouncer(searchTheatre,500,theatre)
 
 
@@ -60,10 +57,49 @@ function AdminNavbar({tab,setTab,setMovies,theatre,setTheatre}) {
             }
         }
 
+        // Similary we have the code for theatre
+        const getAllTheatres = async()=>{
+            // api call
+            try {
+            const data = await getTheatre();
+            return data;
+            } catch (error) {
+            showToast(TOAST_STATUS.ERROR,"Internal error")
+            }
+            
+        }
+
+        const updateTheatreWithDebouncedValue = async()=>{
+            // an api call to get all movies
+            const theatres = await getAllTheatres();
+            
+            // check if the debouncedvalue has only whitespaces ,if yes then display all movies
+            if(debouncedTheatre === "" || debouncedTheatre?.split("")[0] === " "){
+                
+                setTheatre(theatres)  
+            } 
+
+            // otherwise display the debounced movies
+            else{
+                let filteredArray = theatres.filter((theatre)=>
+                {
+                    
+                    return theatre.name.toLowerCase().includes(debouncedTheatre?.toLowerCase());
+                })
+                setTheatre(filteredArray)
+            }
+        }
+
+
+    //when ever there is a change in debouncedValue then api is called
     useEffect(()=>{
         updateMovieWithDebouncedValue();
        
     },[debouncedMovie])
+
+    useEffect(()=>{
+        updateTheatreWithDebouncedValue();
+    },[debouncedTheatre])
 
     
 
@@ -120,7 +156,7 @@ function AdminNavbar({tab,setTab,setMovies,theatre,setTheatre}) {
                         <>
                             <i className="ri-search-line text-md font-normal text-white icon"></i>
                             {/* Search input */}
-                            <input type='text' placeholder='Theatre' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg'  />
+                            <input type='text' placeholder='Theatre' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg'  value={searchTheatre} onChange={(e)=>setSearchTheatre(e.target.value)}/>
                         </>
                         :
                         <p className='text-sm'>Theatre</p>

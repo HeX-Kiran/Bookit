@@ -1,22 +1,38 @@
-import React from 'react'
+
 import { THEATRE_STATUS } from '../util';
 import { useDispatch } from 'react-redux';
 import { showLoader,hideLoader } from '../store/loadingSlice';
 import { TOAST_STATUS ,showToast,} from '../util';
-import { deleteTheatre } from '../apicalls/theatre';
+import { deleteTheatre, editTheatre } from '../apicalls/theatre';
 
 function StyledTable(props) {
     const theatres = props.data;
     const getAllTheatres = props.getAllTheatres;
     const dispatcher = useDispatch();
+
     
+
+
+    
+    //function to sort the theatres based on theatre status 
+    const sortTheatreBasedOnStatus = ()=>{
+        theatres.sort((a, b) => {
+            if (a.isActive === "pending")
+              return -1;
+            if (b.isActive === "pending")
+              return 1;
+            return 0;
+          });
+    }
+    
+    //function to handle delete button in table
     const handleDeleteBtn = async(id)=>{
         try {
             dispatcher(showLoader());
             const response = await deleteTheatre(id);
             if(response.success){
                 showToast(TOAST_STATUS.SUCCESS,response.message);
-                //get the updated movies
+                //get the updated theatres
                 getAllTheatres();
                 dispatcher(hideLoader())
             }
@@ -27,6 +43,31 @@ function StyledTable(props) {
               showToast(TOAST_STATUS.ERROR,"Internal error")
           }
     }
+
+    //function to handle active or reject buttons in table
+    const handleApproveOrReject = async(updatedTheatreDetails)=>{
+        try {
+            dispatcher(showLoader());
+            const response = await editTheatre(updatedTheatreDetails);
+            if(response.success){
+                showToast(TOAST_STATUS.SUCCESS,response.message);
+                //get the updated theatres
+                getAllTheatres();
+                dispatcher(hideLoader())
+            }
+            else{
+              showToast(TOAST_STATUS.ERROR,response.message)
+            } 
+          } catch (error) {
+              showToast(TOAST_STATUS.ERROR,"Internal error")
+          }
+    }
+
+
+
+    //sort the theatre array based on status
+    sortTheatreBasedOnStatus();
+
   return (
     <div className='styled-table'>
         <main className="table" id="customers_table">
@@ -53,12 +94,7 @@ function StyledTable(props) {
                 <table>
                     <thead>
                         <tr>
-                            {/* <th> Id <span classNameName="icon-arrow">&UpArrow;</span></th>
-                            <th> Customer <span classNameName="icon-arrow">&UpArrow;</span></th>
-                            <th> Location <span classNameName="icon-arrow">&UpArrow;</span></th>
-                            <th> Order Date <span classNameName="icon-arrow">&UpArrow;</span></th>
-                            <th> Status <span classNameName="icon-arrow">&UpArrow;</span></th>
-                            <th> Amount <span classNameName="icon-arrow">&UpArrow;</span></th> */}
+                       
                             <th>Id</th>
                             <th>Name</th>
                             <th>Location</th>
@@ -94,7 +130,12 @@ function StyledTable(props) {
                                         <button className='py-2 px-8 bg-red-100 rounded-full' onClick={()=>handleDeleteBtn(theatre._id)}><i className="ri-delete-bin-6-line text-xl" ></i></button>
                                     </td>
                                     <td>
-                                        <button className='py-2 px-8 bg-blue-100 rounded-full'><i className="ri-pencil-line text-xl" ></i></button>
+                                        <button className='py-2 px-8 bg-blue-100 rounded-full'>
+                                            <div className='flex items-center justify-between gap-8'>
+                                                    <i className="ri-check-line text-2xl text-green-800" onClick={()=>handleApproveOrReject({...theatre,isActive:THEATRE_STATUS.ACTIVE})}></i>
+                                                    <i className="ri-close-line text-2xl text-red-800" onClick={()=>handleApproveOrReject({...theatre,isActive:THEATRE_STATUS.REJECTED})}></i>
+                                            </div>
+                                        </button>
                                     </td>
                                 </tr>
                             })
