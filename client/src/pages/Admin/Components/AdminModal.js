@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { editMovie,addMovie } from '../../../apicalls/movies'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { hideLoader, showLoader } from '../../../store/loadingSlice'
 import { TOAST_STATUS, checkMovieDetails, showToast } from '../../../util'
+
 
 
 function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
@@ -15,7 +16,7 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
     const[releaseDate,setReleaseDate] = useState(currMovie?.releaseDate)
     const[poster,setPoster] = useState(currMovie?.poster || "")
     const dispatcher = useDispatch();
-
+   
     
 
     const handleSubmit = async(e)=>{
@@ -71,9 +72,12 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
         
         setIsOpen(false);
     }
-
+ 
   return (
+    
+   
     <div className='modal-box absolute left-0 top-0 h-[100vh] w-[100%] transparent z-10'>
+        
         <div className='form modal-gradient text-white relative'>
             {type === "add" ? <h1 className='heading text-2xl font-medium uppercase'>Add movie</h1> : <h1 className='heading text-2xl font-medium uppercase'>Edit movie</h1>}
             {/* <button><i className="ri-close-fill text-4xl font-bold absolute right-5 top-5"></i></button> */}
@@ -133,6 +137,7 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
         </div>
         
     </div>
+    
   )
 }
 

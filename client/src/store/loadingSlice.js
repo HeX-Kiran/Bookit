@@ -15,6 +15,7 @@ const loadingSlice = createSlice({
 
         hideLoader(state){
             //hide loader
+            
              state.status = false;
         }
     }

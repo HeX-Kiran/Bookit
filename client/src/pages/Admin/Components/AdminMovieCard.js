@@ -6,11 +6,14 @@ import { showToast } from '../../../util';
 import { showLoader,hideLoader } from '../../../store/loadingSlice';
 import { deleteMovie } from "../../../apicalls/movies";
 
+
 function AdminMovieCard(props) {
     const {_id,title,description,duration,language,genre,releaseDate,poster} = props.data;
     
     const {getAllMovies,setCurrMovie,setIsOpen,setType} = props;
     const dispatcher = useDispatch();  
+
+    
 
     
   // Handle delete button
@@ -46,7 +49,10 @@ function AdminMovieCard(props) {
 
 
   return (
+   
+    
     <div className='admin-body-card gap-10 p-8  w-[700px]  rounded-xl'>
+     
         <div className='flex items-center justify-between flex-col gap-4'>
           
           <img src={poster} alt="movie pic" width={"400px"} height={"400px"}  style={{backgroundColor:"rgb(221 214 254)"}}></img>
@@ -83,6 +89,7 @@ function AdminMovieCard(props) {
               <button className='px-8 py-2 rounded-full bg-base-red  text-violet-100 font-medium  text-lg' onClick={()=> handleEditBtn({...props.data,releaseDate:moment(releaseDate).format('YYYY-MM-DD')})}><i className="ri-pencil-line text-xl" ></i></button>
         </div>
     </div>
+    
   )
 }
 

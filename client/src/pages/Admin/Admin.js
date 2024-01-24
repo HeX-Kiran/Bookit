@@ -6,13 +6,14 @@ import AdminModal from './Components/AdminModal';
 import { TOAST_STATUS, showToast } from '../../util';
 import AdminNavbar from './Components/Navbar';
 import StyledTable from '../../components/StyledTable';
-import { useDispatch } from 'react-redux';
+import { useDispatch ,useSelector} from 'react-redux';
 import { hideLoader, showLoader } from '../../store/loadingSlice';
 import { getTheatre } from '../../apicalls/theatre';
+import Loader from '../../components/Loader';
 
 
 function Admin() {
-
+  const isLoading = useSelector(state =>state.loader.status)
   const dispatcher = useDispatch();
 
   // Function to get all movies
@@ -88,6 +89,7 @@ function Admin() {
   },[])
   return (
     <div className=''>
+      <Loader isLoading={isLoading}/>
       {/* Nav BAR */}
         <AdminNavbar tab = {tab} setTab={setTab}  setMovies={setMovies}  setTheatre={setTheatre} />
 

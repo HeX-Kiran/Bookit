@@ -7,12 +7,13 @@ import { addUser } from '../store/userSlice';
 import { TOAST_STATUS, showToast } from '../util';
 
 
+
 function ProtectedRoute({children}) {
 
     const user = useSelector(state=>state.user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+   
 
 
     const authorizeUser = useCallback(async ()=>{
@@ -33,9 +34,13 @@ function ProtectedRoute({children}) {
           if(data.success){
             //add the data in store
             dispatch(addUser(data.data))
+            
+            
+            if(data.data.isAdmin) navigate("/admin")
+            else navigate("/")
+
             //hide the loader 
             dispatch(hideLoader());
-            if(data.data.isAdmin) navigate("/admin")
             
           }
           //if the reponse is not successfull
@@ -74,13 +79,14 @@ function ProtectedRoute({children}) {
       
     },[dispatch,navigate]) 
 
-
+    
     useEffect(()=>{
       authorizeUser()
     },[authorizeUser])
 
   return (
     <div>
+      
         {user && children}
     </div>
   )
