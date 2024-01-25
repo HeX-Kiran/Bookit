@@ -10,7 +10,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  scroll-behavior: smooth;
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -579,6 +582,11 @@ thead th.active,tbody td.active {
   
 } 
 
+
+.title{
+  position: relative;
+}
+
 .user-page-title{
   text-align: center;
   font-size: 200px;
@@ -592,6 +600,7 @@ thead th.active,tbody td.active {
 }
 
 .user-page-subtitle{
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -599,4 +608,28 @@ thead th.active,tbody td.active {
   font-weight: 500;
   color: white;
   transform: translate(-50%,-100%);
+}
+
+.movies{
+  margin-top: 200px;
+}
+
+/* *********************************************************************** */
+/* Movie cards*********************************** */
+
+.movie-cards{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 2rem;
+  
+}
+
+.movie-details{
+  overflow: hidden;
+  background-color: #00000087;
+
 }
