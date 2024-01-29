@@ -612,10 +612,30 @@ thead th.active,tbody td.active {
 
 .movies{
   margin-top: 200px;
+  background-color: #160023;
+  min-height: 100vh;
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 2s all ease;
+}
+
+.reveal.active{
+  transform: translateY(25);
+  opacity: 1;
+}
+
+.movies .input-field{
+  width: 100%;
 }
 
 /* *********************************************************************** */
 /* Movie cards*********************************** */
+
+
 
 .movie-cards{
   width: 100%;
@@ -623,13 +643,36 @@ thead th.active,tbody td.active {
   grid-template-columns: repeat(2,1fr);
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
+  column-gap: 8rem;
+  row-gap: 4rem;
   padding: 2rem;
-  
+  padding: 4rem;
 }
+
+.movie-card .movie-details{
+  
+  opacity: 0;
+}
+
+.movie-card:hover .movie-details{
+  transition: all 0.5s;
+  
+  opacity: 1;
+}
+
+
 
 .movie-details{
   overflow: hidden;
-  background-color: #00000087;
-
+  /* background-color: #000000a5; */
+  background-color: #160023bc;
+  
 }
+
+.movie-details .tag{
+  background-color: black;
+  color: white;
+  font-size: 0.7rem;
+}
+
+

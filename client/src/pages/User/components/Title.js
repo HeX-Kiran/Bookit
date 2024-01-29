@@ -3,7 +3,7 @@ import React from 'react'
 function Title() {
 
   const handleBookBtn = ()=>{
-    console.log(document.querySelector(".movies"));
+    
     document.querySelector(".movies").scrollIntoView({behavior:"smooth"})
   }
 
