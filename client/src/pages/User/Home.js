@@ -6,6 +6,7 @@ import Loader from '../../components/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { showLoader } from '../../store/loadingSlice'
 import Movies from './components/Movies'
+import CTA from './components/CTA'
 
 function Home() {
 
@@ -53,6 +54,7 @@ function Home() {
       <Navbar/>
       <Title />
       <Movies/>
+      <CTA />
     </div>
   )
 }
