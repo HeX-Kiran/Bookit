@@ -1,6 +1,9 @@
 import React from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 function CTA() {
+
+    const navigate = useNavigate()
   return (
     <section class="section-cta" id="try-for-free">
         
@@ -11,7 +14,7 @@ function CTA() {
                     <p class="cta-description">
                         Be more than a customer. Start by registering your theatre. You can cancel or pause anytime. And the first registration is on us!
                     </p>
-                    <form action="#">
+                    <form action="#" onSubmit={()=>navigate("/theatre/registration")}>
                         {/* <!-- Username --> */}
                         <div class="form-input">
                             <label for="username">Full Name</label>

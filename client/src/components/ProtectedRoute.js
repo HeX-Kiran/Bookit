@@ -37,7 +37,7 @@ function ProtectedRoute({children}) {
             
             
             if(data.data.isAdmin) navigate("/admin")
-            else navigate("/")
+            
 
             //hide the loader 
             dispatch(hideLoader());
@@ -47,6 +47,7 @@ function ProtectedRoute({children}) {
           else{
             //show toast
             showToast(TOAST_STATUS.ERROR,data.message);
+            console.log(data.message);
             //delete token from localstorage
             localStorage.removeItem("token");
 

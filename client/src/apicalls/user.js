@@ -31,7 +31,8 @@ export const loginUser = async(userDetails)=>{
 export const getcurrUser = async(token)=>{
     
     try {
-        const response = await axios.get("api/user/currentUser",{headers:{Authorization:`Bearer ${token}` }});
+       
+        const response = await axios.get("/api/user/currentUser",{headers:{Authorization:`Bearer ${token}` }});
         return response.data;
     } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")

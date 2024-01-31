@@ -32,7 +32,7 @@ function Movies() {
 
     
       
-      window.addEventListener("scroll", reveal);
+      
 
 
 
@@ -77,12 +77,15 @@ function Movies() {
 
     useEffect(()=>{
         getAllMovies();
+        window.addEventListener("scroll", reveal);
     },[])
 
     useEffect(()=>{
         updateMovieWithDebouncedValue();
        
     },[debouncedMovie])
+
+    
   return (
     <section className='movies my-auto px-16 py-10 reveal' id='movie' >
         <div className='flex items-center justify-between'>

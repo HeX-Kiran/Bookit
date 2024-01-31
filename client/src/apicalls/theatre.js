@@ -16,7 +16,7 @@ export const getTheatre = async()=>{
 export const deleteTheatre = async(id)=>{
    
     try {
-        const response = await axios.post("api/theatre/deleteTheatre",{_id:id})
+        const response = await axios.post("/api/theatre/deleteTheatre",{_id:id})
         
         return response.data
     } catch (error) {
@@ -26,8 +26,9 @@ export const deleteTheatre = async(id)=>{
 
 export const editTheatre = async(editedTheatreDetails)=>{
     
+    
     try {
-        const response = await axios.put("api/theatre/updateTheatre",editedTheatreDetails);
+        const response = await axios.put("/api/theatre/updateTheatre",editedTheatreDetails);
         return response.data
     } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
@@ -36,8 +37,9 @@ export const editTheatre = async(editedTheatreDetails)=>{
 }
 
 export const addTheatre = async(newTheatre)=>{
+    console.log(newTheatre);
     try {
-        const response = await axios.post("api/theatre/addTheatre",newTheatre);
+        const response = await axios.post("/api/theatre/addTheatre",newTheatre);
         return response.data
     } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")

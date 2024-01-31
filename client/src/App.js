@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import store from "./store/store"
 import Loader from './components/Loader';
+import TheatreRegistration from './pages/User/TheatreRegistration';
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/login' element = {<Login />} />
             <Route path='/register' element = {<Register />} />
             <Route path='/admin' element ={<ProtectedRoute><Admin/></ProtectedRoute>}/>
+            <Route path='/theatre/registration' element={<ProtectedRoute><TheatreRegistration/></ProtectedRoute>} />
         </Routes>
         <ToastContainer/>
 

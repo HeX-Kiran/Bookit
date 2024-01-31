@@ -644,9 +644,9 @@ thead th.active,tbody td.active {
   align-items: center;
   justify-content: space-between;
   column-gap: 8rem;
-  row-gap: 4rem;
-  padding: 2rem;
-  padding: 4rem;
+  row-gap: 6rem;
+  
+  padding: 8rem;
 }
 
 .movie-card .movie-details{
@@ -748,7 +748,7 @@ label{
   cursor: pointer;
 }
 
-.section-cta input:focus, .section-ctaselect:focus{
+.section-cta input:focus, .section-cta select:focus{
   outline: none;
   box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
 }
@@ -794,4 +794,65 @@ label{
   background-size: cover;
   height: 100%;
   
+}
+
+/* *********************************************************************** */
+/* Footer section*********************************** */
+ .footer{
+  padding: 8rem 2rem;
+  background-color: #160023;
+  color: white;
+  position: relative;
+  /* border-top: 1px solid white; */
+ }
+
+ .footer::after{
+  position: absolute;
+  top: 10%;
+  left: 0;
+  width: 42%;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.427);
+  height: 1px;
+ }
+
+ .footer::before{
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 42%;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.427);
+  height: 1px;
+ }
+
+ .brand-footer{
+  position: absolute;
+  font-size: 1rem;
+  left: 50%;
+  top: 7%;
+  transform: translate(-50%,-6%);
+  text-transform: uppercase;
+ }
+
+ .logo{
+  font-size:2rem;
+  cursor: pointer;
+ }
+
+
+ /* *********************************************************************** */
+/* Theatre registration page *********************************** */
+
+.theatre-reg{
+ 
+
+
+ 
+}
+
+.registration-grid{
+  backdrop-filter: blur(10px);
+  box-shadow: 0 .4rem .8rem #0005;
+  border-radius: .8rem;
 }
