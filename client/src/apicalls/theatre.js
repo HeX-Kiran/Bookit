@@ -37,9 +37,18 @@ export const editTheatre = async(editedTheatreDetails)=>{
 }
 
 export const addTheatre = async(newTheatre)=>{
-    console.log(newTheatre);
+    
     try {
         const response = await axios.post("/api/theatre/addTheatre",newTheatre);
+        return response.data
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+}
+
+export const checkIfTheatreExsist = async(userID)=>{
+    try {
+        const response = await axios.get(`/api/theatre/checkTheatre/${userID}`)
         return response.data
     } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")

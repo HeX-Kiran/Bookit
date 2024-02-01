@@ -1,11 +1,20 @@
 import React from 'react'
 
+
 function Title() {
+
+
 
   const handleBookBtn = ()=>{
     
     document.querySelector(".movies").scrollIntoView({behavior:"smooth"})
   }
+
+  const handleLearnMoreBtn = ()=>{
+    document.querySelector(".section-cta").scrollIntoView({behavior:'smooth'})
+  }
+
+  
 
   return (
     <div className='title'>
@@ -17,7 +26,7 @@ function Title() {
             </div>
 
             <div className='flex items-center justify-around my-32'>
-                <button className='outline-none py-4 px-8 bg-white rounded-xl font-bold transition-all hover:scale-110 hover:bg-black hover:text-white'>Learn more</button>
+                <button className='outline-none py-4 px-8 bg-white rounded-xl font-bold transition-all hover:scale-110 hover:bg-black hover:text-white' onClick={handleLearnMoreBtn}>Learn more</button>
 
                 <button className='py-4 px-8 bg-rose-600 rounded-xl font-bold text-white transition-all hover:scale-110 hover:bg-rose-500' onClick={handleBookBtn}>Book tickets</button>
             </div>

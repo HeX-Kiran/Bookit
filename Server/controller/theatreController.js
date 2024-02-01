@@ -1,3 +1,4 @@
+const e = require("express");
 const Theatre = require("../models/theatreModel");
 
 exports.getAllTheatres = async(req,res)=>{
@@ -164,4 +165,39 @@ exports.deleteTheatre = async(req,res)=>{
         })
     }
    
+}
+
+exports.checkIfUserHaveTheatre = async(req,res)=>{
+    // get the userID from params
+    const {userID} = req.params;
+
+
+    try {
+        // check for theatre in theatre model by userID
+        const theatreExsist = await Theatre.findOne({owner:userID})
+
+        //if theatre exist for that userID send success response
+        if(theatreExsist){
+            res.json({
+                success:true,
+                message:"theatre found",
+                data:theatreExsist
+            })
+        }
+
+        //if not theatre exsist send failure response
+        
+        else{
+            res.json({
+                success:false,
+                message:"User havent registered any theatre"
+            })
+        }
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Internal error",
+            data:error.message
+        })
+    }
 }

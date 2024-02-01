@@ -9,8 +9,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import store from "./store/store"
-import Loader from './components/Loader';
+
 import TheatreRegistration from './pages/User/TheatreRegistration';
+import Theatre from './pages/User/Theatre';
 
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path='/register' element = {<Register />} />
             <Route path='/admin' element ={<ProtectedRoute><Admin/></ProtectedRoute>}/>
             <Route path='/theatre/registration' element={<ProtectedRoute><TheatreRegistration/></ProtectedRoute>} />
+            <Route path='/theatre' element={<ProtectedRoute><Theatre/></ProtectedRoute>} />
         </Routes>
         <ToastContainer/>
 

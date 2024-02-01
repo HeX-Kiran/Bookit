@@ -61,16 +61,16 @@ function TheatreRegistration() {
     <section className='theatre-reg'>
         
       <div className='registration-grid grid grid-cols-2 items-start justify-between '>
-            <div className='brand-img px-24 py-20  flex flex-col items-start justify-between gap-20  h-[100vh]'> 
+            <div className='brand-img px-16 py-10  flex flex-col items-start justify-between gap-20  h-[100vh]'> 
                 {/* Brand name */}
-                <h1 className='uppercase font-brand text-5xl text-violet-800 font-medium tracking-widest'>bookit</h1>
+                {/* <h1 className='uppercase font-brand text-5xl text-violet-800 font-medium tracking-widest'>bookit</h1> */}
                 {/* A short desc */}
-                <h1 className='font-bold text-6xl text-violet-800 w-[80%] leading-tight'>One step <span className='text-violet-500'>towards your big dream</span></h1>
+                <h1 className='font-bold text-6xl text-violet-800 w-[100%] leading-tight'>One step <span className='text-violet-500'>towards your big dream</span></h1>
                 {/* Login illustration */}
-                <img src={theatreReg} alt='Login illustration' className=''/>
+                <img src={theatreReg} alt='Login illustration' className='w-[100%] h-[500px]'/>
             </div>
 
-            <div className='theatre-reg-form px-28 py-36  flex flex-col items-center justify-around bg-violet-50 h-[100vh] '>
+            <div className='theatre-reg-form px-16 py-10   flex flex-col items-center justify-around bg-violet-50 h-[100vh] '>
 
                 <div className='brand-title inline-block'>
                     <h1 className='text-5xl font-bold text-violet-800'>Lets open your theatre</h1>
