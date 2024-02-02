@@ -569,6 +569,7 @@ thead th.active,tbody td.active {
 
 .loader{
   background-color: #000000e9;
+  min-height: 100vh;
 }
 
 /* *********************************************************************** */
@@ -869,7 +870,9 @@ label{
 }
 
 .side-bar{
-  
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 
 .menu{
@@ -881,6 +884,8 @@ label{
 .main-body {
  color: #333;
  padding: 0 2rem ;
+ border-left: 2px solid purple;
+ min-height: 100vh;
 }
 
 .nav-bar .date{
@@ -903,11 +908,11 @@ label{
 
 .theatre-cards{
   padding: 2rem;
-  min-width: 275px;
+  min-width: 325px;
     /* max-width: 275px; */
-    height: 275px;
+    min-height: 275px;
     border-radius: 20px;
-    /* background-color: #fff; */
+    background-image: linear-gradient(to right bottom,#5B21B6 ,#9046C3);
     box-shadow: 0 5px 5px 5px #00000024;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -919,11 +924,20 @@ label{
     cursor: pointer;
 }
 
+.card-disable{
+  cursor: none;
+  opacity: 0.5;
+}
+
+.btn-disable{
+  cursor: none;
+}
+
 .theatre-card-grid{
   display: grid;
   grid-template-columns: 2fr 4fr;
   column-gap: 1rem;
-  row-gap: 0.5rem;
+  row-gap: 0.2rem;
 }
 
 .alphabet{
@@ -932,4 +946,38 @@ label{
 
 .location {
   
+}
+
+.theatre-status{
+  right: 10px;
+  top: 10px;
+
+}
+
+/* Add theatre stylees */
+.add-task{
+   
+  min-width: 300px;
+    /* max-width: 275px; */
+    min-height: 400px;
+  border-radius: 20px;
+  border: 3px dashed purple;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.add{
+ font-size: 5.6rem;
+  color: var(--main-text-color-hover);
+}
+
+.add-task p{
+  color: blueviolet;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
 }

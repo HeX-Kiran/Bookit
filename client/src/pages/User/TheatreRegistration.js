@@ -38,7 +38,7 @@ function TheatreRegistration() {
                 showToast(TOAST_STATUS.SUCCESS,data.message);
 
                 
-                navigate("/")
+                navigate("/theatre")
             
             }
             else{

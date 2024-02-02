@@ -17,10 +17,10 @@ function Navbar() {
 
     // Function to check if the user have any theatre 
     const checkTheatreExsistForTheUser = async()=>{
-      console.log(user);
+      
       try {
         const theatreExsist = await checkIfTheatreExsist(user._id);
-        console.log(theatreExsist);
+        
         // if theatreExsist then set the theatreExsist state to true
         if(theatreExsist.success){
           setTheatreExsist(true);

@@ -13,6 +13,16 @@ export const getTheatre = async()=>{
     }
 }
 
+export const getAllTheatresByUserID = async(userID)=>{
+    try {
+        const response = await axios.get(`/api/theatre//getAllTheatresByUserID/${userID}`);
+        
+        return response.data.data;
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+}
+
 export const deleteTheatre = async(id)=>{
    
     try {

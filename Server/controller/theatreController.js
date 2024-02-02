@@ -54,6 +54,41 @@ exports.getTheatreById = async(req,res)=>{
     
 }
 
+exports.getTheatreByUserID = async(req,res)=>{
+    const {userID} = req.params;
+    try {
+        //get the theatres for the userID
+        const theatres = await Theatre.find({owner:userID}).populate("owner");
+
+        //if theatre exsist for that userID then send all the theatre as response
+        if(theatres){
+            res.status(200).json({
+                success:true,
+                message:"Theatres fetched successfully",
+                data: theatres
+            })
+        }
+
+        // if thaetre doesnt exist for the userID then send an empty array 
+        else{
+            res.send({
+                success:true,
+                message:"Please add atleast one theatre",
+                data :[]
+            })
+        }
+        
+    } catch (error) {
+        res.send({
+            success:false,
+            message:"Internal error occured",
+            data:error.message
+
+        })
+    }
+    
+}
+
 exports.addTheatre = async(req,res)=>{
     const theatreDetails = req.body;
     try {
@@ -64,7 +99,7 @@ exports.addTheatre = async(req,res)=>{
             // if theatre already exsist
             res.send({
                 success:false,
-                message:"Theatre already exsist"
+                message:"Theatre already exsist."
             })
         }
         // if theatre doesnt exsist then add it

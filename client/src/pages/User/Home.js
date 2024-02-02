@@ -29,6 +29,7 @@ function Home() {
   return (
     <div className='home-page'>
       <Loader isLoading={isLoading}/>
+     
       <Navbar/>
       <Title />
       <Movies/>

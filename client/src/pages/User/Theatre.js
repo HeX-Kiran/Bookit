@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import moment from "moment"
-import welcomeImage from "../../assets/images/welcome.png"
+import TheatreDashboard from './components/TheatreDashboard'
+import { THEATRE_PAGE_SECTION } from '../../util'
+import { useNavigate } from 'react-router-dom'
+import Loader from '../../components/Loader'
+import { useSelector } from 'react-redux'
 
 function Theatre() {
+    const [section,setSection] = useState(THEATRE_PAGE_SECTION.DASHBOARD);
+    const navigate = useNavigate();
+    const isLoading = useSelector(state=>state.loader.status)
+
+    // Funtion to handle logout button
+    const logout = ()=>{
+        localStorage.removeItem('token');
+        navigate("/login")
+    }
+
   return (
     <section className='theatre-dashboard'>
+        <Loader isLoading={isLoading}/> 
         <div className='dashboard-grid'>
             <div className='side-bar flex flex-col items-start gap-24  '>
                 {/* Brand name */}
@@ -12,17 +27,17 @@ function Theatre() {
 
                 <div className='menu flex flex-col items-start justify-center gap-8'>
                     {/* icon + button */}
-                    <div className='flex items-center justify-center gap-4'>
+                    <div className={section === THEATRE_PAGE_SECTION.DASHBOARD ?'flex items-center justify-center gap-4 text-violet-700 font-bold text-xl' :'flex items-center justify-center gap-4 '} onClick={()=>setSection(THEATRE_PAGE_SECTION.DASHBOARD)}>
                         <i className="ri-folder-2-line"></i>
                         <button className='text-md'>Dashboard</button>
                     </div>
-                    <div className='flex items-center justify-center gap-4'>
+                    <div className={section === THEATRE_PAGE_SECTION.SHOWS ?'flex items-center justify-center gap-4 text-violet-700 font-bold text-xl' :'flex items-center justify-center gap-4 '} onClick={()=>setSection(THEATRE_PAGE_SECTION.SHOWS)}>
                         <i className="ri-movie-line"></i>
                         <button className='text-md'>Shows</button>
                     </div>
-                    <div className='flex items-center justify-center gap-4'>
+                    <div className='flex items-center justify-center gap-4' >
                         <i class="ri-logout-box-line"></i>
-                        <button className='text-md'>Logout</button>
+                        <button className='text-md' onClick={logout}>Logout</button>
                     </div>
                 </div>
             </div>
@@ -30,7 +45,7 @@ function Theatre() {
                 {/* Main body nav bar */}
                 <div className='nav-bar flex items-center justify-between w-[100%]'>
                     {/* nav-bar title */}
-                    <h1 className='text-2xl font-bold'>Dashboard</h1>
+                    <h1 className='text-2xl font-bold uppercase'>{section}</h1>
                     {/* nav-bar date and search button */}
                     <div className='flex items-center gap-8'>
                         <p className='date font-medium'>{moment(Date.now()).format('Do MMMM YYYY')}</p>
@@ -38,27 +53,13 @@ function Theatre() {
                     </div>
                 </div>
 
-                {/* Main body welcoming message */}
-                <div className=' welcome-msg my-16 flex items-start flex-col gap-4 w-[70%] m-auto p-8 bg-violet-200 rounded-2xl relative' >
-                    <div className='w-[70%]'>
-                        <h1 className='text-lg text-violet-700 font-bold mb-4'>Welcome Kiran</h1>
-                        <p className='text-md font-medium'>We are thrilled to raise the curtains and invite you to a world of captivating performances, enchanting stories, and unforgettable moments.</p>
-                    </div>
-                    <img src={welcomeImage} alt='welcome person' className=' welcome-img'/>
-                </div>
-
-                {/* Movie Cards */}
-                <h1 className='text-xl font-bold '>Your theatres</h1>
-                <div className='flex items-center justify-between flex-wrap w-[100%] my-4'>
-                    {/* Theatre cards */}
-                    <div className='theatre-cards bg-violet-600 text-white'>
-                        <div className='theatre-card-grid'>
-                            <p className='alphabet bg-violet-200 text-xl rounded-xl font-bold text-center text-violet-800 flex items-center justify-center '>M</p>
-                            <h1 className='text-lg font-bold uppercase'>Theatre Name</h1>
-                            <p className='location text-md font-bold text-violet-200'>Guruvayur</p>
-                        </div>
-                    </div>
-                </div>
+                {
+                    section === THEATRE_PAGE_SECTION.DASHBOARD 
+                    ?
+                        <TheatreDashboard setSection={setSection}/>
+                    :
+                    <h1>Shows</h1>
+                }
             </div>
         </div>
     </section>

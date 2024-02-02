@@ -16,6 +16,12 @@ export const THEATRE_STATUS = {
     
 }
 
+export const THEATRE_PAGE_SECTION = {
+    DASHBOARD : "dashboard",
+    SHOWS :"shows",
+    
+}
+
 export const showToast = (status,message)=>{
 
     switch(status){
