@@ -10,6 +10,7 @@ const loadingSlice = createSlice({
     reducers:{
         showLoader(state){
             //show loader
+         
              state.status = true
         },
 

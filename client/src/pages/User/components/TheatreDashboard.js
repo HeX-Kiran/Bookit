@@ -7,6 +7,7 @@ import { hideLoader, showLoader } from '../../../store/loadingSlice';
 import { showToast,TOAST_STATUS } from '../../../util';
 import TheatreCards from './TheatreCards';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../../components/Loader';
 
 
 function TheatreDashboard({setSection}) {
@@ -42,6 +43,7 @@ function TheatreDashboard({setSection}) {
     },[getAllTheatres])
   return (
     <div>
+       
         {/* Main body welcoming message */}
         <div className=' welcome-msg my-16 flex items-start flex-col gap-4 w-[70%] m-auto p-8 bg-violet-200 rounded-2xl relative' >
                     <div className='w-[70%]'>

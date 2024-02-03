@@ -11,7 +11,7 @@ function Loader({isLoading}) {
 
     <div className=''>
         {
-        isLoading && <div className='flex items-center justify-center  w-[100%]  loader z-20 absolute left-0'>
+        isLoading && <div className='flex items-center justify-center  w-[100%]  loader z-20  '>
         
         <RotateLoader color={"rgb(190, 157, 243)"}
 

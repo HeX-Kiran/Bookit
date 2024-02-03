@@ -4,7 +4,7 @@ const loginRoute = require("./routes/loginRoute");
 const currentUserRoute = require("./routes/currentUser");
 const movieRouter = require("./routes/movieRoute");
 const theatreRouter = require("./routes/theatreRoute");
-
+const showRouter = require("./routes/showRoutes");
 const app = express();
 app.use(express.json());
 
@@ -13,6 +13,7 @@ app.use("/api/user/login",loginRoute);
 app.use("/api/user/currentUser",currentUserRoute);
 app.use("/api/movie",movieRouter);
 app.use("/api/theatre",theatreRouter);
+app.use("/api/show",showRouter);
 
 
 
