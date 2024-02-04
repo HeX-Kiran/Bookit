@@ -4,10 +4,11 @@ import { deleteTheatre } from '../../../apicalls/theatre'
 import { useDispatch } from 'react-redux'
 import { hideLoader, showLoader } from '../../../store/loadingSlice';
 
-function TheatreCards({theatre,getAllTheatres,setSection}) {
+function TheatreCards({theatre,getAllTheatres,setSection,setSelectedTheatre}) {
 
     const dispatcher = useDispatch();
 
+    // FUNCTION TO DELETE A THEATRE
     const handleDeleteBtn = async()=>{
         try{
         dispatcher(showLoader())
@@ -25,6 +26,17 @@ function TheatreCards({theatre,getAllTheatres,setSection}) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
       }
     }
+
+
+    // FUNCTION TO MOVE TO THE SHOW SECTION OF THE CLICKED THEATRE
+    const handleEditBtn = (theatreID)=>{
+      // go to section shows
+      setSection(THEATRE_PAGE_SECTION.SHOWS);
+      // move to the theatre having the theatreID and make it as the view
+      setSelectedTheatre(theatre._id)
+  }
+
+
   return (
     <div className={theatre.isActive === THEATRE_STATUS.PENDING ? 'theatre-cards bg-violet-600 text-white transition-all relative card-disable' : 'theatre-cards  text-white transition-all relative'} >
         <div className='theatre-card-grid'>
@@ -38,7 +50,7 @@ function TheatreCards({theatre,getAllTheatres,setSection}) {
         {/* Delete and edit btn */}
         
         <i className= {theatre.isActive === THEATRE_STATUS.PENDING  ?"btn-disable" :" ri-delete-bin-line py-2  bg-red-500 text-white rounded-xl text-2xl text-center hover:scale-105 " } onClick={handleDeleteBtn}></i>
-        <i className={theatre.isActive === THEATRE_STATUS.PENDING || theatre.isActive === THEATRE_STATUS.REJECTED ?"btn-disable" :" ri-pencil-line py-2  bg-green-500 text-white rounded-xl text-2xl text-center hover:scale-105 " } onClick={()=>setSection(THEATRE_PAGE_SECTION.SHOWS)}></i>
+        <i className={theatre.isActive === THEATRE_STATUS.PENDING || theatre.isActive === THEATRE_STATUS.REJECTED ?"btn-disable" :" ri-pencil-line py-2  bg-green-500 text-white rounded-xl text-2xl text-center hover:scale-105 " } onClick={()=>handleEditBtn(theatre._id)}></i>
 
         
         {/* Theatre status */}

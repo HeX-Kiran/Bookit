@@ -1,15 +1,18 @@
 
 import welcomeImage from "../../../assets/images/welcome.png"
+import { THEATRE_PAGE_SECTION } from "../../../util";
 import TheatreCards from './TheatreCards';
 import { useNavigate } from 'react-router-dom';
 
 
 
-function TheatreDashboard({setSection,theatres,getAllTheatres}) {
+function TheatreDashboard({setSection,theatres,getAllTheatres,setSelectedTheatre}) {
 
     
     
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    
 
    
    
@@ -39,7 +42,7 @@ function TheatreDashboard({setSection,theatres,getAllTheatres}) {
                   
                 {/* Theatre cards */}
                 {
-                    theatres.map(theatre => <TheatreCards theatre={theatre} getAllTheatres={getAllTheatres} setSection={setSection}/>)
+                    theatres.map(theatre => <TheatreCards theatre={theatre} getAllTheatres={getAllTheatres} setSection={setSection} setSelectedTheatre={setSelectedTheatre}/>)
                 }
             </div>
     </div>

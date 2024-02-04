@@ -15,6 +15,8 @@ import Show from './components/Show'
 
 function Theatre() {
     const [section,setSection] = useState(THEATRE_PAGE_SECTION.DASHBOARD);
+    // this state filters the shows for a particular theatre
+    const[selectedTheatre,setSelectedTheatre] = useState("")
     const [theatres,setTheatres] = useState([]);
     const dispatcher = useDispatch();
     const user = useSelector(state=>state.user);
@@ -48,6 +50,14 @@ function Theatre() {
         
     },[user,dispatcher])
 
+    //function to handle the show section when clicked
+    const handleShowSection = ()=>{
+        // set the section into show
+        setSection(THEATRE_PAGE_SECTION.SHOWS);
+        //make the selectedTheatre as ""
+        setSelectedTheatre("");
+    }
+
     useEffect(()=>{
         getAllTheatres();
     },[getAllTheatres])
@@ -66,7 +76,7 @@ function Theatre() {
                         <i className="ri-folder-2-line"></i>
                         <button className='text-md'>Dashboard</button>
                     </div>
-                    <div className={section === THEATRE_PAGE_SECTION.SHOWS ?'flex items-center justify-center gap-4 text-violet-700 font-bold text-xl' :'flex items-center justify-center gap-4 '} onClick={()=>setSection(THEATRE_PAGE_SECTION.SHOWS)}>
+                    <div className={section === THEATRE_PAGE_SECTION.SHOWS ?'flex items-center justify-center gap-4 text-violet-700 font-bold text-xl' :'flex items-center justify-center gap-4 '} onClick={handleShowSection}>
                         <i className="ri-movie-line"></i>
                         <button className='text-md'>Shows</button>
                     </div>
@@ -91,9 +101,9 @@ function Theatre() {
                 {
                     section === THEATRE_PAGE_SECTION.DASHBOARD 
                     ?
-                        <TheatreDashboard setSection={setSection} theatres={theatres}  getAllTheatres = {getAllTheatres}/>
+                        <TheatreDashboard setSection={setSection} theatres={theatres}  getAllTheatres = {getAllTheatres} setSelectedTheatre={setSelectedTheatre}/>
                     :
-                    <h1><Show theatres={theatres}/></h1>
+                    <h1><Show theatres={theatres} selectedTheatre={selectedTheatre}/></h1>
                 }
             </div>
         </div>

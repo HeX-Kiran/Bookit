@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useMemo } from 'react'
 import ShowCard from './ShowCard'
 import showImage from '../../../assets/images/show.png'
 
-function Show({theatres}) {
+function Show({theatres,selectedTheatre}) {
+
+    const filteredTheatre = useMemo(()=>{
+        // filter out the theatres according to the selectedTheatre
+        if(selectedTheatre === "") return theatres;
+
+        return theatres.filter(theatre =>{
+            return theatre._id === selectedTheatre
+        })
+    },[theatres,selectedTheatre])
+
+    
     
   return (
     <section className='shows my-16'>
@@ -15,7 +26,7 @@ function Show({theatres}) {
         </div>
         <div className='show-cards flex items-center justify-between flex-col gap-8'>
             {
-                theatres.map(theatre=>{
+                filteredTheatre.map(theatre=>{
                     
                     return <ShowCard theatre={theatre}/>
                 })

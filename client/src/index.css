@@ -1003,3 +1003,9 @@ label{
   top: 0;
   transform: translate(-25%,-50%);
 }
+
+
+.show-card{
+  box-shadow: 0 5px 5px 5px #00000024;
+  border: 1px solid rgb(122, 65, 255);
+}
