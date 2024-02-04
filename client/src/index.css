@@ -988,3 +988,18 @@ label{
   font-weight: 500;
   text-transform: uppercase;
 }
+
+
+
+
+ /* *********************************************************************** */
+/* Show  page *********************************** */
+
+.show-img{
+  width: 250px;
+  height: 200px;
+  position: absolute;
+  right: -50px;
+  top: 0;
+  transform: translate(-25%,-50%);
+}

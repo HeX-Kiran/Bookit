@@ -30,7 +30,7 @@ exports.getAllShows = async(req,res)=>{
 exports.getShowByTheatreID = async(req,res)=>{
     try {
         const {theatreID} = req.params;
-        const shows = await Show.find({theatre:theatreID});
+        const shows = await Show.find({theatre:theatreID}).populate('movie');
         if(shows){
             res.json({
                 success:true,
@@ -60,7 +60,7 @@ exports.getShowsByMovieID = async(req,res)=>{
     try {
         const{movieID,date} = req.body;
         //get all the shows for the particular mmovieID and date
-        const shows = await Show.find({movie:movieID,date}).populate("theatre");
+        const shows = await Show.find({movie:movieID,date}).populate('theatre');
 
         let uniqueTheatre =[];
         //for each show check the theatreID already exsist in the uniqueThetre list
@@ -74,7 +74,7 @@ exports.getShowsByMovieID = async(req,res)=>{
             if(!theatre){
                 const allShowsOfTheatre = shows.filter(eachShow=>{
                     //check all the shows and find the shows with the matching theatre_id
-                    eachShow.theatre._id == show.theatre._id
+                    return eachShow.theatre._id == show.theatre._id
                 })
 
                 // now we have all the shows for the particular theatre,add this theatre and shows in unique list
@@ -100,6 +100,41 @@ exports.getShowsByMovieID = async(req,res)=>{
             data:error.message
         })
     }
+}
+
+exports.addShow = async(req,res)=>{
+    const showDetails = req.body;
+    try {
+
+        //check if show already exsist
+        const showAlreadyExsist = await Show.findOne({name:showDetails.name,theatre:showDetails.theatreID,time:showDetails.time});
+        if(showAlreadyExsist){
+            // if show already exsist
+            res.send({
+                success:false,
+                message:"Show already exsist"
+            })
+        }
+        // if Show doesnt exsist then add it
+        else{
+                //add show into DB
+                const newShow = await Show.create(showDetails);
+                res.status(201).json({
+                    success:true,
+                    message:"Show added successfully",
+                    data: showDetails
+                })
+        }
+        
+    } catch (error) {
+        res.send({
+            success:false,
+            message:"Internal error occured",
+            data:error.message
+
+        })
+    }
+   
 }
 
 exports.updateShow = async(req,res)=>{
