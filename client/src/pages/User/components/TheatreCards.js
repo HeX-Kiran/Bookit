@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState,useEffect,useCallback } from 'react'
+import { getAllShowByTheatreId } from '../../../apicalls/shows'
 import { THEATRE_PAGE_SECTION, THEATRE_STATUS, TOAST_STATUS, showToast } from '../../../util'
 import { deleteTheatre } from '../../../apicalls/theatre'
 import { useDispatch } from 'react-redux'
@@ -7,6 +8,7 @@ import { hideLoader, showLoader } from '../../../store/loadingSlice';
 function TheatreCards({theatre,getAllTheatres,setSection,setSelectedTheatre}) {
 
     const dispatcher = useDispatch();
+    const[showCount,setShowCount]= useState(0)
 
     // FUNCTION TO DELETE A THEATRE
     const handleDeleteBtn = async()=>{
@@ -34,7 +36,32 @@ function TheatreCards({theatre,getAllTheatres,setSection,setSelectedTheatre}) {
       setSection(THEATRE_PAGE_SECTION.SHOWS);
       // move to the theatre having the theatreID and make it as the view
       setSelectedTheatre(theatre._id)
-  }
+    }
+
+    const getShowByTheatreID =  useCallback(async()=>{
+        try{
+            dispatcher(showLoader())
+            const response   = await getAllShowByTheatreId(theatre._id)
+            dispatcher(hideLoader());
+            if(response.success){
+                // showToast(TOAST_STATUS.SUCCESS,"Shows fetched successfully");
+                setShowCount(response.data.length)
+            }
+            else{
+                showToast(TOAST_STATUS.ERROR,response.message)
+            }
+      
+          } catch (error) {
+            showToast(TOAST_STATUS.ERROR,"Something went wrong")
+          }
+    },[dispatcher,theatre])
+
+
+    useEffect(()=>{
+        getShowByTheatreID()
+    },[getShowByTheatreID])
+
+
 
 
   return (
@@ -46,7 +73,7 @@ function TheatreCards({theatre,getAllTheatres,setSection,setSelectedTheatre}) {
             
         </div>
         {/* Total shows */}
-        <p className='show-no font-bold text-xl text-center my-8'>Total shows :- 10</p>
+        <p className='show-no font-bold text-xl text-center my-8'>Total shows - {showCount}</p>
         {/* Delete and edit btn */}
         
         <i className= {theatre.isActive === THEATRE_STATUS.PENDING  ?"btn-disable" :" ri-delete-bin-line py-2  bg-red-500 text-white rounded-xl text-2xl text-center hover:scale-105 " } onClick={handleDeleteBtn}></i>

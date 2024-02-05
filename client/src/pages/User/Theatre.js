@@ -103,7 +103,7 @@ function Theatre() {
                     ?
                         <TheatreDashboard setSection={setSection} theatres={theatres}  getAllTheatres = {getAllTheatres} setSelectedTheatre={setSelectedTheatre}/>
                     :
-                    <h1><Show theatres={theatres} selectedTheatre={selectedTheatre}/></h1>
+                    <h1><Show theatres={theatres} selectedTheatre={selectedTheatre} setSelectedTheatre={setSelectedTheatre}/></h1>
                 }
             </div>
         </div>

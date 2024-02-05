@@ -6,7 +6,7 @@ import { hideLoader, showLoader } from '../../../store/loadingSlice';
 import { getAllShowByTheatreId } from '../../../apicalls/shows';
 import moment from "moment"
 
-function ShowCard({theatre}) {
+function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow}) {
     const [shows,setShow] = useState([]);
     const dispatcher = useDispatch()
 
@@ -28,6 +28,22 @@ function ShowCard({theatre}) {
           }
     },[dispatcher,theatre])
 
+    //FUNCTION TO HANDLE EDIT BUTTON
+    const handleEditBtn = (showDetails)=>{
+        setIsOpen(true);
+        setType("edit");
+        setCurrentTheatre(theatre._id)
+        setCurrShow(showDetails)
+    }
+
+    //FUNCTION TO HANDLE ADD BUTTON
+    const handleAddBtn = (showDetails)=>{
+        setIsOpen(true);
+        setType("add");
+        setCurrentTheatre(theatre._id);
+        setCurrShow({});
+    }
+
 
     useEffect(()=>{
         getShowByTheatreID()
@@ -46,8 +62,9 @@ function ShowCard({theatre}) {
             &&
             <>
             <h1 className='font-bold text-2xl uppercase'>Add shows</h1>
-            <i className= {theatre.isActive === THEATRE_STATUS.ACTIVE ? " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-2xl text-center w-[50%] hover:scale-105 " : "btn-disable ri-delete-bin-line p-2  bg-red-100 text-gray-300 rounded-xl text-2xl text-center w-[50%] " } onClick={()=>console.log("Clicked")}  ></i>
-            <i className={theatre.isActive === THEATRE_STATUS.ACTIVE  ? " ri-pencil-line p-2  bg-green-500 text-white rounded-xl text-2xl text-center w-[50%] hover:scale-105 " : "btn-disable ri-pencil-line p-2  bg-green-100 text-gray-300 rounded-xl text-2xl text-center w-[50%]  " } onClick={()=>{console.log("clicked");}}></i>
+            {/* if theatre is active then activate the button else diable the btns */}
+            {/* <i className= {theatre.isActive === THEATRE_STATUS.ACTIVE ? " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-2xl text-center w-[50%] hover:scale-105 " : "btn-disable ri-delete-bin-line p-2  bg-red-100 text-gray-300 rounded-xl text-2xl text-center w-[50%] " } onClick={()=>console.log("Clicked")}  ></i> */}
+            <i className={theatre.isActive === THEATRE_STATUS.ACTIVE  ? " ri-add-line p-2  bg-green-500 text-white rounded-xl text-2xl text-center w-[50%] transition-all hover:scale-105 cursor-pointer " : "btn-disable ri-pencil-line p-2  bg-green-100 text-gray-300 rounded-xl text-2xl text-center w-[50%] transition-all cursor-pointer " } onClick={handleAddBtn}></i>
             </>
 
             
@@ -65,15 +82,22 @@ function ShowCard({theatre}) {
                         <p className='font-light text-sm'>{moment(show.date).format('Do MMMM YYYY')}</p>
                         <p className='font-bold text-sm text-rose-500'>{show.time}</p>
                         <p className='font-bold text-sm text-green-800 '>{show.ticketPrice} rupees</p>
-                        <i className= " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-xl text-center hover:scale-105 "  onClick={""}></i>
-                        <i className=" ri-pencil-line p-2  bg-green-500 text-white rounded-xl text-xl text-center hover:scale-105 "  onClick={""}></i>
+                        <i className= " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={handleAddBtn}></i>
+                        <i className=" ri-pencil-line p-2  bg-blue-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleEditBtn({name:show?.name,date:moment(show?.date).format('YYYY-MM-DD'),theatre:show?.theatre._id,movie:show?.movie._id,time:Number(show?.time.split()[0]),bookedSeats:show?.bookedSeats,ticketPrice:show?.ticketPrice,totalSeats:show?.totalSeats,AMorPM:show?.time.split()[1]})}></i>
                     </div>
                 })
             }
         </div>
 
         {/* Total number of shows */}
-        <h1 className='text-center w-[100%] font-bold text-lg uppercase text-gray-600'>Total shows - {shows.length}</h1>
+        {
+            shows.length !== 0 && <h1 className='text-center w-[100%] font-bold text-lg uppercase text-gray-600'>Total shows - {shows.length}</h1>
+        }
+        {/* Button to add a show */}
+        {
+            shows.length !== 0 && <button className='outline-none border-none w-[50%] bg-green-500 text-white rounded-xl p-2 transition-all hover:scale-105'>ADD SHOW</button>
+        }
+        
         
     </div>
   )

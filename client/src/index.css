@@ -932,11 +932,13 @@ label{
 }
 
 .card-disable{
+  pointer-events: none;
   cursor: none;
   opacity: 0.5;
 }
 
 .btn-disable{
+  pointer-events: none;
   cursor: none;
 }
 

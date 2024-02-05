@@ -16,6 +16,18 @@ function Admin() {
   const isLoading = useSelector(state =>state.loader.status)
   const dispatcher = useDispatch();
 
+  
+
+  
+
+  const[movies,setMovies] = useState([]);
+  const[theatre,setTheatre] = useState([])
+  const[type,setType] = useState("add");
+  const[isOpen,setIsOpen] = useState(false);
+  const[currMovie,setCurrMovie] = useState({})
+  const [tab,setTab] = useState("movies")
+
+
   // Function to get all movies
   const getAllMovies = async()=>{
     // api call
@@ -45,15 +57,6 @@ function Admin() {
     }
   }
 
-
-  
-
-  const[movies,setMovies] = useState([]);
-  const[theatre,setTheatre] = useState([])
-  const[type,setType] = useState("add");
-  const[isOpen,setIsOpen] = useState(false);
-  const[currMovie,setCurrMovie] = useState({})
-  const [tab,setTab] = useState("movies")
 
   //function to handle add movie button
   const handleAddMovie = ()=>{

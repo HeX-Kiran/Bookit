@@ -66,7 +66,7 @@ function Movies() {
 
             // otherwise display the debounced movies
             else{
-                let filteredArray = movies.filter((item)=>
+                let filteredArray = movies?.filter((item)=>
                 {
                     
                     return item.title.toLowerCase().includes(debouncedMovie?.toLowerCase());

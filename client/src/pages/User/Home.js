@@ -17,10 +17,7 @@ function Home() {
 
   
 
-  useEffect(()=>{
-   
-    
-  },[])
+  
 
   
 

@@ -56,3 +56,13 @@ export const deleteShow =  async(id)=>{
         showToast(TOAST_STATUS.ERROR,"Somthing went wrong")
     }
 }
+
+export const addShow = async (showDetails)=>{
+    try {
+        const response = await axios.post("/api/show/addShow",showDetails)
+        
+        return response.data
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Somthing went wrong")
+    }
+}

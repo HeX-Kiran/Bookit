@@ -1,8 +1,32 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ShowCard from './ShowCard'
 import showImage from '../../../assets/images/show.png'
+import ShowModal from './ShowModal'
 
-function Show({theatres,selectedTheatre}) {
+function Show({theatres,selectedTheatre,setSelectedTheatre}) {
+    // type of modal box either edit or add
+    const[type,setType] = useState("add");
+    //if a show is selected for edit,store the data of that show in a state
+    const [currShow,setCurrShow] = useState({})
+    //state that manages open/close of show modal
+    const[isOpen,setIsOpen] = useState(false);
+    //state to hold the currTheatre
+    const[currTheatre,setCurrentTheatre] = useState("");
+
+    const setPageFreeze = ()=>{
+        // to make overflow hidden while the modal box is open
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if(isOpen)document.body.style.overflow = "hidden";
+        
+    }
+  
+    const setPageFree = ()=>{
+      document.body.style.overflow = "visible";
+    }
+  
+  
+    if(isOpen)setPageFreeze();
+    else setPageFree();
 
     const filteredTheatre = useMemo(()=>{
         // filter out the theatres according to the selectedTheatre
@@ -28,10 +52,12 @@ function Show({theatres,selectedTheatre}) {
             {
                 filteredTheatre.map(theatre=>{
                     
-                    return <ShowCard theatre={theatre}/>
+                    return <ShowCard theatre={theatre} setIsOpen={setIsOpen} setType={setType} setCurrentTheatre={setCurrentTheatre} setCurrShow={setCurrShow}/>
                 })
             }
         </div>
+
+       {isOpen && <ShowModal type={type} currShow={currShow} setSelectedTheatre={setSelectedTheatre}/>} 
     </section>
   )
 }

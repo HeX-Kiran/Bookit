@@ -117,7 +117,7 @@ export const checkLoginPassword =(password)=>{
 
 export const checkMovieDetails = (movieDetails)=>{
     for (let key in movieDetails) {
-        ;
+        
         if(!movieDetails[key]){
             showToast(showToast(TOAST_STATUS.ERROR,`${key} is mandatory`));
             return false;  
