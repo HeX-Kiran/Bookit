@@ -140,6 +140,7 @@ exports.addShow = async(req,res)=>{
 exports.updateShow = async(req,res)=>{
     try {
         const updatedShow = req.body
+        console.log(updatedShow);
         const id = updatedShow._id;
         delete updatedShow._id
 
@@ -147,7 +148,8 @@ exports.updateShow = async(req,res)=>{
         
         if(show){
 
-            const newShow = Show.findByIdAndUpdate(id,updatedShow)
+            const newShow = await Show.findByIdAndUpdate(id,updatedShow)
+            
             res.json({
                 success:true,
                 message:"Show updated successfully",
@@ -174,6 +176,7 @@ exports.updateShow = async(req,res)=>{
 exports.deleteShow = async(req,res)=>{
     try {
         const showDetails = req.body;
+        
         const id = showDetails._id;
 
         const show = await Show.findOne({_id:id});

@@ -3,10 +3,10 @@ import { TOAST_STATUS, showToast } from '../../../util'
 import { THEATRE_STATUS } from '../../../util';
 import { useDispatch } from 'react-redux'
 import { hideLoader, showLoader } from '../../../store/loadingSlice';
-import { getAllShowByTheatreId } from '../../../apicalls/shows';
+import { deleteShow, getAllShowByTheatreId } from '../../../apicalls/shows';
 import moment from "moment"
 
-function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow}) {
+function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow,render,setRender}) {
     const [shows,setShow] = useState([]);
     const dispatcher = useDispatch()
 
@@ -44,10 +44,29 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow}) {
         setCurrShow({});
     }
 
+    // FUNCTION TO HANDLE DELETE BTN
+    const handleDeleteBtn = async(id)=>{
+        try{
+            dispatcher(showLoader())
+            const response   = await deleteShow(id)
+            dispatcher(hideLoader());
+            if(response.success){
+                showToast(TOAST_STATUS.SUCCESS,response.message);
+                setRender(state=>!state)
+            }
+            else{
+                showToast(TOAST_STATUS.ERROR,response.message)
+            }
+      
+          } catch (error) {
+            showToast(TOAST_STATUS.ERROR,"Something went wrong")
+          }
+    }
+
 
     useEffect(()=>{
         getShowByTheatreID()
-    },[getShowByTheatreID])
+    },[getShowByTheatreID,render])
   return (
     <div className='show-card w-[100%] bg-violet-50 text-black flex items-center flex-col gap-8 rounded-xl p-8' id={theatre._id}>
         {/* Theatre name and location */}
@@ -82,8 +101,8 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow}) {
                         <p className='font-light text-sm'>{moment(show.date).format('Do MMMM YYYY')}</p>
                         <p className='font-bold text-sm text-rose-500'>{show.time}</p>
                         <p className='font-bold text-sm text-green-800 '>{show.ticketPrice} rupees</p>
-                        <i className= " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={handleAddBtn}></i>
-                        <i className=" ri-pencil-line p-2  bg-blue-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleEditBtn({name:show?.name,date:moment(show?.date).format('YYYY-MM-DD'),theatre:show?.theatre._id,movie:show?.movie._id,time:Number(show?.time.split()[0]),bookedSeats:show?.bookedSeats,ticketPrice:show?.ticketPrice,totalSeats:show?.totalSeats,AMorPM:show?.time.split()[1]})}></i>
+                        <i className= " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleDeleteBtn(show._id)}></i>
+                        <i className=" ri-pencil-line p-2  bg-blue-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleEditBtn({_id:show?._id,name:show?.name,date:moment(show?.date).format('YYYY-MM-DD'),theatre:show?.theatre._id,movie:show?.movie._id,time:Number(show?.time.split()[0]),bookedSeats:show?.bookedSeats,ticketPrice:show?.ticketPrice,totalSeats:show?.totalSeats,AMorPM:show?.time.split()[1]})}></i>
                     </div>
                 })
             }
@@ -95,7 +114,7 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow}) {
         }
         {/* Button to add a show */}
         {
-            shows.length !== 0 && <button className='outline-none border-none w-[50%] bg-green-500 text-white rounded-xl p-2 transition-all hover:scale-105'>ADD SHOW</button>
+            shows.length !== 0 && <button className='outline-none border-none w-[50%] bg-green-500 text-white rounded-xl p-2 transition-all hover:scale-105' onClick={handleAddBtn}>ADD SHOW</button>
         }
         
         

@@ -1011,3 +1011,70 @@ label{
   box-shadow: 0 5px 5px 5px #00000024;
   border: 1px solid rgb(122, 65, 255);
 }
+
+ /* *********************************************************************** */
+/* Show  modal box *********************************** */
+
+.show-modal-box .registration-grid{
+  min-width: 1000px;
+  
+  /* max-height: 200px; */
+  background-color: #aaa;
+  /* padding: 2rem; */
+  /* display: flex; */
+  /* flex-direction: column;
+  align-items: center; */
+  /* justify-content: center; */
+  grid-template-columns: 2fr 4fr;
+  gap: .2rem;
+  border-radius: 10px;
+  /* padding-bottom: 2rem; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.show-modal-box .input-field{
+  width: 100%;
+  padding: 1rem 50px;
+}
+
+
+.show-modal-box .input-border{
+  border: 2px solid rgb(155, 16, 247);
+  border-radius: 30px;
+  transition: all 500s;
+}
+
+.show-modal-box .input-border:focus{
+  border: 3px solid rgb(155, 16, 247);
+ 
+}
+
+.show-modal-box .input-container{
+  margin-bottom: 0;
+}
+
+.am-pm{
+  width: 75px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+select{
+  border:none;
+  padding: 10px 20px;
+  border-radius:30px;
+  border: 1px solid violet;
+  
+}
+
+select:focus{
+  outline:none;
+}
+
+label{
+  margin-bottom: 0;
+}

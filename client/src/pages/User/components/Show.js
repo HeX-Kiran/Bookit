@@ -12,6 +12,8 @@ function Show({theatres,selectedTheatre,setSelectedTheatre}) {
     const[isOpen,setIsOpen] = useState(false);
     //state to hold the currTheatre
     const[currTheatre,setCurrentTheatre] = useState("");
+    //state to trigger a render on shows when a show is edited or added
+    const[render,setRender] = useState(true);
 
     const setPageFreeze = ()=>{
         // to make overflow hidden while the modal box is open
@@ -52,12 +54,12 @@ function Show({theatres,selectedTheatre,setSelectedTheatre}) {
             {
                 filteredTheatre.map(theatre=>{
                     
-                    return <ShowCard theatre={theatre} setIsOpen={setIsOpen} setType={setType} setCurrentTheatre={setCurrentTheatre} setCurrShow={setCurrShow}/>
+                    return <ShowCard theatre={theatre} setIsOpen={setIsOpen} setType={setType} setCurrentTheatre={setCurrentTheatre} setCurrShow={setCurrShow} render={render} setRender={setRender}/>
                 })
             }
         </div>
 
-       {isOpen && <ShowModal type={type} currShow={currShow} setSelectedTheatre={setSelectedTheatre}/>} 
+       {isOpen && <ShowModal type={type} currShow={currShow} setSelectedTheatre={setSelectedTheatre} setIsOpen={setIsOpen} theatreID={currTheatre} setRender={setRender}/>} 
     </section>
   )
 }

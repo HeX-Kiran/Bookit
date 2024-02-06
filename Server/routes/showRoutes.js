@@ -7,6 +7,6 @@ router.route("/getShowByTheatreId/:theatreID").get(getShowByTheatreID)
 router.route("/getShowByMovieId").post(getShowsByMovieID)
 router.route("/addShow").post(addShow)
 router.route("/updateShow").put(updateShow);
-router.route("/deleteShow").delete(deleteShow)
+router.route("/deleteShow").post(deleteShow)
 
 module.exports = router;

@@ -23,7 +23,7 @@ function TheatreRegistration() {
 
     const onSubmit = async(e)=>{
         e.preventDefault();
-
+        
         try {   
             // Add new theatre to db
             const data = await addTheatre({

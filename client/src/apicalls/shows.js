@@ -35,7 +35,7 @@ export const getAllShows = async ()=>{
 }
 
 export const editShow =  async(editShowDetails)=>{
-    
+    console.log(editShowDetails);
     
     try {
         const response = await axios.put("/api/show/updateShow",editShowDetails);
