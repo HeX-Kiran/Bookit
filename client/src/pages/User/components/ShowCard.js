@@ -95,7 +95,7 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow,rende
             {
                 shows.map(show=>{
                     // Show details
-                    return <div className='show-detail-card py-8 px-8 bg-violet-200 rounded-xl flex items-center justify-between w-[100%] flex-wrap'>
+                    return <div className='show-detail-card py-8 px-8 bg-violet-200 rounded-xl  w-[100%] flex-wrap'>
                         <h1 className='font-medium text-xl'>{show.name}</h1>   
                         <p className='font-medium text-md'>{show.movie.title}</p>
                         <p className='font-light text-sm'>{moment(show.date).format('Do MMMM YYYY')}</p>

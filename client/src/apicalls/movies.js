@@ -13,6 +13,15 @@ export const getMovies = async()=>{
     }
 }
 
+export const getMovieById = async(id)=>{
+    try {
+        const response = await axios.get(`/api/movie/getMovieById/${id}`);
+        return response.data.data;
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong");
+    }
+}
+
 export const deleteMovie = async(id)=>{
    
     try {

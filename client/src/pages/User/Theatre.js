@@ -68,7 +68,7 @@ function Theatre() {
         <div className='dashboard-grid'>
             <div className='side-bar flex flex-col items-start gap-24  '>
                 {/* Brand name */}
-                <h1 className='uppercase font-brand text-5xl text-violet-600 font-medium tracking-widest'>bookit</h1>
+                <h1 className='uppercase font-brand text-5xl text-violet-600 font-medium tracking-widest cursor-pointer' onClick={()=>navigate("/")}>bookit</h1>
 
                 <div className='menu flex flex-col items-start justify-center gap-8'>
                     {/* icon + button */}
@@ -94,7 +94,7 @@ function Theatre() {
                     {/* nav-bar date and search button */}
                     <div className='flex items-center gap-8'>
                         <p className='date font-medium'>{moment(Date.now()).format('Do MMMM YYYY')}</p>
-                        <i className="ri-search-line p-2 bg-violet-100 rounded-xl text-blue-700"></i>
+                        <i className="ri-user-line p-2 bg-violet-100 rounded-xl text-blue-700"></i>
                     </div>
                 </div>
 

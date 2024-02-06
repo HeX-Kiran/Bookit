@@ -1,6 +1,7 @@
 
+import { useSelector } from "react-redux";
 import welcomeImage from "../../../assets/images/welcome.png"
-import { THEATRE_PAGE_SECTION } from "../../../util";
+
 import TheatreCards from './TheatreCards';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,10 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 function TheatreDashboard({setSection,theatres,getAllTheatres,setSelectedTheatre}) {
 
-    
-    
     const navigate = useNavigate();
-
+    const user = useSelector(state=>state.user) || "user";
     
 
    
@@ -22,7 +21,7 @@ function TheatreDashboard({setSection,theatres,getAllTheatres,setSelectedTheatre
         {/* Main body welcoming message */}
         <div className=' welcome-msg my-16 flex items-start flex-col gap-4 w-[70%] m-auto p-8 bg-violet-200 rounded-2xl relative' >
                     <div className='w-[70%]'>
-                        <h1 className='text-lg text-violet-700 font-bold mb-4'>Welcome Kiran</h1>
+                        <h1 className='text-lg text-violet-700 font-bold mb-4'>Welcome {user.name}</h1>
                         <p className='text-md font-medium'>We are thrilled to raise the curtains and invite you to a world of captivating performances, enchanting stories, and unforgettable moments.</p>
                     </div>
                     <img src={welcomeImage} alt='welcome person' className=' welcome-img'/>

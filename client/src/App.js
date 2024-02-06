@@ -12,6 +12,7 @@ import store from "./store/store"
 
 import TheatreRegistration from './pages/User/TheatreRegistration';
 import Theatre from './pages/User/Theatre';
+import MovieDetails from './pages/User/MovieDetails';
 
 
 
@@ -29,6 +30,7 @@ function App() {
             <Route path='/admin' element ={<ProtectedRoute><Admin/></ProtectedRoute>}/>
             <Route path='/theatre/registration' element={<ProtectedRoute><TheatreRegistration/></ProtectedRoute>} />
             <Route path='/theatre' element={<ProtectedRoute><Theatre/></ProtectedRoute>} />
+            <Route path='/movie/:movieID' element={<ProtectedRoute><MovieDetails/></ProtectedRoute>} />
         </Routes>
         <ToastContainer/>
 

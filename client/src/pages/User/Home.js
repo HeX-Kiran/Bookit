@@ -12,16 +12,6 @@ import Footer from './components/Footer'
 function Home() {
 
   const isLoading = useSelector(state=>state.loader.status)
-
-
-
-  
-
-  
-
-  
-
-  
  
   return (
     <div className='home-page'>
