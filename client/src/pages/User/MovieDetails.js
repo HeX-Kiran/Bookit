@@ -5,6 +5,8 @@ import Loader from '../../components/Loader'
 import { showLoader,hideLoader } from '../../store/loadingSlice'
 import { getMovieById } from '../../apicalls/movies'
 import { showToast,TOAST_STATUS } from '../../util'
+import Navbar from './components/Navbar'
+import img from "../../assets/images/movie-details.jpg"
 
 function MovieDetails() {
 
@@ -22,8 +24,7 @@ function MovieDetails() {
     
 
 
-   
-
+   //FUNCTION TO FETCH MOVIE DETAILS OF A PARTICULAR MOVIE BY ID
    const getMovieFromID = async()=>{
     try {
         dispatcher(showLoader());
@@ -38,11 +39,28 @@ function MovieDetails() {
 
    useEffect(()=>{
     getMovieFromID()
-   },[movieID,date])
+   },[])
   return (
     <div>
         <Loader isLoading={isLoading}/>
-        <h1>{movie.title}</h1>
+        <section className='movie-details-page'>
+          {/* Nav bar */}
+            <Navbar />
+          {/* poster image */}
+          <div className='relative'>
+            <img src={img} alt='movie poster'  className='movie-details-img'/>
+
+            <img src={movie.poster} className='movie-detail-poster' alt='movie poster'></img>
+            <h1 className='title'>{movie.title}</h1>
+            <div className='desc'>
+              <p>{movie.description}</p>
+            </div>
+            
+          </div>
+            
+            
+            
+        </section>
     </div>
   )
 }

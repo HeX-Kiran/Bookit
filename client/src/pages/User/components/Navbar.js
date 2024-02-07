@@ -31,6 +31,11 @@ function Navbar() {
       }
     }
 
+    const handleMovieNavLink =()=>{
+        navigate("/");
+        // document.querySelector(".movies").scrollIntoView({behavior:"smooth"});
+    }
+
     useEffect(()=>{
       checkTheatreExsistForTheUser()
     },[user])
@@ -41,7 +46,7 @@ function Navbar() {
           <h1 className='uppercase font-brand text-4xl text-violet-50 font-medium tracking-widest'>bookit</h1>
         {/* Tabs for admin */}
         <div className='admin-tabs flex items-center justfiy-center gap-20  font-thin text-lg  text-violet-50 cursor-pointer'>
-            <p>Movies</p>
+            <p onClick={handleMovieNavLink}>Movies</p>
             <p>My tickets</p>
             {theatreExsist && <p onClick={()=>navigate("/theatre")}>My theatres</p>}
         </div>
