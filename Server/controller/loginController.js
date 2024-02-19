@@ -43,7 +43,7 @@ exports.validateUser = async(req,res)=>{
         }
         //else return an error response
         else{
-            c
+            
             return res.status(200).json({
                 success:false,
                 message:"No user found",

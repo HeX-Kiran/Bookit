@@ -1092,7 +1092,7 @@ label{
 /* Movie  detail page *********************************** */
 
 .movie-details-page{
-  height: 100svh;
+  min-height: 100svh;
   width: 100vw;
   background-color: #160023;
   /* background-image: linear-gradient(to right bottom,#b15b86 ,#440f50); */
@@ -1100,76 +1100,106 @@ label{
   position: relative;
 }
 
+.banner{
+  height: 400px;
+  width: 100%;
+  background-color: #1A1A1A;
+  
+  /* display: grid; */
+  /* grid-template-columns: 2fr 8fr; */
+  /* align-items: center; */
+  /* padding: 0 5rem; */
+}
+
+
+
+.banner .movie-card img{
+  width: 70%;
+  height: 90%;
+  padding: 2rem;
+  
+}
+
+.poster-img{
+  overflow: hidden;
+  position: relative;
+}
+
 .movie-details-img{
   
   width: 100%;
-  height: 600px;
-  /* margin: auto; */
-  /* border-radius: 20px; */
-  /* box-shadow: 0 .4rem .8rem black; */
+  height: 400px;
+  margin-left: auto;
+  filter: brightness(100%);
+  
   
 }
 
-.movie-detail-poster{
-  position: absolute;
-  width: 650px;
-  height: 200px;
-  left: 50%;
-  top: 20%;
-  transform: translate(-40%,-12.5%);
-  border-radius: 10px;
-  filter: brightness(60%);
-}
-
-.movie-details-page .title{
-  font-size: 4rem;
-  position: absolute;
-  color: white;
-  left: 50%;
-   top: 0; 
-   transform: translate(-25%); 
-  
-  /* background-image: linear-gradient(to right, #FECD95, #014576,#003563,#FECD95); */
-  background-image: linear-gradient(to right, #FECD95, #3333ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-transform: uppercase;
-  font-family: 'Protest Strike', sans-serif;
-  
-
-}
-
-.movie-details-page .desc{
-  font-size: 1.5rem;
-  position: absolute;
-  color: white;
-  left: 2%;
-  top: 50%; 
-  width: 100%;
-   transform: translateY(-25%); 
-
-  font-family: 'Protest Strike', sans-serif;
-  
-
-}
-
-
-/* .movie-detail-body{
-  backdrop-filter: blur(3px);
-  box-shadow: 0 .4rem .8rem #0005;
-  border-radius: .8rem;
+.poster-img::after{
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  color: white;
-  z-index: 10;
-  padding: 3rem;
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  flex-direction: column;
-} */
+  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.5)
+}
 
+
+.attributes{
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: 0;
+  height: 100%;
+  padding: 2rem 5rem;
+  gap: 5rem;
+}
+
+.movie-card-img{
+    width: 500px;
+    
+   
+}
+
+.movie-card-details .tag{
+  
+  
+    padding: 4px 8px;
+    background-color: #fff;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+    
+  
+}
+
+.movie-details-page .desc{
+  padding:2.5rem 4rem;
+  border-bottom: 1px solid #ffffff81;
+  
+}
+
+.movie-details-page .desc h1{
+  font-size: 1.8rem;
+  color: white;
+  margin: 20px 0;
+
+}
+
+.movie-details-page .desc p{
+  color: #eee;
+  width: 100%;
+  font-size: 1rem;
+
+}
+
+/* Ticket  booking section *********************************** */
+
+.book-ticket{
+  background-color: white;
+  padding: 3rem 4rem;
+  color: black;
+}

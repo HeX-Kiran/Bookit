@@ -3,6 +3,7 @@ const Show = require("../models/showModel");
 exports.getAllShows = async(req,res)=>{
     try {
         const shows = await Show.find().populate("movie").populate("theatre");
+       
 
         if(shows){
             res.json({

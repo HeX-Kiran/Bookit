@@ -130,11 +130,14 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
             </div>
 
             {/* Grid item 2 */}
-            <form className='theatre-reg-form px-16 py-10   flex flex-col items-center justify-around bg-violet-50  h-[100%]' action='#' method='post' onSubmit={handleSubmit} >
+            <form className='theatre-reg-form px-16 py-10   flex flex-col items-center justify-around bg-violet-50  h-[100%] relative' action='#' method='post' onSubmit={handleSubmit} >
+                {/* Close button */}
+                <i className="ri-close-line text-3xl font-bold cursor-pointer absolute right-10 top-10" onClick={handleClose}></i>
 
                 <div className='brand-title inline-block'>
                     <h1 className='text-5xl font-bold text-violet-800'>{type === "add" ? <h1 className='heading text-2xl font-medium uppercase'>Add Show</h1> : <h1 className='heading text-2xl font-medium uppercase'>Edit Show</h1>}</h1>
                     {/* <h3 className=' text-lg text-violet-400 font-medium text-center mt-2'>Show details</h3> */}
+                    
                 </div>
 
                 <div  className='flex flex-col items-center my-8 gap-8'  >
@@ -190,8 +193,8 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
                             </select>  
                         </div>
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"submit"}></input>
-                        
+                        <input type='submit' className='p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"SUBMIT"}></input>
+                      
                         
                     </div>
                 </form>
