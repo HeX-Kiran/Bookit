@@ -7,8 +7,9 @@ import { getMovieById } from '../../apicalls/movies'
 import { showToast,TOAST_STATUS } from '../../util'
 import Navbar from './components/Navbar'
 import moment from 'moment'
-import img from "../../assets/images/movie-details.jpg"
+
 import DatePicker from './components/DatePicker'
+import TheatreAndShows from './components/TheatreAndShows'
 
 function MovieDetails() {
 
@@ -19,6 +20,7 @@ function MovieDetails() {
     const searchParams = new URLSearchParams(search)  
     // get date from query params  
     const date = searchParams.get("date")
+   
 
     const isLoading = useSelector(state=>state.loader.status);
     const dispatcher = useDispatch();
@@ -39,8 +41,13 @@ function MovieDetails() {
       }
    }
 
+   const handleBookshowBtn = ()=>{
+    document.querySelector(".book-ticket").scrollIntoView({behavior:"smooth"});
+   }
+
    useEffect(()=>{
     getMovieFromID()
+    window.scrollTo(0,0);
    },[])
   return (
     <div>
@@ -75,7 +82,7 @@ function MovieDetails() {
                       <p>{moment(movie?.releaseDate).format('D MMMM YYYY')}</p>
                       
                     </div>
-                    <button className='py-4 px-8 bg-rose-600 rounded-xl font-bold text-white transition-all hover:scale-110 hover:bg-rose-500' onClick={""}>Book tickets</button>
+                    <button className='py-4 px-8 bg-rose-600 rounded-xl font-bold text-white transition-all hover:scale-110 hover:bg-rose-500' onClick={handleBookshowBtn}>Book tickets</button>
               </div>
             </div>
           </div>
@@ -89,10 +96,13 @@ function MovieDetails() {
           </div>
 
           {/* Book tickets */}
-          <section className='book-ticket '>
+          <section className='book-ticket ' id='book-tickets'>
+            {/* Section heading */}
               <h1 className='text-4xl font-bold'>Book tickets</h1>
-              <DatePicker/>
-
+              {/* Date picker component */}
+              <DatePicker movieID={movieID} currDate={moment(date).format("D")}/>
+              {/* Theater and respective shows */}
+              <TheatreAndShows movieID={movieID} date={date} />
               
           </section>
 

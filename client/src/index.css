@@ -1130,7 +1130,7 @@ label{
   width: 100%;
   height: 400px;
   margin-left: auto;
-  filter: brightness(100%);
+  /* filter: brightness(100%); */
   
   
 }
@@ -1185,7 +1185,7 @@ label{
 .movie-details-page .desc h1{
   font-size: 1.8rem;
   color: white;
-  margin: 20px 0;
+  margin: 2rem 0;
 
 }
 
@@ -1193,6 +1193,8 @@ label{
   color: #eee;
   width: 100%;
   font-size: 1rem;
+  line-height: 2;
+  margin: 2rem;
 
 }
 
@@ -1203,3 +1205,17 @@ label{
   padding: 3rem 4rem;
   color: black;
 }
+
+.theatre-show-details{
+  padding: 1rem 2rem;
+  color: green;
+  font-size: 1rem;
+  border:1px solid black;
+  border-radius: 5px;
+  /* border: 2px solid rgb(122, 65, 255); */
+}
+
+.theatre-shows .show-card{
+  /* border: 1px solid black; */
+}
+

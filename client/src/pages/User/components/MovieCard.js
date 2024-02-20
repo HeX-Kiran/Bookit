@@ -4,13 +4,13 @@ import moment from 'moment';
 
 function MovieCard({movie}) {
 
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
 
   //FUNCTION TO HANDLE MOVIE CARD CLICK
   const handleMovieCardClick = ()=>{
     // on click of each card we naviagte to router "/movie/${movie._id}?moment(date).format(YYYY-MM-DD)"
-    naviagte(`/movie/${movie._id}?date=${moment(Date.now()).format("YYYY-MM-DD")}`)
+    navigate(`/movie/${movie._id}?date=${moment(Date.now()).format("YYYY-MM-DD")}`)
 
   }
 
