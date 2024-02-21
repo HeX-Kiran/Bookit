@@ -9,6 +9,7 @@ import moment from "moment"
 function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow,render,setRender}) {
     const [shows,setShow] = useState([]);
     const dispatcher = useDispatch()
+    
 
     const getShowByTheatreID =  useCallback(async()=>{
         try{
@@ -94,6 +95,7 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow,rende
         <div className='flex items-center justify-between flex-col w-[100%] gap-4'>
             {
                 shows.map(show=>{
+                    
                     // Show details
                     return <div className='show-detail-card py-8 px-8 bg-violet-200 rounded-xl  w-[100%] flex-wrap'>
                         <h1 className='font-medium text-xl'>{show.name}</h1>   
@@ -102,7 +104,7 @@ function ShowCard({theatre,setIsOpen,setType,setCurrentTheatre,setCurrShow,rende
                         <p className='font-bold text-sm text-rose-500'>{show.time}</p>
                         <p className='font-bold text-sm text-green-800 '>{show.ticketPrice} rupees</p>
                         <i className= " ri-delete-bin-line p-2  bg-red-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleDeleteBtn(show._id)}></i>
-                        <i className=" ri-pencil-line p-2  bg-blue-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleEditBtn({_id:show?._id,name:show?.name,date:moment(show?.date).format('YYYY-MM-DD'),theatre:show?.theatre._id,movie:show?.movie._id,time:Number(show?.time.split()[0]),bookedSeats:show?.bookedSeats,ticketPrice:show?.ticketPrice,totalSeats:show?.totalSeats,AMorPM:show?.time.split()[1]})}></i>
+                        <i className=" ri-pencil-line p-2  bg-blue-500 text-white rounded-xl text-xl text-center transition-all cursor-pointer hover:scale-105 "  onClick={()=>handleEditBtn({_id:show?._id,name:show?.name,date:moment(show?.date).format('YYYY-MM-DD'),theatre:show?.theatre._id,movie:show?.movie._id,time:show?.time.split(" ")[0],bookedSeats:show?.bookedSeats,ticketPrice:show?.ticketPrice,totalSeats:show?.totalSeats,AMorPM:show?.time.split()[1]})}></i>
                     </div>
                 })
             }

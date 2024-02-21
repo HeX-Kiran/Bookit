@@ -1219,3 +1219,38 @@ label{
   /* border: 1px solid black; */
 }
 
+
+ /* *********************************************************************** */
+/* Book Show page *********************************** */
+
+.show-details{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.show-details .theatre-details{
+  display: flex;
+  align-items: center;
+  gap:0.5rem;
+  color: black;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.show-timing{
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: start;
+  gap: 3rem;
+}
+
+.show-timing .theatre-show-details{
+  padding: 0.5rem 2rem;
+  border: none;
+  
+}
+

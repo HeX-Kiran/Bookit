@@ -3,23 +3,34 @@ import { useDispatch } from 'react-redux';
 import { showLoader,hideLoader } from '../../../store/loadingSlice'
 import { showToast,TOAST_STATUS } from '../../../util';
 import { getAllShowByMovieId } from '../../../apicalls/shows';
+import { useNavigate } from 'react-router-dom';
 function TheatreAndShows({movieID,date}) {
-    console.log(date);
+  
 
     const dispatcher = useDispatch();
     const [theatres,setTheatre] = useState([])
+    const navigate = useNavigate();
 
     const getTheatreAndShowsByMovieID = async()=>{
         try {
             dispatcher(showLoader());
             const data = await getAllShowByMovieId(movieID,date);
-            console.log(data);
-            setTheatre(data);
+            if(data.success){
+                setTheatre(data.data);
+            }
+            else{
+                showToast(TOAST_STATUS.ERROR,data.message)
+            }
+            
             dispatcher(hideLoader());
           } catch (error) {
             showToast(TOAST_STATUS.ERROR,"Internal error")
             dispatcher(hideLoader());
           }
+    }
+
+    const handleShowTimeClick = (id)=>{
+        navigate(`/movie/book-show/${id}`)
     }
 
     useEffect(()=>{
@@ -41,7 +52,7 @@ function TheatreAndShows({movieID,date}) {
                     {/* Shows of respective theatre */}
                     <div className='show-time flex items-center justify-between gap-8'>
                         {theatre.shows.map(show=>{
-                            return <div className='theatre-show-details '>
+                            return <div className='theatre-show-details cursor-pointer' onClick={()=>handleShowTimeClick(show._id)}>
                                 <h1>{show?.time}</h1>
                             </div>
                         })}

@@ -11,10 +11,12 @@ import modelImg from "../../../assets/images/show.png"
 
 function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRender}) {
 
+    
+   
     const[name,setName] = useState(currShow?.name || "")
     const[movieID,setMovieID] = useState(currShow?.movie || "")
     const[date,setDate] = useState(currShow.date)
-    const[time,setTime] = useState(currShow?.time  );
+    const[time,setTime] = useState(currShow?.time || "");
     const[AMorPM,setAMorPM] = useState(currShow?.AMorPM ||"AM")
     const[ticketPrice,setTIcketPrice] = useState(currShow?.ticketPrice )
     const[totalSeats,setTotalSeats] = useState(currShow?.totalSeats )
@@ -22,6 +24,8 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
     // state that holds all the movies 
     const [movies,setMovies] = useState([])
     const dispatcher = useDispatch();
+
+  
 
     //FUNCTION TO GET ALL THE MOVIES
     const getAllMovies = async()=>{
@@ -183,12 +187,12 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
                         <div className=" flex items-center gap-4">
 
                             <label htmlFor="movies" className='text-lg'>Select a movie:</label>
-                            <select  name= "movies" id="movies" className='bg-violet-200 font-bold' onChange={(e)=>setMovieID(e.target.value)}>  
-                            
+                            <select  name= "movies" id="movies" className='bg-violet-200 font-bold' onChange={(e)=>setMovieID(e.target.value)} >  
 
                                 {
                                     movies.map(movie=><option value={movie._id} key={movie._id}>{movie.title}</option> )
                                 }
+
                                     
                             </select>  
                         </div>

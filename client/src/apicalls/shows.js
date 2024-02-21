@@ -12,11 +12,22 @@ export const getAllShowByTheatreId = async (theatreID)=>{
    
 }
 
+export const getShowById = async(showID)=>{
+    try {
+        const response = await axios.get(`/api/show/getShowById/${showID}`);
+        
+        return response.data;
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+    
+}
+
 export const getAllShowByMovieId = async (movieID,date)=>{
     try {
         const response = await axios.post("/api/show/getShowByMovieId/",{movieID,date});
         
-        return response.data.data;
+        return response.data;
     } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
     }

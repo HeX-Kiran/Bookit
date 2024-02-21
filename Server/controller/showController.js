@@ -28,6 +28,33 @@ exports.getAllShows = async(req,res)=>{
     }
 }
 
+exports.getShowByID = async(req,res)=>{
+    try {
+        const {showID} = req.params;
+        const show = await Show.findOne({_id:showID}).populate("theatre").populate("movie");
+        if(show){
+            res.json({
+                success:true,
+                message:"Show fetched successfully",
+                data:show
+            })
+        }
+        else{
+            res.json({
+                success:false,
+                message:"No show available",
+                data:[]
+            })
+        }
+    } catch (error) {
+        res.json({
+            success:false,
+            message:"Internal error",
+            data:error.message
+        })
+    }
+}
+
 exports.getShowByTheatreID = async(req,res)=>{
     try {
         const {theatreID} = req.params;
