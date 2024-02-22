@@ -6,7 +6,8 @@ import { showToast,TOAST_STATUS } from '../../util';
 import Loader from '../../components/Loader';
 import { getShowById,getAllShowByMovieId } from '../../apicalls/shows';
 import moment from 'moment';
-
+import SeatLayout from './components/SeatLayout';
+import Screen from './components/Screen';
 
 
 function Bookshow() {
@@ -90,6 +91,7 @@ function Bookshow() {
                     <p className='text-red-500'>{showDetails.time}</p>
                 </div>
         </div>
+        {/* Shows and its timing */}
         <div className='show-timing bg-violet-50'>
                 {
                     shows?.map(show=>{
@@ -99,6 +101,10 @@ function Bookshow() {
                     })
                 }
         </div>
+
+        {/* Seat layout */}
+        <SeatLayout showDetails={showDetails}/>
+        <Screen />
     </section>
   )
 }

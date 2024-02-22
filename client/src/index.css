@@ -1254,3 +1254,60 @@ label{
   
 }
 
+.seat-layout{
+  margin: 2rem;
+  width: 100%;
+}
+
+
+.seats{
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+}
+
+.seat{
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(139 92 246);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.seat:hover{
+  background-color: rgb(221 214 254);
+  
+}
+
+.screen-container {
+  perspective: 1000px; /* Adjust perspective depth as needed */
+  width: 50%; /* Set container width */
+  height: 350px; /* Set container height */
+
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  position: relative;
+  margin: auto;
+}
+
+.screen-box {
+  width: calc(100% * 0.6); /* Set width of the div */
+  height: calc(100% * 0.5); /* Set height of the div */
+  background-color: rgb(221 214 254); /* Set background color */
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(100deg);
+ 
+  /* border: 1px solid black; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  
+
+}
+
