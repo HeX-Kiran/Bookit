@@ -5,6 +5,7 @@ const currentUserRoute = require("./routes/currentUser");
 const movieRouter = require("./routes/movieRoute");
 const theatreRouter = require("./routes/theatreRoute");
 const showRouter = require("./routes/showRoutes");
+const bookingRouter = require("./routes/bookingRoute")
 const app = express();
 app.use(express.json());
 
@@ -14,7 +15,7 @@ app.use("/api/user/currentUser",currentUserRoute);
 app.use("/api/movie",movieRouter);
 app.use("/api/theatre",theatreRouter);
 app.use("/api/show",showRouter);
-
+app.use("/api/booking",bookingRouter)
 
 
 

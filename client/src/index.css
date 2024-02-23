@@ -1278,8 +1278,16 @@ label{
   border-radius: 5px;
 }
 
+.disabled-seat {
+  
+  pointer-events: none;
+  background-color: #EEEEEE;
+  color: white;
+  border: 1px solid #EEEEEE;
+}
+
 .seat:hover{
-  background-color: rgb(221 214 254);
+  background-color: red;
   
 }
 
@@ -1289,20 +1297,24 @@ label{
   height: 350px; /* Set container height */
 
   display: flex;
-  align-items: start;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
   position: relative;
   margin: auto;
+  position: relative;
 }
 
 .screen-box {
   width: calc(100% * 0.6); /* Set width of the div */
   height: calc(100% * 0.5); /* Set height of the div */
   background-color: rgb(221 214 254); /* Set background color */
-  position: relative;
+  /* position: relative; */
   transform-style: preserve-3d;
+  border-bottom: 1px solid black;
+  
   transform: rotateX(100deg);
- 
+  margin-left: 100px;
   /* border: 1px solid black; */
   /* display: flex;
   align-items: center;
@@ -1310,4 +1322,14 @@ label{
   
 
 }
+
+.screen-text{
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  /* transform: translate(-40%); */
+  font-size: 0.8rem;
+}
+
+
 

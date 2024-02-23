@@ -2,20 +2,26 @@ import React, { useEffect, useState } from 'react'
 
 
 function SeatLayout({showDetails}) {
-    console.log(showDetails);
+   console.log(showDetails);
 
     const [selectedSeat,setSelectedSeat] = useState(showDetails?.bookedSeats || []);
+    const [newlyAddedSeat,setNewlyAddedSeat] = useState([]);
+   
+
+    
 
     const handleSeatClick = (row,col)=>{
         
-        // if seat already exsist and the seat is clicked again then remove the seat from selectedSeat
-        if(selectedSeat.find(val=>val===row+col)){
-            const filteredArr = selectedSeat.filter(val=>val!== row+col);
-            setSelectedSeat([...filteredArr])
+     
+        // if seat already exsist and the seat is clicked again then remove the seat from newlyAddedSeat
+        if(newlyAddedSeat.find(val=>val===row+col)){
+            const filteredArr = newlyAddedSeat.filter(val=>val!== row+col);
+            setNewlyAddedSeat([...filteredArr])
         }
-        // if seat doesnt exsist in the selectedSeat then add it in the array
+        // if seat doesnt exsist in the newlyAddedSeat then add it in the array
         else{
-            setSelectedSeat([...selectedSeat,row+col])
+            setNewlyAddedSeat([...newlyAddedSeat,row+col])
+            
         }
         
     }
@@ -28,14 +34,15 @@ function SeatLayout({showDetails}) {
                     
                     showDetails?.totalSeats &&
                     // fix the row and calcluate the columns from the totalSeats and rows
-                    Array.from(Array(12).keys()).map((row,index)=>{
+                    Array.from(Array(10).keys()).map((row,index)=>{
                         
                         return <div className='flex items-center justify-between gap-8 '>
                             {/* alphabets as row numbers */}
                             <p className=''>{String.fromCharCode(65+index)}</p>
                             {
-                                Array.from(Array(Math.floor(showDetails?.totalSeats/12)).keys()).map((col)=>{
-                                    return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+index),col)} style={{backgroundColor:selectedSeat.find(val=>(val===String.fromCharCode(65+index)+col))?"rgb(139 92 246)":"white",color:selectedSeat.find(val=>val===String.fromCharCode(65+index)+col)?"white":"black"}}>{col}</div>
+                                Array.from(Array(Math.floor(showDetails?.totalSeats/10)).keys()).map((col)=>{
+                                    if (selectedSeat.find(val=>val===String.fromCharCode(65+index)+col)) return <div className='seat disabled-seat'>{col}</div>
+                                    return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+index),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+index)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+index)+col)?"white":"black"}}>{col}</div>
                                 })
                             }
 
@@ -54,7 +61,7 @@ function SeatLayout({showDetails}) {
                     // row* col = 12 * 8 = 96 seat , we need to add rest 4 seats
                     // so totalSeats - row*col = remaining seats
                     // ie 100-96 = 4
-                    (showDetails?.totalSeats && Math.floor((showDetails?.totalSeats/12)) * 12 < showDetails?.totalSeats) && 
+                    (showDetails?.totalSeats && Math.floor((showDetails?.totalSeats/10)) * 10 < showDetails?.totalSeats) && 
 
                     
                  
@@ -62,8 +69,8 @@ function SeatLayout({showDetails}) {
                             {/* alphabets as row numbers */}
                             <p className=''>{String.fromCharCode(65+13)}</p>
                         {
-                            Array.from(Array(Math.ceil((showDetails?.totalSeats -Math.floor(showDetails?.totalSeats/12)*12))  ).keys()).map((col,index)=>{
-                                return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+13),col)}>{col}</div>
+                            Array.from(Array(Math.ceil((showDetails?.totalSeats -Math.floor(showDetails?.totalSeats/10)*10))  ).keys()).map((col,index)=>{
+                                return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+11),col)}>{col}</div>
                             })
                         }
 
