@@ -8,6 +8,8 @@ import { getShowById,getAllShowByMovieId } from '../../apicalls/shows';
 import moment from 'moment';
 import SeatLayout from './components/SeatLayout';
 import Screen from './components/Screen';
+import BookshowNavBar from './components/BookshowNavBar';
+import Payment from './Payment';
 
 
 function Bookshow() {
@@ -16,9 +18,11 @@ function Bookshow() {
     const {id} = useParams();
     // state to store the showDetails
     const [showDetails,setShowDetails] = useState({})
-    const [MovieDetails,setMovieDetials] = useState({});
+    const [movieDetails,setMovieDetials] = useState({});
     const [theatreDetails,setTheatreDetails] = useState({});
     const [shows,setShow] = useState([]);
+    const [paymentPage,setPaymentPage] = useState(false);
+    const [newlyAddedSeat,setNewlyAddedSeat] = useState([]);
     
     const dispatcher = useDispatch();
     const navigate = useNavigate();
@@ -81,30 +85,31 @@ function Bookshow() {
     <section className='book-show'>
         <Loader isLoading={isLoading} />
         {/* Nav bar with show details */}
-        <div className='show-details'>
-                {/* Movie name */}
-                <h1 className='text-3xl font-bold uppercase text-violet-700'><i className="ri-arrow-left-s-line text-black mr-4 cursor-pointer" onClick={()=> navigate(`/movie/${MovieDetails?._id}?date=${moment(showDetails?.date).format("YYYY-MM-DD")}`)}></i>{MovieDetails.title}</h1>
-                <div className='theatre-details'>
-                    <p>{showDetails.name}, </p>
-                    <p>{theatreDetails.name}: {theatreDetails.location} </p>
-                    <p>| {moment(showDetails.date).format("D MMMM")}, </p>
-                    <p className='text-red-500'>{showDetails.time}</p>
+        <BookshowNavBar showDetails={showDetails} theatreDetails={theatreDetails} movieDetails={movieDetails}/>
+        
+        {/* if paymentPage is true then we only display payment page or else display seat layout */}
+        {
+            !paymentPage
+            ?
+            <>
+            {/* Shows and its timing */}
+                <div className='show-timing bg-violet-50'>
+                        {
+                            shows?.map(show=>{
+                                return <div className='theatre-show-details cursor-pointer' style={{backgroundColor : show._id === showDetails._id?"#2DC492":"white",color:show._id === showDetails._id?"white":"#2DC492",border:show._id === showDetails._id?"":"1px solid #00000042"}} onClick={()=>handleShowTimeClick(show._id)}>
+                                            <h1>{show?.time}</h1>
+                                        </div>
+                            })
+                        }
                 </div>
-        </div>
-        {/* Shows and its timing */}
-        <div className='show-timing bg-violet-50'>
-                {
-                    shows?.map(show=>{
-                        return <div className='theatre-show-details cursor-pointer' style={{backgroundColor : show._id === showDetails._id?"#2DC492":"white",color:show._id === showDetails._id?"white":"#2DC492",border:show._id === showDetails._id?"":"1px solid #00000042"}} onClick={()=>handleShowTimeClick(show._id)}>
-                                    <h1>{show?.time}</h1>
-                                </div>
-                    })
-                }
-        </div>
-
-        {/* Seat layout */}
-        <SeatLayout showDetails={showDetails}/>
-        <Screen />
+                {/* Seat layout */}
+                <SeatLayout showDetails={showDetails} setPaymentPage={setPaymentPage} newlyAddedSeat={newlyAddedSeat} setNewlyAddedSeat={setNewlyAddedSeat}/>
+                <Screen />
+            </>
+            :
+            <Payment amount={newlyAddedSeat.length * showDetails?.ticketPrice} seats={newlyAddedSeat} showDetails={showDetails}/>
+        }
+        
     </section>
   )
 }

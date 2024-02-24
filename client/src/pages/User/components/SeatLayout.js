@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import PriceDisplayer from './PriceDisplayer';
+import Payment from '../Payment';
 
 
-function SeatLayout({showDetails}) {
-   console.log(showDetails);
+function SeatLayout({showDetails,setPaymentPage,newlyAddedSeat,setNewlyAddedSeat}) {
 
     const [selectedSeat,setSelectedSeat] = useState(showDetails?.bookedSeats || []);
-    const [newlyAddedSeat,setNewlyAddedSeat] = useState([]);
+    
+    
    
 
     
@@ -28,6 +30,9 @@ function SeatLayout({showDetails}) {
 
     
   return (
+
+    
+    
     <section className='seat-layout'>
         <div className='seats'>
                 {
@@ -42,7 +47,7 @@ function SeatLayout({showDetails}) {
                             {
                                 Array.from(Array(Math.floor(showDetails?.totalSeats/10)).keys()).map((col)=>{
                                     if (selectedSeat.find(val=>val===String.fromCharCode(65+index)+col)) return <div className='seat disabled-seat'>{col}</div>
-                                    return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+index),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+index)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+index)+col)?"white":"black"}}>{col}</div>
+                                    return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+index),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+index)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+index)+col)?"white":"black"}} >{col}</div>
                                 })
                             }
 
@@ -70,7 +75,8 @@ function SeatLayout({showDetails}) {
                             <p className=''>{String.fromCharCode(65+13)}</p>
                         {
                             Array.from(Array(Math.ceil((showDetails?.totalSeats -Math.floor(showDetails?.totalSeats/10)*10))  ).keys()).map((col,index)=>{
-                                return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+11),col)}>{col}</div>
+                                if (selectedSeat.find(val=>val===String.fromCharCode(65+13)+col)) return <div className='seat disabled-seat'>{col}</div>
+                                return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+11),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+11)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+11)+col)?"white":"black"}} >{col}</div>
                             })
                         }
 
@@ -78,7 +84,13 @@ function SeatLayout({showDetails}) {
                     
                 }
         </div>
+        {
+            newlyAddedSeat.length > 0 && <PriceDisplayer totalAmount = {newlyAddedSeat.length * showDetails?.ticketPrice } setPaymentPage = {setPaymentPage}/>
+        }
+        
+        
     </section>
+   
   )
 }
 

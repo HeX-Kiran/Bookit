@@ -15,6 +15,7 @@ export const makeShowPayment = async(token,amount)=>{
 
 
 export const bookAShow = async(payload)=>{
+   
     try {
         const response = await axios.post("/api/booking/book-show",payload);
         return response;
