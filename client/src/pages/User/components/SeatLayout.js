@@ -5,7 +5,8 @@ import Payment from '../Payment';
 
 function SeatLayout({showDetails,setPaymentPage,newlyAddedSeat,setNewlyAddedSeat}) {
 
-    const [selectedSeat,setSelectedSeat] = useState(showDetails?.bookedSeats || []);
+    
+    
     
     
    
@@ -46,7 +47,7 @@ function SeatLayout({showDetails,setPaymentPage,newlyAddedSeat,setNewlyAddedSeat
                             <p className=''>{String.fromCharCode(65+index)}</p>
                             {
                                 Array.from(Array(Math.floor(showDetails?.totalSeats/10)).keys()).map((col)=>{
-                                    if (selectedSeat.find(val=>val===String.fromCharCode(65+index)+col)) return <div className='seat disabled-seat'>{col}</div>
+                                    if (showDetails?.bookedSeats.find(val=>val===String.fromCharCode(65+index)+col)) return <div className='seat disabled-seat'>{col}</div>
                                     return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+index),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+index)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+index)+col)?"white":"black"}} >{col}</div>
                                 })
                             }
@@ -75,7 +76,7 @@ function SeatLayout({showDetails,setPaymentPage,newlyAddedSeat,setNewlyAddedSeat
                             <p className=''>{String.fromCharCode(65+13)}</p>
                         {
                             Array.from(Array(Math.ceil((showDetails?.totalSeats -Math.floor(showDetails?.totalSeats/10)*10))  ).keys()).map((col,index)=>{
-                                if (selectedSeat.find(val=>val===String.fromCharCode(65+13)+col)) return <div className='seat disabled-seat'>{col}</div>
+                                if (showDetails?.bookedSeats.find(val=>val===String.fromCharCode(65+13)+col)) return <div className='seat disabled-seat'>{col}</div>
                                 return <div className='seat' onClick={()=>handleSeatClick(String.fromCharCode(65+11),col)} style={{backgroundColor:newlyAddedSeat.find(val=>(val===String.fromCharCode(65+11)+col))?"rgb(139 92 246)":"white",color:newlyAddedSeat.find(val=>val===String.fromCharCode(65+11)+col)?"white":"black"}} >{col}</div>
                             })
                         }

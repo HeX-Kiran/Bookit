@@ -1459,3 +1459,14 @@ label{
 }
 
 
+/* *********************************************************************** */
+/* My tickets Page *********************************** */
+.my-tickets{
+  background-color: #5B21B6;
+}
+
+.ticket-body{
+  padding: 3rem 5rem;
+  background-color: white;
+}
+

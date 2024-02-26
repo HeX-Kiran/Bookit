@@ -3,8 +3,9 @@ import StripeCheckout from 'react-stripe-checkout';
 import { showLoader,hideLoader } from '../../store/loadingSlice';
 import { showToast,TOAST_STATUS } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
-import { bookAShow, makeShowPayment } from '../../apicalls/booking';
+import { bookAShow, checkSeats, makeShowPayment } from '../../apicalls/booking';
 import { useNavigate } from 'react-router-dom';
+import { editShow } from '../../apicalls/shows';
 
 function Payment({amount,seats,showDetails}) {
 
@@ -16,34 +17,52 @@ function Payment({amount,seats,showDetails}) {
    const onToken =async()=>{
         try {
             dispatcher(showLoader());
-            const response = await makeShowPayment(token,amount + (10*seats.length));
-            if(response.data.success){
-                // const the transaction id
-                const transactionId = response.data.data;
-                // now add new booking using bookAShow Api
-                if(Object.keys(showDetails).length > 0 && Object.keys(user).length>0){
-                    // Now add the new booking into db
-                    const response = await bookAShow({showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats});
-                    // after adding the booking , we need to updated the show seats with the updated seats
-                    if(response.data.success){
-                        // update the seats of the shows with new seats
-                        showToast(TOAST_STATUS.SUCCESS,"Show booked successfully");
-                        // navigate to home page
-                        navigate("/")
+            //check if the seats are avilable or not
+            const isSeatsAvailable = await checkSeats({seats,showID:showDetails?._id});
+            if(isSeatsAvailable.data.success){
+                const response = await makeShowPayment(token,amount + (10*seats.length));
+                if(response.data.success){
+                    // get the transaction id
+                    const transactionId = response.data.data;
+                    // now add new booking using bookAShow Api
+                    if(Object.keys(showDetails).length > 0 && Object.keys(user).length>0){
+                        // Now add the new booking into db
+                        const response = await bookAShow({showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats});
+                        // after adding the booking , we need to updated the show seats with the updated seats
+                        if(response.data.success){
+                            // update the seats of the shows with new seats
+                            const updatedShow = await editShow({...showDetails,bookedSeats:[...showDetails?.bookedSeats,...seats]});
+                            if(updatedShow.success){
+                                showToast(TOAST_STATUS.SUCCESS,"Show booked successfully");
+                                // navigate to home page
+                                navigate("/")
+                            }
+                            else{
+                                showToast(TOAST_STATUS.ERROR,updatedShow.message);
+                            }
+                            
+                        }
+                        else{
+                            showToast(TOAST_STATUS.ERROR,response.data.message);
+                        }
                     }
                     else{
-                        showToast(TOAST_STATUS.ERROR,response.data.message);
+                        showToast(TOAST_STATUS.WARNING,"Please Refresh the page")
                     }
+                    
                 }
+                
                 else{
-                    showToast(TOAST_STATUS.WARNING,"Please Refresh the page")
+                    showToast(TOAST_STATUS.ERROR,"Payment failed. Try again")
                 }
-                dispatcher(hideLoader());
             }
-            
-            else{
 
+            // seats are not available
+            else{
+                showToast(TOAST_STATUS.ERROR,isSeatsAvailable.data.message)
             }
+            dispatcher(hideLoader());
+            
         } catch (error) {
             dispatcher(hideLoader());
             showToast(TOAST_STATUS.ERROR,"Something went wrong")

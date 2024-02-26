@@ -7,6 +7,7 @@ import { TOAST_STATUS, showToast } from '../../../util';
 function Navbar() {
 
     const user = useSelector(state=>state.user);
+   
     const navigate = useNavigate();
     const [theatreExsist,setTheatreExsist] = useState(false);
 
@@ -47,7 +48,7 @@ function Navbar() {
         {/* Tabs for admin */}
         <div className='admin-tabs flex items-center justfiy-center gap-20  font-thin text-lg  text-violet-50 cursor-pointer'>
             <p onClick={handleMovieNavLink}>Movies</p>
-            <p>My tickets</p>
+            <p onClick={()=>navigate(`/tickets/${user._id}`)}>My tickets</p>
             {theatreExsist && <p onClick={()=>navigate("/theatre")}>My theatres</p>}
         </div>
 

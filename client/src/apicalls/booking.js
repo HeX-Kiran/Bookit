@@ -23,3 +23,22 @@ export const bookAShow = async(payload)=>{
         showToast(TOAST_STATUS.ERROR,"Something went wrong");
     }
 }
+
+export const checkSeats = async(payload)=>{
+    try {
+        const response = await axios.post("/api/booking/book-show/check-seat-available",payload);
+        return response;
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong");
+    }
+}
+
+export const getTickets = async(id)=>{
+    
+    try {
+        const response = await axios.get(`/api/booking/get-booking-by-userid/${id}`)
+        return response
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong");
+    }
+}

@@ -1,4 +1,5 @@
 const Booking = require("../models/BookingModel");
+const Show = require("../models/showModel");
 
 require("dotenv").config();
 const Stripe = require("stripe")(process.env.STRIPE_KEY);
@@ -53,6 +54,64 @@ exports.bookShow = async(req,res)=>{
             })
         }
         
+    } catch (error) {
+        res.send({
+            success:false,
+            message:error.message
+        })
+    }
+}
+
+exports.checkSeatAvailable = async(req,res)=>{
+    try {
+        
+        const {seats,showID} = req.body;
+    
+        const show = await Show.findOne({_id:showID});
+        
+        const isFilled = seats.some(newSeats=>{
+          
+            return show.bookedSeats.some(bookedSeat=> {
+                
+                return newSeats === bookedSeat})
+        })
+
+        if(isFilled){
+            res.send({
+                success:false,
+                message:"Seats already booked.Please refresh and try again"
+            })
+
+        }
+
+        else{
+            res.send({
+                success:true,
+                message:"Seats are available"
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            success:false,
+            message:error.message
+        })
+    }
+}
+
+
+exports.getTicketsByUserid=async(req,res)=>{
+    try {
+        const {id} = req.params;
+       
+        const tickets = await Booking.find({user:id});
+
+        res.send({
+            success:true,
+            message:"Tickets fetched successfully",
+            data:tickets
+        })
+
     } catch (error) {
         res.send({
             success:false,
