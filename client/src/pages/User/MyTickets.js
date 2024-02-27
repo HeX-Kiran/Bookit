@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getTickets } from '../../apicalls/booking';
 import { getShowById } from '../../apicalls/shows';
 import { useParams } from 'react-router-dom';
+import Tickets from './components/Tickets';
+import Loader from '../../components/Loader';
 
 
 function MyTickets() {
@@ -13,6 +15,7 @@ function MyTickets() {
     const dispatcher = useDispatch();
     const {id} = useParams()
     const[tickets,setTickets] = useState([])
+    const isLoading = useSelector(state=>state.loader.status);
     
 
 
@@ -22,15 +25,13 @@ function MyTickets() {
             dispatcher(showLoader());
             // get all tickets of user
             const response = await getTickets(id);
-            console.log(response.data.data);
+            
             if(response.data.success){
                 const bookingDetails = response.data.data;
                 // after getting the tickets we need to find the show details of each user
-                 const ticketDetails = bookingDetails.map(async(details)=>{
-                    const showDetails = await getShowById(details.show)
-                    
-                    return {...showDetails.data,...details}
-                })
+                const showDetails = await getShowDetailsFromBookingDetails(bookingDetails);
+                console.log(showDetails);
+                setTickets(showDetails)
                
             }
             else{
@@ -44,22 +45,56 @@ function MyTickets() {
           }
     }
 
+    // function to get show details from booking details
+    const getShowDetailsFromBookingDetails = (bookingDetails)=>{
+        let totalLength = 0;
+        // return a promise
+        return new Promise((resolve,reject)=>{
+            try {
+                let ticketDetails = []
+                // from each bookingDetails get the show details
+                bookingDetails.forEach((details)=>{
+                    Promise.resolve(getShowById(details.show))
+                    // take the result of showDetials and concatnate with booking details
+                        .then(val=>{
+                            ticketDetails.push({...val.data,...details});
+                            totalLength++;
+
+                            if(totalLength === bookingDetails.length) resolve(ticketDetails)
+
+                        })
+                        .catch(err=>{
+                            showToast(TOAST_STATUS.ERROR,"Internal Error.Please refresh")
+                            reject(err.message)
+                        })
+                })
+
+
+            } catch (error) {
+                showToast(TOAST_STATUS.ERROR,"Internal Error.Please refresh")
+            }  
+        })
+    }
+
     useEffect(()=>{
         getAllTickets()
-        console.log(tickets);
+        
         
     },[id])
 
 
   return (
     <section className='my-tickets '>
+        <Loader isLoading={isLoading} />
         <Navbar />
         {
             tickets.length >0
              &&
              <div className='ticket-body'>
-                <h1 className='text-3xl font-bold'>My Tickets</h1>
-                {tickets.map(val=><h1>{val.name}</h1>)}
+                <h1 className='text-4xl font-bold'>My Tickets</h1>
+                {
+                    tickets.map(ticket=><Tickets showDetails={ticket}/>)
+                }
             </div>
 
        

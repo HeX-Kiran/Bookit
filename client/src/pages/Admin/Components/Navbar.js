@@ -105,6 +105,7 @@ function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
 
     const logout = ()=>{
         localStorage.removeItem('token');
+        localStorage.removeItem("admin")
         navigate("/login")
     }
   return (

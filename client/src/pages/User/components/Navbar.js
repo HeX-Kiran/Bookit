@@ -12,7 +12,9 @@ function Navbar() {
     const [theatreExsist,setTheatreExsist] = useState(false);
 
     const logout = ()=>{
+      //remove use token
       localStorage.removeItem('token');
+       
       navigate("/login")
     }
 

@@ -3,10 +3,11 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 
 exports.validateUser = async(req,res)=>{
-    const userDetails = req.body;
+    
     
 
     try {
+        const userDetails = req.body;
 
         //check if email is present or not
         const validUser = await Users.findOne({email:userDetails.email})
@@ -58,4 +59,48 @@ exports.validateUser = async(req,res)=>{
         })
     }
     
+}
+
+exports.validateAdmin = async(req,res)=>{
+    try {
+        const userDetails = req.body
+
+        //check if email is present or not
+        const validUser = await Users.findOne({email:userDetails.email})
+        
+        if(validUser){
+            
+            //get the password from the DB
+            const hashedPassword = validUser.password;
+            //if present then check verify the password 
+            const verifyPassword = await bcrypt.compare(userDetails.password,hashedPassword);
+            
+         
+            if(verifyPassword){
+               
+                return res.status(200).json({
+                    success:true,
+                    message :"Successfully logged in",
+                    data:hashedPassword
+                })
+            }
+            
+            //else send a invalid password response
+            else{
+               
+                return res.status(200).json({
+                    success:false,
+                    message:"Incorrect admin token",
+
+                })
+            }
+        }
+    } catch (error) {
+        return res.status(404).json({
+            success:false,
+            message:"Internal server error occured",
+            error: error.message
+        })
+    
+    }
 }

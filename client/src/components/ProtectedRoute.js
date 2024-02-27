@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import{useDispatch,useSelector} from "react-redux"
 import { getcurrUser } from '../apicalls/user';
 import { hideLoader, showLoader } from '../store/loadingSlice';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../store/userSlice';
 import { TOAST_STATUS, showToast } from '../util';
+import Modalbox from './Modalbox';
 
 
 
@@ -13,6 +14,7 @@ function ProtectedRoute({children}) {
     const user = useSelector(state=>state.user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isModalOpen,setModalBox] = useState(false)
    
 
 
@@ -36,7 +38,22 @@ function ProtectedRoute({children}) {
             dispatch(addUser(data.data))
             
             
-            if(data.data.isAdmin) navigate("/admin")
+            if(data.data.isAdmin){
+              console.log(data.data.isAdmin);
+              // if user is admin add a modal box to ask administator password or check if administrator pass already exsist in local cache
+              let adminToken = localStorage.getItem("admin");
+             
+              // if admin token exsist then navigate to admin page else show modal box to enter admin token
+                if(adminToken){
+                  navigate("/admin")
+                  setModalBox(false)
+                }
+                // show modal box
+                else{
+                 setModalBox(true)
+                }
+
+            } 
             
 
             //hide the loader 
@@ -87,8 +104,13 @@ function ProtectedRoute({children}) {
 
   return (
     <div>
-      
-        {user && children}
+        {isModalOpen 
+         ?
+         <Modalbox setModalBox={setModalBox}/>
+          :
+          user && children
+        }
+        
     </div>
   )
 }

@@ -50,7 +50,7 @@ function Bookshow() {
                     setShow(filteredTheatre[0].shows);
                 }
                 else{
-                    showToast(TOAST_STATUS.ERROR,data.message)
+                    showToast(TOAST_STATUS.ERROR,"Something went wrong")
                 }
 
                 dispatcher(hideLoader());

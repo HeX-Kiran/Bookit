@@ -43,3 +43,16 @@ export const getcurrUser = async(token)=>{
 }
 
 
+export const validateAdmin = async(userDetails)=>{
+    try{
+        
+        const response = await axios.post("api/user/login/admin",userDetails);
+        
+        return response.data;
+    }
+    catch(e){
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+}
+
+
