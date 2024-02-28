@@ -1,0 +1,273 @@
+/* In media queries rem and em is not same as root size */
+/* 1 rem = 1em = 16px */
+
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 1750 PX */
+/* *********************************************** */
+
+@media(max-width:109.8em){
+    /* register page */
+    /* *********************************************** */
+
+    html{
+        font-size: 80%;
+    }
+
+    
+
+    .register-form{
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .register-form form{
+       
+            margin-top: 2rem;
+            align-items: flex-start;
+    }
+
+    .register-form .input-field, .register-form .register-submit{
+        width: 400px;
+    }
+
+    .admin-checkbox h1{
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .admin-checkbox button{
+        padding: 3px;
+        font-size: 1rem;
+    }
+    /* *********************************************** */
+
+
+
+    
+
+}
+
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 1270 PX */
+/* *********************************************** */
+@media (max-width:79.5em){
+     /* register page */
+    /* *********************************************** */
+    .register{
+        padding: 2rem 4rem;
+    }
+
+    .register-grid{
+        grid-template-columns: 1fr 2fr;
+    }
+    
+}
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 1000 PX 
+    TABLET LANDSCAPE
+
+    
+*/
+
+@media (max-width:62.5em){
+     /* register page */
+    /* *********************************************** */
+    html{
+        font-size: 70%;
+    }
+
+    .register-img img{
+        height: 200px;
+    }
+
+    .register-form form{
+       
+        margin-top: 4rem;
+    }
+
+    .register-form .input-field, .register-form .register-submit{
+        width: 300px;
+    }
+    /* *********************************************** */
+
+    
+     /* login page */
+    /* *********************************************** */
+    .login-grid{
+        grid-template-columns: 2fr 3fr;
+    }
+
+    .brand-img{
+        padding: 5rem 4rem;
+    }
+    .login-form{
+        padding: 5rem 2rem;
+    }
+    .login-form .input-field ,.login-form .login-submit{
+        width: 400px;
+    }
+
+
+    
+}
+
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 700 PX */
+/* *********************************************** */
+
+@media (max-width:43.75em){
+     /* register page */
+    /* *********************************************** */
+    html{
+        font-size: 65%;
+    }
+
+    
+
+    .register-form h1{
+        width: 100%;
+        line-height:1.5;
+        margin-bottom: 1rem;
+    }
+
+    .register-form .input-field, .register-form .register-submit{
+        width: 175px;
+    }
+
+    .admin-checkbox button{
+        padding: 1px;
+        font-size: 1rem;
+        width: 50%;
+    }
+
+    .register-img{
+        padding: 2rem;
+        font-size: 8px;
+    }
+
+    .brand-title h1 {
+        font-size: 3rem;
+    }
+    .brand-title h3{
+        font-size: 1rem;
+    }
+    /* *********************************************** */
+
+     /* login page */
+    /* *********************************************** */
+    .brand-img .name{
+        font-size: 3rem;
+    }
+
+    .brand-img .sub{
+        font-size: 3rem;
+    }
+
+    .brand-img img{
+        max-width: 110%;
+    }
+
+    .login-form .input-field ,.login-form .login-submit{
+        width: 250px;
+    }
+
+    .login-form h1{
+        font-size: 2.5rem;
+    }
+
+}
+
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 500 PX */
+/* *********************************************** */
+@media (max-width:31.25em){
+     /* register page */
+    /* *********************************************** */
+    .register-img{
+        display: none;
+    }
+    .register-grid{
+        grid-template-columns: 1fr ;
+    }
+
+    .register-form form{
+       
+        margin-top: 6rem;
+    }
+
+
+    .register-form{
+        border-radius: 10px;
+    }
+
+    .register-form .input-field, .register-form .register-submit{
+        width: 250px;
+    }
+    /* *********************************************** */
+
+    /* login page */
+    /* *********************************************** */
+    .login-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .brand-img{
+        display: none;
+    }
+
+    .login-form h1{
+        font-size: 3.5rem;
+    }
+
+    .login-form h3{
+        font-size: 1.5rem;
+    }
+
+    .login-form .input-field ,.login-form .login-submit{
+        width: 350px;
+    }
+
+    
+}
+
+
+/* *********************************************** */
+/* MEDIA QUERIES FOR 400 PX */
+/* *********************************************** */
+
+@media (max-width:25em){
+     /* register page */
+    /* *********************************************** */
+    .register-form .input-field, .register-form .register-submit{
+        width: 200px;
+    }
+    /* *********************************************** */
+
+     /* login page */
+    /* *********************************************** */
+    .login-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .brand-img{
+        display: none;
+    }
+
+    .login-form h1{
+        font-size: 3rem;
+    }
+
+    .login-form h3{
+        font-size: 1.5rem;
+    }
+
+    .login-form .input-field ,.login-form .login-submit{
+        width: 300px;
+    }
+
+}
+/* *********************************************** */

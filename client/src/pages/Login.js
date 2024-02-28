@@ -54,9 +54,9 @@ function Login() {
       <div className='login-grid grid grid-cols-2 items-start justify-between '>
             <div className='brand-img px-24 py-20  flex flex-col items-start justify-between gap-20 bg-violet-100 h-[100vh]'> 
                 {/* Brand name */}
-                <h1 className='uppercase font-brand text-5xl text-violet-800 font-medium tracking-widest	'>bookit</h1>
+                <h1 className='name uppercase font-brand text-5xl text-violet-800 font-medium tracking-widest	'>bookit</h1>
                 {/* A short desc */}
-                <h1 className='font-bold text-6xl text-violet-800 w-[80%] leading-tight'>Unlock a new world of <span className='text-violet-500'>visual treat</span></h1>
+                <h1 className='sub font-bold text-6xl text-violet-800 w-[80%] leading-tight'>Unlock a new world of <span className='text-violet-500'>visual treat</span></h1>
                 {/* Login illustration */}
                 <img src={loginImg} alt='Login illustration' className=''/>
             </div>
@@ -81,8 +81,8 @@ function Login() {
                         </div>
                         
             
-                        <input type='submit' className='p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
-                        <h1 className='font-semibold text-lg text-violet-800 self-end'>Dont have an account? <Link to={"/register"} className='font-bold text-lg text-violet-500'>Register</Link></h1>
+                        <input type='submit' className='login-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
+                        <p className='font-semibold text-lg text-violet-800 self-end'>Dont have an account? <Link to={"/register"} className='font-bold text-lg text-violet-500'>Register</Link></p>
                         
                 </form>
 

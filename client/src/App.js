@@ -15,6 +15,9 @@ import Theatre from './pages/User/Theatre';
 import MovieDetails from './pages/User/MovieDetails';
 import Bookshow from './pages/User/Bookshow';
 import MyTickets from './pages/User/MyTickets';
+import "./query.css"
+
+
 
 
 

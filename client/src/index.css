@@ -1,6 +1,8 @@
+@import url(query.css);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 body {
@@ -25,8 +27,17 @@ code {
 
 /* Registration page styles */
 
+.register{
+  position: relative;
+}
+
 .register-grid{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
   grid-template-columns: 500px 1fr;
+  width: 90%;
 }
 
 .input-border{
@@ -1599,4 +1610,6 @@ label{
   font-size: 1rem;
   
 }
-  
+
+
+

@@ -56,7 +56,7 @@ function Register() {
     }
 
   return (
-    <div className='register py-20 px-32 bg-violet-400 h-[100vh]'>
+    <div className='register py-20 px-32 bg-violet-400 h-[100vh] '>
         <div className='img-form grid register-grid '>
             {/* Brand title and image */}
             <div className='register-img p-8 bg-violet-200  rounded-l-2xl flex items-center justify-between flex-col'>
@@ -119,7 +119,7 @@ function Register() {
                         
                         
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
+                        <input type='submit' className='register-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
 
                        
                         
