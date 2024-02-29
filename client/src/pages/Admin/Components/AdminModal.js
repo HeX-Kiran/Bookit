@@ -81,7 +81,7 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
         <div className='form modal-gradient text-white relative'>
             {type === "add" ? <h1 className='heading text-2xl font-medium uppercase'>Add movie</h1> : <h1 className='heading text-2xl font-medium uppercase'>Edit movie</h1>}
             {/* <button><i className="ri-close-fill text-4xl font-bold absolute right-5 top-5"></i></button> */}
-            <form className=' flex flex-col items-center justify-between mt-16 gap-2 text-black' action='' method='post' onSubmit={handleSubmit}>
+            <form className='admin-movie-modal flex flex-col items-center justify-between mt-16 gap-2 text-black' action='' method='post' onSubmit={handleSubmit}>
 
                         {/* title */}
                         <div className="input-container">
@@ -96,7 +96,7 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
 
                         {/* Duration,Genre,Language */}
 
-                        <div className='flex item-center justify-around multi-input gap-2'>
+                        <div className='multi-box flex item-center justify-around multi-input gap-2'>
                             {/* Duration */}
                             <div className="input-container">
                                 <i className="ri-time-line icon"></i>
@@ -127,8 +127,8 @@ function AdminModal({type,currMovie,getAllMovies,setIsOpen}) {
                         
                         
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-800 text-white text-xl hover:bg-rose-400 input-border' />
-                        <button  className='p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-600 text-white text-xl hover:bg-rose-400 input-border' onClick={handleClose}>Cancel</button>
+                        <input type='submit' className='admin-modal-action-btns p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-800 text-white text-xl hover:bg-rose-400 input-border' />
+                        <button  className='admin-modal-action-btns p-4 cursor-pointer rounded-full w-[500px] font-bold bg-rose-600 text-white text-xl hover:bg-rose-400 input-border' onClick={handleClose}>Cancel</button>
                        
                         
 

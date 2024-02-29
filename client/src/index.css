@@ -186,8 +186,11 @@ code {
 
 
 .admin-body-cards{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
+  display: flex;
+  flex-wrap: wrap;
+  
+  justify-content: center;
+  /* grid-template-columns: repeat(2,1fr); */
   margin: 40px 0;
   gap: 5rem;
   /* border: 1px solid black; */
@@ -277,7 +280,7 @@ code {
 /* Styles Table  */
 
 .styled-table{
-  min-height: 100vh;
+  min-height: 100svh;
     background: url(assets/images/ticket-booking.jpg) center / cover;
     /* background-color: #e6656c; */
     display: flex;
@@ -461,11 +464,11 @@ tbody tr.hide td img {
 }
 
 
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   td:not(:first-of-type) {
       min-width: 12.1rem;
   }
-}
+} */
 
 thead th span.icon-arrow {
   display: inline-block;
@@ -662,6 +665,7 @@ thead th.active,tbody td.active {
   grid-template-columns: repeat(2,1fr);
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   column-gap: 8rem;
   row-gap: 6rem;
   

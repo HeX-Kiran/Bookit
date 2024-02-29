@@ -15,6 +15,7 @@ function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
     const navigate = useNavigate();
     const [searchMovie,setSearchMovie] = useState("");
     const [searchTheatre,setSearchTheatre] = useState("")
+    const [isMenuBtnVisible,setMenuBtn] = useState(false);
     // const [searchTheatre,setSearchTheatre] = useState("");
 
     const debouncedMovie = useDebouncer(searchMovie);
@@ -128,14 +129,17 @@ function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
     //     </div>
     // </div>
 
-    <div className='bg-color-nav rounded-b-xl flex items-center justify-between px-16 py-3 mb-10'>
+    <div className= {isMenuBtnVisible ? "admin-nav trigger  bg-color-nav rounded-b-xl flex items-center justify-between px-16 py-3 mb-10" : "admin-nav  bg-color-nav rounded-b-xl flex items-center justify-between px-16 py-3 mb-10"}>
+        {/* Menu icon only visible when we add aa trigger class */}
+        <i className="ri-menu-line text-2xl text-white hidden admin-menu" onClick={()=>setMenuBtn(s=>!s)}></i>
+        <i className="ri-close-line text-4xl text-white hidden admin-close" onClick={()=>setMenuBtn(s=>!s)}></i>
              {/* Brand name */}
         <h1 className='uppercase font-brand text-4xl text-violet-50 font-medium tracking-widest'>bookit</h1>
         {/* Tabs for admin */}
         <div className='admin-tabs flex items-center justfiy-center gap-10 uppercase text-md font-medium text-violet-50 cursor-pointer'>
 
                 {/* Movies tab */}
-                <div className= "input-container " onClick={()=>setTab("movies")}>
+                <div className= "input-container " onClick={()=>{setTab("movies")}}>
                     {
                         tab === "movies"
                         ?
@@ -145,7 +149,7 @@ function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
                             <input type='text' placeholder='Movies' value={searchMovie} onChange={(e)=>setSearchMovie(e.target.value)}  className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg' />
                         </>
                         :
-                        <p className='text-sm'>Movies</p>
+                        <p className='text-sm' onClick={()=>setMenuBtn(false)}>Movies</p>
                     }
                 </div>
 
@@ -160,7 +164,7 @@ function AdminNavbar({tab,setTab,setMovies,setTheatre}) {
                             <input type='text' placeholder='Theatre' className='outline-none pl-12 p-1 rounded-full w-[150px] nav-bar-tabs bg-color-nav text-lg'  value={searchTheatre} onChange={(e)=>setSearchTheatre(e.target.value)}/>
                         </>
                         :
-                        <p className='text-sm'>Theatre</p>
+                        <p className='text-sm' onClick={()=>setMenuBtn(false)}>Theatre</p>
                     }
                 </div>
             

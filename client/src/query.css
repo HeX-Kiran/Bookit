@@ -61,6 +61,36 @@
     .register-grid{
         grid-template-columns: 1fr 2fr;
     }
+
+
+      /* admin theatre page */
+    /* *********************************************** */
+    .status{
+        padding: 0.2rem;
+        font-size: .8rem;
+    }
+
+    main.table {
+        width: 90vw;
+    }
+
+    .table__body table{
+        overflow: scroll;
+    }
+
+     /* user movie section*/
+    /* *********************************************** */
+   .movie-cards{
+    margin-top: 4rem ;
+    column-gap: 4rem;
+    padding: 4rem
+   }
+
+   .movies .input-container{
+    margin-bottom: 0;
+   }
+
+   
     
 }
 
@@ -109,6 +139,40 @@
         width: 400px;
     }
 
+      /* *********************************************** */
+     /* Admin movie page */
+    .movie-desc-admin{
+        max-height: 200px;
+        overflow: scroll;
+    }
+
+    /* *********************************************** */
+     /* Admin theatre page */
+    main.table {
+        width: 95vw;
+        
+    }
+
+      /* *********************************************** */
+     /* user page title  */
+     .user-page-title {
+        font-size: 140px;
+     }
+
+     /* user movie section*/
+    /* *********************************************** */
+
+    .movie-cards{
+        column-gap: 2rem;
+        padding: 0rem
+       }
+     .movie-card{
+        width: 95%;
+        height: 90%;
+       }
+
+
+    
 
     
 }
@@ -178,6 +242,126 @@
         font-size: 2.5rem;
     }
 
+     /* *********************************************** */
+     /* Admin movie page */
+    .admin-body-card{
+        display: flex;
+        flex-direction: column;
+    } 
+
+    .movie-title-admin{
+        font-size: 2rem;
+    }
+
+    .admin-movie-details{
+        gap: 3rem;
+    }
+
+    .admin-nav{
+        position: relative;
+    }
+
+    .admin-tabs{
+        background-color: #e3545b;
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 35%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* transition: all 0.5s; */
+
+            /* Make the items hidden */
+            opacity: 0%;
+            pointer-events: none;
+            visibility: hidden;
+            transform: translateX(-200%);
+            font-size: 1rem;
+            z-index: 5;
+    }
+
+    .admin-menu{
+        display: block;
+    }
+
+     .admin-nav.trigger .admin-tabs{
+        opacity: 100%;
+        pointer-events: initial;
+        visibility: visible;
+
+        /* When the use click the menu button ie the trigger class is added then 
+            the nav items slides from right of the page
+        */
+        transition: all 0.5s;
+       transform: translateX(0%);
+    }
+
+    .admin-nav.trigger .admin-close{
+        display: block;
+        z-index: 10;
+        position: relative;
+        left: 25%;
+    }
+
+    .admin-nav.trigger .admin-menu{
+        display: none;
+    }
+
+
+     /* *********************************************** */
+     /* Admin movie modal */
+
+     .admin-movie-modal{
+        margin-top: 1rem ;
+     }
+
+     .admin-movie-modal .input-field,.admin-modal-action-btns{
+        width: 300px;
+      
+     }
+
+     .multi-box{
+        flex-direction: column;
+     }
+
+     .modal-box .form {
+        min-width: 400px;
+        min-height: 600px;
+     }
+
+
+       /* *********************************************** */
+     /* user page title  */
+     .user-page-title {
+        margin-top: 10rem;
+        font-size: 100px;
+     }
+
+    .user-page-subtitle{
+        font-size: 3rem;
+    }
+
+    /* user movie section*/
+    /* *********************************************** */
+   .movie-cards{
+   
+    grid-template-columns: 1fr;
+    padding: 4rem;
+   }
+
+   .movies .input-container{
+    
+    width: 150px;
+   }
+
+   .movies .input-field{
+    padding-left: 10px;
+   }
+
+
 }
 
 
@@ -231,6 +415,70 @@
         width: 350px;
     }
 
+
+      /* *********************************************** */
+     /* Admin movie page */
+
+     .action-btns p{
+        font-size: 0.8rem;
+     }
+
+     .admin-tabs input{
+        width: 100px;
+     }
+
+     .admin-nav.trigger .admin-close{
+        
+        left: 20%;
+    }
+
+     /* *********************************************** */
+     /* Admin movie modal */
+
+    .admin-movie-modal .input-field,.admin-modal-action-btns{
+        width: 250px;
+      
+     }
+
+     .modal-box .form {
+        min-width: 350px;
+     }
+
+
+      /* *********************************************** */
+     /* user page title  */
+     .user-page-title {
+        margin-top: 10rem;
+        font-size: 80px;
+     }
+
+    .user-page-subtitle{
+        font-size: 2rem;
+    }
+
+    /* user movie section*/
+    /* *********************************************** */
+   .movie-cards{
+   
+   
+    padding: 0rem;
+   }
+
+   .movies .input-container{
+    
+    width: 100%;
+   }
+
+   .movies .input-field{
+    margin-left: auto;
+    font-size: 8px;
+   }
+
+   .movies div:first-child{
+    flex-direction: column;
+    gap: 2rem;
+   }
+
     
 }
 
@@ -268,6 +516,30 @@
     .login-form .input-field ,.login-form .login-submit{
         width: 300px;
     }
+
+     /* *********************************************** */
+     /* Admin movie modal */
+
+     .admin-movie-modal .input-field,.admin-modal-action-btns{
+        width: 200px;
+      
+     }
+
+     .modal-box .form {
+        min-width: 300px;
+     }
+
+      /* *********************************************** */
+     /* user page title  */
+     .user-page-title {
+        margin-top: 15rem;
+        font-size: 70px;
+     }
+
+    .user-page-subtitle{
+        font-size: 1.5rem;
+    }
+
 
 }
 /* *********************************************** */
