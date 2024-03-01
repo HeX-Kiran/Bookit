@@ -21,7 +21,8 @@ function Theatre() {
     const dispatcher = useDispatch();
     const user = useSelector(state=>state.user);
     const navigate = useNavigate();
-    const isLoading = useSelector(state=>state.loader.status)
+    const isLoading = useSelector(state=>state.loader.status);
+    const[isMenuBtnVisible,setMenuBtn] = useState(false);
 
     // Funtion to handle logout button
     const logout = ()=>{
@@ -65,8 +66,8 @@ function Theatre() {
   return (
     <section className='theatre-dashboard'>
         <Loader isLoading={isLoading}/> 
-        <div className='dashboard-grid'>
-            <div className='side-bar flex flex-col items-start gap-24  '>
+        <div className={isMenuBtnVisible?'dashboard-grid trigger':'dashboard-grid'}>
+            <div className='side-bar flex flex-col items-start gap-24  ' onClick={()=>setMenuBtn(false)}>
                 {/* Brand name */}
                 <h1 className='uppercase font-brand text-5xl text-violet-600 font-medium tracking-widest cursor-pointer' onClick={()=>navigate("/")}>bookit</h1>
 
@@ -89,6 +90,9 @@ function Theatre() {
             <div className='main-body '>
                 {/* Main body nav bar */}
                 <div className='nav-bar flex items-center justify-between w-[100%]'>
+                    {/* Menu icon only visible when we add aa trigger class */}
+                    <i className="ri-menu-line text-2xl text-black hidden user-menu" onClick={()=>setMenuBtn(s=>!s)}></i>
+                    <i className="ri-close-line text-4xl text-black hidden user-close" onClick={()=>setMenuBtn(s=>!s)}></i>
                     {/* nav-bar title */}
                     <h1 className='text-2xl font-bold uppercase'>{section}</h1>
                     {/* nav-bar date and search button */}

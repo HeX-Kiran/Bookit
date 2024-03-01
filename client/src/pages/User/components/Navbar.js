@@ -10,6 +10,7 @@ function Navbar() {
    
     const navigate = useNavigate();
     const [theatreExsist,setTheatreExsist] = useState(false);
+    const[isMenuBtnVisible,setMenuBtn] = useState(false);
 
     const logout = ()=>{
       //remove use token
@@ -44,11 +45,14 @@ function Navbar() {
     },[user])
 
   return (
-    <nav className='navbar rounded-b-xl flex items-center justify-between px-16 py-10 mb-10'>
+    <nav className={isMenuBtnVisible ? "navbar trigger rounded-b-xl flex items-center justify-between px-16 py-10 mb-10":"navbar rounded-b-xl flex items-center justify-between px-16 py-10 mb-10"}>
+      {/* Menu icon only visible when we add aa trigger class */}
+        <i className="ri-menu-line text-2xl text-white hidden user-menu" onClick={()=>setMenuBtn(s=>!s)}></i>
+        <i className="ri-close-line text-4xl text-white hidden user-close" onClick={()=>setMenuBtn(s=>!s)}></i>
           {/* Brand name */}
           <h1 className='uppercase font-brand text-4xl text-violet-50 font-medium tracking-widest'>bookit</h1>
         {/* Tabs for admin */}
-        <div className='admin-tabs flex items-center justfiy-center gap-20  font-thin text-lg  text-violet-50 cursor-pointer'>
+        <div className='user-tabs flex items-center justfiy-center gap-20  font-thin text-lg  text-violet-50 cursor-pointer' onClick={()=>setMenuBtn(false)}>
             <p onClick={handleMovieNavLink}>Movies</p>
             <p onClick={()=>navigate(`/tickets/${user._id}`)}>My tickets</p>
             {theatreExsist && <p onClick={()=>navigate("/theatre")}>My theatres</p>}

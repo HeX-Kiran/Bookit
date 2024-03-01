@@ -41,6 +41,14 @@
     }
     /* *********************************************** */
 
+    /* Shows pages */
+    /* *********************************************** */
+
+    .show-img {
+        width: 200px;
+        height: 200px;
+       
+    }
 
 
     
@@ -89,6 +97,40 @@
    .movies .input-container{
     margin-bottom: 0;
    }
+
+    /* user theatre section*/
+    /* *********************************************** */
+   .welcome-img{
+    width: 150px;
+    height: 150px;
+    transform: translate(-50%,-12.5%);
+   }
+
+    /* Shows pages */
+    /* *********************************************** */
+
+    .show-img {
+        width: 175px;
+        height: 175px;
+       
+    }
+
+     /* Shows modal */
+    /* *********************************************** */
+
+    .brand-img{
+        padding: 2rem;
+    }
+
+    .theatre-reg-form{
+        padding: 3rem;
+    }
+
+      /* Theatre registration page */
+    /* *********************************************** */
+    .theatre-reg .theatre-reg-form .input-container{
+        width: 400px;
+    }
 
    
     
@@ -171,6 +213,82 @@
         height: 90%;
        }
 
+
+       /* CTA section*/
+    /* *********************************************** */
+
+       .cta-content{
+        grid-template-columns: 3fr 2fr;
+    }
+
+    .cta-text-box{
+        padding: 2.4rem 2.4rem 2.4rem 4.8rem;
+    }
+
+    .cta-content form{
+        grid-template-columns: 1fr;
+    }
+
+    .form-submit{
+        align-self: flex-end;
+        margin-top: 2rem;
+    }
+
+    .cta-img-box{
+        background-position: center;
+    }
+
+
+      /* Footer section*/
+    /* *********************************************** */
+    .footer::before{
+        width: 40%;
+    }
+
+    .footer::after{
+        width: 40%;
+    }
+
+
+     /* user theatre section*/
+    /* *********************************************** */
+   .welcome-img{
+    width: 125px;
+    height: 125px;
+    transform: translate(-50%,-12.5%);
+   }
+
+   /* Shows pages */
+    /* *********************************************** */
+
+    .show-img {
+        width: 150px;
+        height: 150px;
+        transform: translate(-25%,-25%);
+    }
+
+     /* Shows modal */
+    /* *********************************************** */
+    .show-modal-box .registration-grid{
+        grid-template-columns: 1fr 3fr;
+        min-width: 650px;
+    }
+
+    .show-modal-box .registration-grid img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .brand-img{
+        padding: 2rem;
+    }
+
+    .theatre-reg-form{
+        padding: 2rem;
+    }
+    .show-modal-submit{
+        width: 80%;
+    }
 
     
 
@@ -361,6 +479,204 @@
     padding-left: 10px;
    }
 
+   
+    /* CTA  section*/
+    /* *********************************************** */
+
+   .cta-content{
+    grid-template-columns: 1fr;
+    width: 80%;
+   
+    margin: auto;
+}
+
+    .cta-img-box{
+        grid-row: 1;
+        height: 32rem;
+    }
+
+    .cta-text-box {
+        padding: 2.4rem 1.8rem 2.4rem 1.8rem;
+        
+    }
+
+    .cta-text-box label{
+        margin-bottom: 1rem;
+    }
+
+     /* Footer section*/
+    /* *********************************************** */
+    .footer::before{
+        width: 35%;
+    }
+
+    .footer::after{
+        width: 35%;
+    }
+
+    /* User nav bar */
+    .navbar{
+        position: relative;
+    }
+
+    .user-tabs{
+        background-color: rgb(196 181 253);
+        color: rgb(91 33 182);
+     
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 35%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* transition: all 0.5s; */
+
+            /* Make the items hidden */
+            opacity: 0%;
+            pointer-events: none;
+            visibility: hidden;
+            transform: translateX(-200%);
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 5;
+    }
+
+    .user-menu{
+        display: block;
+    }
+
+     .navbar.trigger .user-tabs{
+        opacity: 100%;
+        pointer-events: initial;
+        visibility: visible;
+
+        /* When the use click the menu button ie the trigger class is added then 
+            the nav items slides from right of the page
+        */
+        transition: all 0.5s;
+       transform: translateX(0%);
+    }
+
+    .navbar.trigger .user-close{
+        display: block;
+        z-index: 10;
+        position: relative;
+        left: 25%;
+        color: black;
+    }
+
+    .navbar.trigger .user-menu{
+        display: none;
+    }
+
+     /* user theatre section*/
+    /* *********************************************** */
+    .theatre-dashboard {
+        padding: 0rem;
+    }
+    .dashboard-grid{
+        position: relative;
+        grid-template-columns: 1fr;
+    }
+
+    .side-bar{
+        background-color: white;
+        
+        box-shadow: 0 .4rem .8rem #0005;
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 35%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* transition: all 0.5s; */
+
+            /* Make the items hidden */
+            opacity: 0%;
+            pointer-events: none;
+            visibility: hidden;
+            transform: translateX(-200%);
+            font-size: 1.3rem;
+            font-weight: bold;
+            z-index: 5;
+    }
+
+    .dashboard-grid.trigger .side-bar{
+       
+            opacity: 100%;
+            pointer-events: initial;
+            visibility: visible;
+    
+            /* When the use click the menu button ie the trigger class is added then 
+                the nav items slides from right of the page
+            */
+            transition: all 0.5s;
+           transform: translateX(0%);
+        
+    }
+
+    .dashboard-grid.trigger .user-close{
+        display: block;
+        z-index: 10;
+        position: relative;
+        left: 25%;
+        color: black;
+    }
+
+    .dashboard-grid.trigger .user-menu{
+        display: none;
+    }
+
+    .main-body{
+        padding: 2rem;
+        border: none;
+    }
+
+    .welcome-img{
+      
+        transform: translate(-40%,-12.5%);
+    }
+
+    /* Shows pages */
+    /* *********************************************** */
+    .show-cards{
+        gap: 5rem;
+    }
+
+
+    .show-detail-card {
+       
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 2rem;
+        row-gap: 2rem;
+        
+    }
+
+    /* Shows modal */
+    /* *********************************************** */
+    .show-modal-box .registration-grid{
+        grid-template-columns: 1fr;
+        min-width: 480px;
+    }
+
+    .theatre-reg-form h1{
+        font-size: 2.5rem;
+    }
+
+    .brand-img{
+        display: none;
+        padding: 2rem;
+    }
+
+    
+    
+
 
 }
 
@@ -479,6 +795,63 @@
     gap: 2rem;
    }
 
+     /* Footer section*/
+    /* *********************************************** */
+    .footer::before{
+        width: 30%;
+    }
+
+    .footer::after{
+        width: 30%;
+    }
+
+    /* home navbar section*/
+    /* *********************************************** */
+    .user-tabs{
+        width: 40%;
+    }
+
+       /* user theatre section*/
+    /* *********************************************** */
+    .side-bar{
+        width: 45%;
+        
+    }
+    .welcome-msg{
+        width: 80%;
+    }
+    .welcome-img{
+        
+        width: 100px;
+        height: 100px;
+        transform: translate(-50%,-0%);
+    }
+
+    /* Shows pages */
+    /* *********************************************** */
+
+    .show-img {
+        width: 125px;
+        height: 125px;
+        transform: translate(-25%,-25%);
+    }
+
+    .show-cards{
+        gap: 5rem;
+    }
+
+     /* Shows modal */
+    /* *********************************************** */
+    .show-modal-box .registration-grid{
+      
+        min-width: 380px;
+    }
+
+    .theatre-reg-form h1{
+        font-size: 2rem;
+    }
+
+
     
 }
 
@@ -539,6 +912,31 @@
     .user-page-subtitle{
         font-size: 1.5rem;
     }
+
+      /* Shows modal */
+    /* *********************************************** */
+    .theatre-reg-form{
+        border-radius: 10px;
+    }
+
+    
+    .show-modal-box .registration-grid{
+        
+        min-width: 300px;
+    }
+
+    .show-modal-box .registration-grid .input-container{
+        width: 80%;
+    }
+
+    /* .show-modal-time {
+        flex-direction: column;
+    } */
+
+    .movie-dropdown{
+        flex-direction: column;
+    }
+
 
 
 }

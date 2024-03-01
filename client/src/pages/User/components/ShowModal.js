@@ -153,7 +153,7 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
                         </div>
 
                         {/* time */}
-                        <div className='flex items-center gap-8'>
+                        <div className='show-modal-time flex items-center gap-8'>
                             
                              <div className='input-container'>
                                 <i className="ri-time-line icon"></i>
@@ -184,7 +184,7 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
                         </div>
 
                         {/* movie */}
-                        <div className=" flex items-center gap-4">
+                        <div className="movie-dropdown flex items-center gap-4">
 
                             <label htmlFor="movies" className='text-lg'>Select a movie:</label>
                             <select  name= "movies" id="movies" className='bg-violet-200 font-bold' onChange={(e)=>setMovieID(e.target.value)} >  
@@ -197,7 +197,7 @@ function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRend
                             </select>  
                         </div>
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"SUBMIT"}></input>
+                        <input type='submit' className='show-modal-submit p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"SUBMIT"}></input>
                       
                         
                     </div>
