@@ -74,11 +74,11 @@ function MovieDetails() {
                     <div className='flex items-start justify-between gap-5'>
                         {movie?.genre?.split(",").map(lang=><span className='tag'>{lang}</span>)}
                     </div>
-                    <div className='flex items-center justify-between gap-4 text-white text-lg font-bold'>
+                    <div className='flex items-center justify-between gap-4 text-white text-lg font-bold flex-wrap'>
                       <p>{movie?.duration}h</p>
-                      <p className='text-2xl'>.</p>
+                      {/* <p className='text-2xl'>.</p> */}
                       <p>{movie?.language}</p>
-                      <p className='text-2xl'>.</p>
+                      {/* <p className='text-2xl'>.</p> */}
                       <p>{moment(movie?.releaseDate).format('D MMMM YYYY')}</p>
                       
                     </div>

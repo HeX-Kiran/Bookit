@@ -97,7 +97,7 @@ function TheatreRegistration() {
                             <input type='text' placeholder='Location' id='theatre-location' className='input-field outline-none p-4 rounded-3xl input-border' onChange={(e)=>setTheatreLocation(e.target.value)} required/>
                         </div>
                         
-                        <input type='submit' className='p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"Open"} />
+                        <input type='submit' className=' theatre-reg-submit p-4 cursor-pointer rounded-full  w-[500px] font-bold text-white text-xl bg-rose-500 transition-all hover:scale-110 ' value={"Open"} />
                        
                         
                         

@@ -122,13 +122,16 @@
         padding: 2rem;
     }
 
-    .theatre-reg-form{
+    .show-modal-box .theatre-reg-form{
         padding: 3rem;
     }
 
       /* Theatre registration page */
     /* *********************************************** */
-    .theatre-reg .theatre-reg-form .input-container{
+    .theatre-reg .theatre-reg-form{
+        padding: 2rem 3rem;
+    }
+    .theatre-reg .theatre-reg-form .input-field,.theatre-reg-submit{
         width: 400px;
     }
 
@@ -290,7 +293,92 @@
         width: 80%;
     }
 
+
+      /* Theatre registration page */
+    /* *********************************************** */
     
+    .theatre-reg  .brand-img h1{
+        font-size: 3.5rem;
+    }
+
+    .theatre-reg  .brand-img img{
+        height: 300px;
+    }
+
+    .theatre-reg .registration-grid{
+        grid-template-columns: 1fr 2fr;
+    }
+
+    
+    .theatre-reg .theatre-reg-form .input-field,.theatre-reg-submit{
+        width: 350px;
+    }
+
+
+      /* movies details page */
+    /* *********************************************** */
+
+    .movie-card-img{
+        width: 400px;
+        
+    }
+
+    .attributes {
+      
+        gap: 4rem;
+        padding: 2rem
+    }
+
+    .movie-card-details{
+        justify-content: start;
+        gap: 5rem;
+    }
+
+    .movie-card-details h1{
+        font-size: 2rem;
+    }
+
+    .movie-card-details .tag {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+
+     /* Date picker  */
+    /* *********************************************** */
+    .date-picker{
+        width: 80%;
+    }
+
+    /* Seat layout  */
+    /* *********************************************** */
+
+    .seats {
+        
+        width: 500px;
+      
+    }
+
+    .seat {
+        padding: 0.2rem 0.5rem;
+    }
+
+    .screen-box {
+        width: calc(100%* 0.6);
+       margin: 0;
+       
+    }
+
+    .screen-text {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-40%);
+        font-size: 0.8rem;
+    }
+
+    .show-timing{
+        width: 100%;
+    }
 
     
 }
@@ -674,6 +762,90 @@
         padding: 2rem;
     }
 
+     /* Theatre registration page */
+    /* *********************************************** */
+    
+   
+
+    .theatre-reg .registration-grid{
+        grid-template-columns: 1fr ;
+    }
+
+    
+    .theatre-reg .theatre-reg-form .input-field,.theatre-reg-submit{
+        width: 420px;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h1{
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h3{
+        font-size: 1.5rem;
+    }
+
+      /* movies details page */
+    /* *********************************************** */
+
+    .movie-card-img{
+        width: 400px;
+        align-self: center;
+    }
+
+    .attributes {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 2rem;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .movie-details-img{
+        height: 500px;
+    }
+
+    .movie-card-details{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 1rem;
+        column-gap: 10rem;
+        row-gap: 2rem;
+    }
+
+    
+    
+
+    .movie-details-page .desc {
+        padding: 10rem 4rem;
+        border-bottom: 1px solid #ffffff81;
+    }
+
+    .movie-card-details div:first-child{
+        justify-content: start;
+    }
+
+     /* Date picker  */
+    /* *********************************************** */
+    .date-picker{
+        width: 90%;
+    }
+
+    .theatre-shows{
+        align-items: center;
+    }
+
+    /* Seat layout  */
+    /* *********************************************** */
+
+    .seats div{
+        
+        gap: 1rem;
+      
+    }
+
+
+
     
     
 
@@ -851,6 +1023,91 @@
         font-size: 2rem;
     }
 
+     /* Theatre registration page */
+    /* *********************************************** */
+    
+   
+
+    
+    .theatre-reg .theatre-reg-form .input-field,.theatre-reg-submit{
+        width: 300px;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h1{
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h3{
+        font-size: 1.2rem;
+    }
+
+      /* movies details page */
+    /* *********************************************** */
+
+    .movie-card-img{
+        width: 300px;
+       
+    }
+
+    
+    .movie-details-img{
+        height: 450px;
+    }
+
+    .movie-details-page .desc {
+        padding: 5rem 4rem;
+       
+    }
+
+    .attributes {
+        flex-direction: column;
+        gap: 4rem;
+        padding: 2rem;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+     /* Date picker  */
+    /* *********************************************** */
+    .date-picker{
+        width: 100%;
+    }
+
+    .book-ticket {
+       
+        padding: 3rem 2rem;
+        
+    }
+
+    .theatre-shows .show-card{
+        width: 80%;
+    }
+
+    .theatre-show-details {
+        padding: 1rem 1rem;
+        font-size: 0.9rem;
+        
+    }
+
+    .date-picker div{
+        padding: 0.2rem 0.4rem;
+    }
+
+    .date-picker div h1{
+        font-size: 0.9rem;
+    }
+
+    .date-picker div p:nth-child(2){
+        font-size: 0.8rem;
+    }
+
+    .date-picker div p:nth-child(3){
+        font-size: 0.9rem;
+    }
+
+
+
 
     
 }
@@ -935,6 +1192,44 @@
 
     .movie-dropdown{
         flex-direction: column;
+    }
+
+     /* Theatre registration page */
+    /* *********************************************** */
+    
+   
+
+    
+    .theatre-reg .theatre-reg-form .input-field,.theatre-reg-submit{
+        width: 250px;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h1{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .theatre-reg .theatre-reg-form .brand-title h3{
+        font-size: 1rem;
+    }
+
+      /* Date picker  */
+    /* *********************************************** */
+    
+    .book-ticket {
+       
+        padding: 3rem 1.2rem;
+        
+    }
+
+   
+
+    .theatre-shows{
+        align-items: center;
+    }
+
+    .theatre-shows .show-card{
+        width: 90%;
     }
 
 
