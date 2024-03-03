@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import { editShow } from '../../apicalls/shows';
 
 function Payment({amount,seats,showDetails}) {
-
+    
     const user = useSelector(state=>state.user);
     const navigate = useNavigate();
     const dispatcher = useDispatch();
     const token = "pk_test_51OmvqbSHTvLkHMIfYtJqSUoX9xsUqsRBG8LWkSc7XBwYI6Tdu9GIQ8ZYAfs2PJtfrPgpqxLGIp4uqx4emETEbwE100swyJtAi0"
 
    const onToken =async()=>{
+    
         try {
             dispatcher(showLoader());
             //check if the seats are avilable or not
@@ -27,7 +28,7 @@ function Payment({amount,seats,showDetails}) {
                     // now add new booking using bookAShow Api
                     if(Object.keys(showDetails).length > 0 && Object.keys(user).length>0){
                         // Now add the new booking into db
-                        const response = await bookAShow({showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats});
+                        const response = await bookAShow({showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats,date:showDetails?.date,time:showDetails?.time,screen:showDetails?.name,theatre:showDetails?.theatre.name,movieID:showDetails?.movie._id});
                         // after adding the booking , we need to updated the show seats with the updated seats
                         if(response.data.success){
                             // update the seats of the shows with new seats

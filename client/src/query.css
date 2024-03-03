@@ -135,6 +135,13 @@
         width: 400px;
     }
 
+    /* Myticketpage */
+    /* *********************************************** */
+    .tickets {
+        width: 70%;
+       
+    }
+
    
     
 }
@@ -379,6 +386,23 @@
     .show-timing{
         width: 100%;
     }
+
+     /* ticket page  */
+    /* *********************************************** */
+    .ticket::after{
+        border-bottom: 50px solid #F5F3FF;
+        border-left: 50px solid #fff;
+    }
+
+    /* Myticketpage */
+    /* *********************************************** */
+    .tickets {
+        width: 80%;
+       margin: auto;
+        
+    }
+
+    
 
     
 }
@@ -844,6 +868,25 @@
       
     }
 
+     /* ticket page   */
+    /* *********************************************** */
+
+    .ticket {
+        width: 70%;
+    }
+
+    /* Myticketpage */
+    /* *********************************************** */
+    .tickets {
+        width: 100%;
+       margin: auto;
+    }
+
+    .ticket-body {
+        padding: 3rem 3rem;
+      
+    }
+
 
 
     
@@ -1106,6 +1149,56 @@
         font-size: 0.9rem;
     }
 
+      /* ticket page   */
+    /* *********************************************** */
+
+    .ticket {
+        width: 90%;
+    }
+
+    .book-show-nav-bar .show-details h1{
+      font-size: 1.5rem;
+    }
+
+    .show-details .theatre-details {
+       
+        font-size: 0.8rem;
+    }
+
+    .ticket-price {
+       font-size: 0.8rem;
+       
+        padding: 5px;
+        
+    }
+
+    .ticket::after {
+        border-bottom: 35px solid #F5F3FF;
+        border-left: 35px solid #fff;
+    }
+
+    /* Myticketpage */
+    /* *********************************************** */
+    .ticket-main-grid div h1:nth-child(1){
+            font-size: 1.2rem;
+    }
+
+    .ticket-main-grid div h1:nth-child(2){
+        font-size: 1rem;
+    }
+
+    .ticket-main-grid div p{
+        font-size: 0.8rem;
+    }
+
+    .ticket-sub h1{
+        font-size: 1rem;
+    }
+
+    .ticket-sub p:nth-child(2){
+        font-size: 0.8em;
+    }
+
 
 
 
@@ -1232,6 +1325,31 @@
         width: 90%;
     }
 
+        /* Myticketpage */
+    /* *********************************************** */
+
+    .ticket-main-grid {
+        
+        grid-template-columns: 1fr;
+        row-gap: 2rem;
+    }
+
+    .ticket-sub h1{
+        font-size: 0.8rem;
+    }
+
+    .ticket-img {
+        border-radius: 10px;
+       margin: auto;
+       width: 80%;
+    }
+
+    .ticket-sub {
+        /* background-color: white; */
+      
+        gap: 2rem;
+        
+    }
 
 
 }

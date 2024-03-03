@@ -19,8 +19,8 @@ function Tickets({showDetails}) {
         </div>  
 
         <div className='ticket-sub bg-violet-50'>
-            <h1 className='text-xl uppercase font-bold'>{showDetails?.name}</h1>
-            <p className='text-md font-bold'>{showDetails?.theatre.name}</p>
+            <h1 className='text-xl uppercase font-bold'>{showDetails?.screen}</h1>
+            <p className='text-md font-bold'>{showDetails?.theatre}</p>
             <p className='text-xs text-violet-300'>Booked on {moment(showDetails?.createdAt).format("D-MM-YY")}</p>
         </div>
     </div>

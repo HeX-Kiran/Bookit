@@ -34,7 +34,7 @@ exports.makePayment = async(req,res)=>{
 
 exports.bookShow = async(req,res)=>{
     try {
-        const {showID,userID,bookedSeats,transactionId} = req.body;
+        const {showID,userID,bookedSeats,transactionId,movieID,date,time,screen,theatre} = req.body;
 
         //check if transaction ID already exsist or not
         const checkTransactionIdAlreadyExsist = await Booking.findOne({transactionId});
@@ -47,7 +47,7 @@ exports.bookShow = async(req,res)=>{
         }
 
         else{
-            const tickets = await Booking.create({show:showID,user:userID,transactionId,bookedSeats});
+            const tickets = await Booking.create({show:showID,user:userID,transactionId,bookedSeats,movie:movieID,date,time,theatre,screen});
             res.status(201).json({
                 success:true,
                 message:"Show booked successfully",

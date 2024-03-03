@@ -4,10 +4,12 @@ import { showLoader,hideLoader } from '../../store/loadingSlice';
 import { showToast,TOAST_STATUS } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTickets } from '../../apicalls/booking';
-import { getShowById } from '../../apicalls/shows';
 import { useParams } from 'react-router-dom';
 import Tickets from './components/Tickets';
 import Loader from '../../components/Loader';
+import { getMovieById } from '../../apicalls/movies';
+
+
 
 
 function MyTickets() {
@@ -30,7 +32,7 @@ function MyTickets() {
                 const bookingDetails = response.data.data;
                 // after getting the tickets we need to find the show details of each user
                 const showDetails = await getShowDetailsFromBookingDetails(bookingDetails);
-                console.log(showDetails);
+                
                 setTickets(showDetails)
                
             }
@@ -54,10 +56,11 @@ function MyTickets() {
                 let ticketDetails = []
                 // from each bookingDetails get the show details
                 bookingDetails.forEach((details)=>{
-                    Promise.resolve(getShowById(details.show))
+                    Promise.resolve(getMovieById(details?.movie))
                     // take the result of showDetials and concatnate with booking details
                         .then(val=>{
-                            ticketDetails.push({...val.data,...details});
+                            
+                            ticketDetails.push({...details,movie:{...val}});
                             totalLength++;
 
                             if(totalLength === bookingDetails.length) resolve(ticketDetails)
