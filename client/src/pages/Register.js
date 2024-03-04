@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import registerImg from "../assets/images/register-2.png"
+import registerImg from "../assets/images/register-2.webp"
 import { TOAST_STATUS, checkEmail, checkPassword, showToast } from '../util';
 import { registerUser } from '../apicalls/user';
 import { useNavigate } from 'react-router-dom';

@@ -56,7 +56,7 @@ function AdminMovieCard(props) {
         <div className='flex items-center justify-between flex-col gap-4'>
           
           <img src={poster} alt="movie pic" width={"400px"} height={"400px"}  style={{backgroundColor:"rgb(221 214 254)"}}></img>
-          <p className='italic movie-desc-admin overflow-scroll'>{description}</p>
+          <p className='italic movie-desc-admin overflow-auto'>{description}</p>
             
         </div>
         <div className='flex flex-col items-start gap-8 flex-wrap admin-movie-details'>

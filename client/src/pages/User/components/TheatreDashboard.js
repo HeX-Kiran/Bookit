@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import welcomeImage from "../../../assets/images/welcome.png"
+import welcomeImage from "../../../assets/images/welcome.webp"
 
 import TheatreCards from './TheatreCards';
 import { useNavigate } from 'react-router-dom';

@@ -16,6 +16,8 @@ import MovieDetails from './pages/User/MovieDetails';
 import Bookshow from './pages/User/Bookshow';
 import MyTickets from './pages/User/MyTickets';
 import "./query.css"
+import Reset from './Reset';
+import Component404 from './components/Component404';
 
 
 
@@ -29,6 +31,7 @@ function App() {
       <BrowserRouter> 
       
         <Routes>
+            <Route path="*" element={<Component404/>} />
             <Route path='/' element = {<ProtectedRoute><Home/></ProtectedRoute>} />
             <Route path='/login' element = {<Login />} />
             <Route path='/register' element = {<Register />} />
@@ -38,6 +41,7 @@ function App() {
             <Route path='/movie/:movieID' element={<ProtectedRoute><MovieDetails/></ProtectedRoute>} />
             <Route path = '/movie/book-show/:id' element={<ProtectedRoute><Bookshow/></ProtectedRoute>} />
             <Route path='/tickets/:id' element={<MyTickets />} />
+            <Route path='/user/reset-password' element ={<Reset/>} />
         </Routes>
         <ToastContainer/>
 

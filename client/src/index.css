@@ -281,7 +281,7 @@ code {
 
 .styled-table{
   min-height: 100svh;
-    background: url(assets/images/ticket-booking.jpg) center / cover;
+    background: url(assets/images/ticket-booking.webp) center / cover;
     /* background-color: #e6656c; */
     display: flex;
     justify-content: center;
@@ -813,7 +813,7 @@ label{
 
 
 .cta-img-box{
-  background-image: url(./assets/images/theatre.jpg);
+  background-image: url(./assets/images/theatre.webp);
   background-size: cover;
   height: 100%;
   
@@ -1614,6 +1614,23 @@ label{
   font-size: 1rem;
   
 }
+
+
+
+/* *********************************************************************** */
+/* 404 page *********************************** */
+
+.not-found-heading{
+  font-size: 10rem;
+  font-weight: bold;
+}
+
+.not-found-sub{
+  font-size: 4rem;
+ text-align: center;
+}
+
+
 
 
 

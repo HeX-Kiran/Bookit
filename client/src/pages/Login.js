@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import loginImg from "../assets/images/login_image.png"
+import loginImg from "../assets/images/login_image.webp"
 import{Link, useNavigate} from "react-router-dom"
 import { TOAST_STATUS, checkEmail, checkLoginPassword, showToast } from '../util';
 import { loginUser } from '../apicalls/user';
@@ -78,11 +78,16 @@ function Login() {
                         <div className="input-container">
                             <i className="ri-key-fill icon"></i>
                             <input type='password' placeholder='Password' className='input-field outline-none p-4 rounded-3xl input-border' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                            
                         </div>
                         
             
                         <input type='submit' className='login-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
-                        <p className='font-semibold text-lg text-violet-800 self-end'>Dont have an account? <Link to={"/register"} className='font-bold text-lg text-violet-500'>Register</Link></p>
+                        <div className='flex items-center justify-between w-[100%]'>
+                            <p className='font-semibold text-md text-violet-800 self-end'>Dont have an account? <Link to={"/register"} className='font-bold text-md text-violet-500'>Register</Link></p>
+                            <p className='font-semibold text-md text-violet-800 self-end'><Link to={"/user/reset-password"} className='font-bold text-md text-violet-500'>Forgot password?</Link></p>
+                        </div>
+                       
                         
                 </form>
 

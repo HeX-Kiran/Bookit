@@ -61,7 +61,7 @@ function Movies() {
             // check if the debouncedvalue has only whitespaces ,if yes then display all movies
             if(debouncedMovie === "" || debouncedMovie?.split("")[0] === " "){
                 
-                setMovies(movies)  
+                setMovies(movies?.reverse())  
             } 
 
             // otherwise display the debounced movies

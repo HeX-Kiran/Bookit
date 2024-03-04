@@ -8,12 +8,7 @@ function AdminRoute({children}) {
     const user = useSelector(state=>state.user);
     
     const navigate = useNavigate();
-    console.log(user);
-
     
-
-    
-
     useEffect(()=>{
        
         if(!user.isAdmin) navigate("/")

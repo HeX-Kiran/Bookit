@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const loadingSlice = createSlice({
     name:"loader",
     initialState:{
-        status: true
+        status: false
     },
     reducers:{
         showLoader(state){

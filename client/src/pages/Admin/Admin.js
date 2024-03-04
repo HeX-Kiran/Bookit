@@ -34,7 +34,7 @@ function Admin() {
     try {
       dispatcher(showLoader());
       const data = await getMovies();
-      setMovies(data);
+      setMovies(data.reverse());
       dispatcher(hideLoader());
     } catch (error) {
       showToast(TOAST_STATUS.ERROR,"Internal error")
@@ -48,7 +48,7 @@ function Admin() {
     try {
       dispatcher(showLoader());
       const data = await getTheatre();
-      // console.log(data);
+      
       setTheatre(data);
       dispatcher(hideLoader());
     } catch (error) {

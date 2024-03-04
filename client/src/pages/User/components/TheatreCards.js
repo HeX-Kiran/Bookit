@@ -69,7 +69,7 @@ function TheatreCards({theatre,getAllTheatres,setSection,setSelectedTheatre}) {
         <div className='theatre-card-grid'>
             <p className='alphabet bg-white text-xl rounded-xl font-bold text-center text-violet-800 flex items-center justify-center '>{theatre?.name[0]}</p>
             <h1 className='text-lg font-bold uppercase'>{theatre.name}</h1>
-            <p className='location text-md font-bold text-violet-200'>{theatre.location.toLowerCase()}</p>
+            <p className='location text-sm font-bold text-violet-200'>{theatre?.location.toUpperCase()}</p>
             
         </div>
         {/* Total shows */}

@@ -7,7 +7,7 @@ import { editShow,addShow } from '../../../apicalls/shows';
 import { showToast,TOAST_STATUS } from '../../../util';
 
 import { getMovies } from '../../../apicalls/movies';
-import modelImg from "../../../assets/images/show.png"
+import modelImg from "../../../assets/images/show.webp"
 
 function ShowModal({currShow,type,setIsOpen,setSelectedTheatre,theatreID,setRender}) {
 

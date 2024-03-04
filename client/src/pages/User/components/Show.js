@@ -1,7 +1,7 @@
 import React, {  useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ShowCard from './ShowCard'
-import showImage from '../../../assets/images/show.png'
+import showImage from '../../../assets/images/show.webp'
 import ShowModal from './ShowModal'
 
 function Show({theatres,selectedTheatre,setSelectedTheatre}) {

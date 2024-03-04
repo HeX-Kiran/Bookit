@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import theatreReg from "../../assets/images/ticket-booking.jpg"
+import theatreReg from "../../assets/images/ticket-booking.webp"
 import { useSelector } from 'react-redux';
 import { addTheatre } from '../../apicalls/theatre';
 import { showToast,TOAST_STATUS } from '../../util';

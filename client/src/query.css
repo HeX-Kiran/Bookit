@@ -141,6 +141,16 @@
         width: 70%;
        
     }
+     /* Admin/Forget password login modal */
+    /* *********************************************** */
+
+    .modal-admin {
+    
+        width: 50%;
+       
+    }
+
+  
 
    
     
@@ -1199,6 +1209,28 @@
         font-size: 0.8em;
     }
 
+      /* Admin/Forget password login modal */
+    /* *********************************************** */
+
+    .modal-admin {
+    
+        width: 60%;
+       
+    }
+
+    .modal-admin div {
+    
+        justify-content: space-between;
+       
+    }
+
+
+    .modal-admin div button{
+    
+        padding: 0.5rem 1rem ;
+       
+    }
+
 
 
 
@@ -1350,6 +1382,13 @@
         gap: 2rem;
         
     }
+
+        /* 404 component */
+    /* *********************************************** */
+    .not-found-sub{
+        font-size: 2rem;
+       
+      }
 
 
 }

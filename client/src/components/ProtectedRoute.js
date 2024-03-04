@@ -39,7 +39,7 @@ function ProtectedRoute({children}) {
             
             
             if(data.data.isAdmin){
-              console.log(data.data.isAdmin);
+             
               // if user is admin add a modal box to ask administator password or check if administrator pass already exsist in local cache
               let adminToken = localStorage.getItem("admin");
              
@@ -64,7 +64,7 @@ function ProtectedRoute({children}) {
           else{
             //show toast
             showToast(TOAST_STATUS.ERROR,data.message);
-            console.log(data.message);
+          
             //delete token from localstorage
             localStorage.removeItem("token");
 

@@ -7,7 +7,7 @@ import { TOAST_STATUS, showToast } from "../util";
 export const registerUser = async (userDetails)=>{
     try{
         const response = await axios.post("api/user/register",userDetails);
-        console.log(response);
+       
         return response.data;
     }
     catch(e){
@@ -51,6 +51,26 @@ export const validateAdmin = async(userDetails)=>{
         return response.data;
     }
     catch(e){
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+}
+
+export const resetPassword = async(email)=>{
+    try {
+        const response = await axios.post("/api/user/login/reset-password",{userEmail:email});
+        
+        return response.data;
+    } catch (error) {
+        showToast(TOAST_STATUS.ERROR,"Something went wrong")
+    }
+}
+
+export const updatePassword = async(userData)=>{
+    try {
+        const response = await axios.post("/api/user/login/update-password",userData);
+        
+        return response.data;
+    } catch (error) {
         showToast(TOAST_STATUS.ERROR,"Something went wrong")
     }
 }
