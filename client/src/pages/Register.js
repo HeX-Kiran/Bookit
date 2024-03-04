@@ -88,7 +88,7 @@ function Register() {
                 <img className='h-[250px]' src={registerImg} alt='register-illustration'></img>
             </div>
             {/* Registration form */}
-            <div className='register-form p-8 pl-8 bg-violet-100 text-gray-800 h-[75vh] rounded-r-2xl grid grid-cols-2 items-start justify-between'>
+            <div className='register-form p-8 pl-8 bg-violet-100 text-gray-800 h-[80vh] rounded-r-2xl grid grid-cols-2 items-start justify-between'>
                 {/* Form field */}
                 <div>
                     <h1 className='font-bold text-4xl'>Welcome to <span className='text-violet-800'>Bookit</span> </h1>

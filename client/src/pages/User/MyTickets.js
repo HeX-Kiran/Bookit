@@ -30,6 +30,7 @@ function MyTickets() {
             
             if(response.data.success){
                 const bookingDetails = response.data.data;
+                
                 // after getting the tickets we need to find the show details of each user
                 const showDetails = await getShowDetailsFromBookingDetails(bookingDetails);
                 
@@ -54,6 +55,7 @@ function MyTickets() {
         return new Promise((resolve,reject)=>{
             try {
                 let ticketDetails = []
+                if(bookingDetails.length === 0) resolve(ticketDetails);
                 // from each bookingDetails get the show details
                 bookingDetails.forEach((details)=>{
                     Promise.resolve(getMovieById(details?.movie))
@@ -92,13 +94,17 @@ function MyTickets() {
         <Navbar />
         {
             tickets.length >0
-             &&
+             ?
              <div className='ticket-body'>
                 <h1 className='text-4xl font-bold'>My Tickets</h1>
                 {
                     tickets.map(ticket=><Tickets showDetails={ticket}/>)
                 }
             </div>
+            :
+           <div className='w-[100vw] h-[50vh] flex items-center justify-center bg-white'>
+                    <h1 className='text-4xl  text-gray-800'>No shows booked !</h1>
+           </div>
 
        
         }
