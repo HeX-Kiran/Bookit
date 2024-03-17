@@ -82,7 +82,7 @@ function Login() {
                         </div>
                         
             
-                        <input type='submit' className='login-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
+                        <input type='submit' className='login-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' value={"Login"}/>
                         <div className='flex items-center justify-between w-[100%]'>
                             <p className='font-semibold text-md text-violet-800 self-end'>Dont have an account? <Link to={"/register"} className='font-bold text-md text-violet-500'>Register</Link></p>
                             <p className='font-semibold text-md text-violet-800 self-end'><Link to={"/user/reset-password"} className='font-bold text-md text-violet-500'>Forgot password?</Link></p>

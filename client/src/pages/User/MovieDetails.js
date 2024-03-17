@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 import { showLoader,hideLoader } from '../../store/loadingSlice'
 import { getMovieById } from '../../apicalls/movies'
-import { showToast,TOAST_STATUS } from '../../util'
+import { autoRetry, showToast,TOAST_STATUS } from '../../util'
 import Navbar from './components/Navbar'
 import moment from 'moment'
 
@@ -32,7 +32,7 @@ function MovieDetails() {
    const getMovieFromID = async()=>{
     try {
         dispatcher(showLoader());
-        const data = await getMovieById(movieID);
+        const data = await autoRetry(getMovieById,0,movieID);
         setMovie(data);
         dispatcher(hideLoader());
       } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { showLoader,hideLoader } from '../../../store/loadingSlice'
-import { showToast,TOAST_STATUS } from '../../../util';
+import { autoRetry, showToast,TOAST_STATUS } from '../../../util';
 import { getAllShowByMovieId } from '../../../apicalls/shows';
 import { useNavigate } from 'react-router-dom';
 function TheatreAndShows({movieID,date}) {
@@ -14,7 +14,7 @@ function TheatreAndShows({movieID,date}) {
     const getTheatreAndShowsByMovieID = async()=>{
         try {
             dispatcher(showLoader());
-            const data = await getAllShowByMovieId(movieID,date);
+            const data = await autoRetry(getAllShowByMovieId,0,movieID,date);
             if(data.success){
                 setTheatre(data.data);
             }

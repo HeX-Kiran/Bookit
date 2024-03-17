@@ -125,3 +125,24 @@ export const checkMovieDetails = (movieDetails)=>{
     }
     return true;
 }
+
+
+
+export  const wait = (ms) => new Promise((res) => setTimeout(res, ms));
+
+export const autoRetry = async (fn, depth = 0,...params) => {
+ 
+	try { 
+		const response =  await fn(...params);
+        
+        return response
+	}catch(e) {
+        console.log("error caught for try = "+depth);
+		if (depth > 7) {
+            
+			throw e;
+		}
+		await wait(2 ** depth * 10);
+		return autoRetry(fn, depth + 1);
+	}
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import { showLoader,hideLoader } from '../../store/loadingSlice';
-import { showToast,TOAST_STATUS } from '../../util';
+import { autoRetry, showToast,TOAST_STATUS } from '../../util';
 import Loader from '../../components/Loader';
 import { getShowById,getAllShowByMovieId } from '../../apicalls/shows';
 import moment from 'moment';
@@ -33,7 +33,7 @@ function Bookshow() {
     const getShowByID = async()=>{
         try{
             dispatcher(showLoader())
-            const response  = await getShowById(id);
+            const response  = await autoRetry(getShowById,0,id);
             
             
             if(response.success){

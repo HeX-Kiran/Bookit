@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import { showLoader,hideLoader } from '../../store/loadingSlice';
-import { showToast,TOAST_STATUS } from '../../util';
+import { autoRetry, showToast,TOAST_STATUS } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTickets } from '../../apicalls/booking';
 import { useParams } from 'react-router-dom';
@@ -32,7 +32,7 @@ function MyTickets() {
                 const bookingDetails = response.data.data;
                 
                 // after getting the tickets we need to find the show details of each user
-                const showDetails = await getShowDetailsFromBookingDetails(bookingDetails);
+                const showDetails = await  getShowDetailsFromBookingDetails(bookingDetails);
                 
                 setTickets(showDetails)
                

@@ -88,14 +88,14 @@ function Register() {
                 <img className='h-[250px]' src={registerImg} alt='register-illustration'></img>
             </div>
             {/* Registration form */}
-            <div className='register-form p-8 pl-8 bg-violet-100 text-gray-800 h-[80vh] rounded-r-2xl grid grid-cols-2 items-start justify-between'>
+            <div className='register-form p-8 pl-8 bg-violet-100 text-gray-800 h-[89vh] rounded-r-2xl grid grid-cols-2 items-start justify-between'>
                 {/* Form field */}
                 <div>
                     <h1 className='font-bold text-4xl'>Welcome to <span className='text-violet-800'>Bookit</span> </h1>
                     <p className='my-2 font-semibold text-lg'>Please fill the below fields to register</p>
                 
 
-                    <form className='flex flex-col items-center justify-between mt-16 gap-8' action='' method='post' onSubmit={onSubmit}>
+                    <form className='flex flex-col items-center justify-between mt-16 gap-4 ' action='' method='post' onSubmit={onSubmit}>
 
                         <div className="input-container">
                             <i className="ri-user-fill icon"></i>
@@ -119,7 +119,7 @@ function Register() {
                         
                         
                         
-                        <input type='submit' className='register-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' />
+                        <input type='submit' className='register-submit p-4 cursor-pointer rounded-full input-border w-[500px] font-bold text-violet-800 text-xl hover:bg-violet-200 ' value={"Register"}/>
 
                        
                         

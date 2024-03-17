@@ -1,7 +1,7 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import { showLoader,hideLoader } from '../../store/loadingSlice';
-import { showToast,TOAST_STATUS } from '../../util';
+import { autoRetry, showToast,TOAST_STATUS } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
 import { bookAShow, checkSeats, makeShowPayment } from '../../apicalls/booking';
 import { useNavigate } from 'react-router-dom';
@@ -19,20 +19,20 @@ function Payment({amount,seats,showDetails}) {
         try {
             dispatcher(showLoader());
             //check if the seats are avilable or not
-            const isSeatsAvailable = await checkSeats({seats,showID:showDetails?._id});
+            const isSeatsAvailable = await autoRetry(checkSeats,0,{seats,showID:showDetails?._id});
             if(isSeatsAvailable.data.success){
-                const response = await makeShowPayment(token,amount + (10*seats.length));
+                const response = await autoRetry(makeShowPayment,0,token,amount + (10*seats.length) );
                 if(response.data.success){
                     // get the transaction id
                     const transactionId = response.data.data;
                     // now add new booking using bookAShow Api
                     if(Object.keys(showDetails).length > 0 && Object.keys(user).length>0){
                         // Now add the new booking into db
-                        const response = await bookAShow({showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats,date:showDetails?.date,time:showDetails?.time,screen:showDetails?.name,theatre:showDetails?.theatre.name,movieID:showDetails?.movie._id});
+                        const response = await autoRetry(bookAShow,0,{showID:showDetails?._id,userID:user?._id,transactionId,bookedSeats:seats,date:showDetails?.date,time:showDetails?.time,screen:showDetails?.name,theatre:showDetails?.theatre.name,movieID:showDetails?.movie._id}) ;
                         // after adding the booking , we need to updated the show seats with the updated seats
                         if(response.data.success){
                             // update the seats of the shows with new seats
-                            const updatedShow = await editShow({...showDetails,bookedSeats:[...showDetails?.bookedSeats,...seats]});
+                            const updatedShow = await autoRetry(editShow,0,{...showDetails,bookedSeats:[...showDetails?.bookedSeats,...seats]});
                             if(updatedShow.success){
                                 showToast(TOAST_STATUS.SUCCESS,"Show booked successfully");
                                 // navigate to home page
