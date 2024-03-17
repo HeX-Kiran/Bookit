@@ -137,7 +137,7 @@ export const autoRetry = async (fn, depth = 0,...params) => {
         
         return response
 	}catch(e) {
-        console.log("error caught for try = "+depth);
+        
 		if (depth > 7) {
             
 			throw e;

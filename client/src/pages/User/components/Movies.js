@@ -6,7 +6,8 @@ import { getMovies } from '../../../apicalls/movies';
 import MovieCard from './MovieCard';
 import { useDebouncer } from '../../../customHooks/useDebouncer';
 import { reveal } from '../../../animations';
-import Loader from '../../../components/Loader';
+import Loader from "../../../components/Loader"
+
 
 function Movies() {
     const dispatcher = useDispatch();
@@ -14,18 +15,19 @@ function Movies() {
     const[visible,setVisible] = useState(4);
     const [searchMovie,setSearchMovie] = useState("");
     const debouncedMovie = useDebouncer(searchMovie);
+    const [loading,isLoading] = useState(false);
 
-    const getAllMovies = async()=>{
-        try {
-            dispatcher(showLoader());
-            const data = await autoRetry(getMovies);
-            setMovies(data);
-            dispatcher(hideLoader());
-          } catch (error) {
-            showToast(TOAST_STATUS.ERROR,"Internal error")
-            dispatcher(hideLoader());
-          }
-    }
+    // const getAllMovies = async()=>{
+    //     try {
+    //         dispatcher(showLoader());
+    //         const data = await autoRetry(getMovies);
+    //         setMovies(data);
+    //         dispatcher(hideLoader());
+    //       } catch (error) {
+    //         showToast(TOAST_STATUS.ERROR,"Internal error")
+    //         dispatcher(hideLoader());
+    //       }
+    // }
 
     const showMoreMovies = ()=>{
         setVisible((prevValue) => prevValue + 4)
@@ -95,6 +97,9 @@ function Movies() {
         updateMovieWithDebouncedValue();
        
     },[debouncedMovie])
+
+
+if(loading) return <Loader isLoading={loading} />
 
     
   return (
