@@ -100,7 +100,7 @@ function Reset() {
             isOtpOpen
             ?
             <>
-                <h1 className='text-2xl font-bold'>Enter Otp</h1>
+                <h1 className='text-2xl font-bold'>Enter OTP</h1>
                 <input type='text' className='w-[100%] bg-violet-50 py-2 px-4 rounded-xl' placeholder='OTP' value={otp} onChange={(e)=>{setOtp(e.target.value)}}/>
                 <div className='flex item-center justify-around w-[100%]'>
                     <button className='border-none py-2 px-6 bg-rose-500 rounded-xl text-white' onClick={handleCancelBtn}>Cancel</button>

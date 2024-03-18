@@ -10,6 +10,7 @@ import { useDispatch ,useSelector} from 'react-redux';
 import { hideLoader, showLoader } from '../../store/loadingSlice';
 import { getTheatre } from '../../apicalls/theatre';
 import Loader from '../../components/Loader';
+import { autoRetry } from '../../util';
 
 
 function Admin() {
@@ -33,7 +34,7 @@ function Admin() {
     // api call
     try {
       dispatcher(showLoader());
-      const data = await getMovies();
+      const data =   await autoRetry(getMovies);
       setMovies(data.reverse());
       dispatcher(hideLoader());
     } catch (error) {
