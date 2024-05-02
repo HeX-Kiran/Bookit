@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 
 function Tickets({showDetails}) {
+    
   return (
     <div className='tickets'>
 
@@ -9,7 +10,7 @@ function Tickets({showDetails}) {
             <div className='ticket-main-grid'>
                 <img src={showDetails?.movie.poster} alt='' className='ticket-img'/>
                     <div className='flex items-center justify-start  gap-4 flex-col'>
-                        <h1 className='text-2xl font-bold uppercase text-center'>Action hero biju</h1>
+                        <h1 className='text-2xl font-bold uppercase text-center'>{showDetails?.movie.title}</h1>
                         <h1 className='text-md '>SEATS :- <span className='font-bold'>{showDetails?.bookedSeats.toString()}</span> </h1>
                         <p className='text-sm '><span className='mx-2'>{moment(showDetails?.date).format("D  MMMM YYYY")} </span>| <span className='mx-2'>{showDetails?.time}</span></p>
                         

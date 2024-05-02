@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { showLoader,hideLoader } from '../../../store/loadingSlice';
+
 import { autoRetry, showToast,TOAST_STATUS } from '../../../util';
 import { getMovies } from '../../../apicalls/movies';
 import MovieCard from './MovieCard';
@@ -10,12 +9,12 @@ import Loader from "../../../components/Loader"
 
 
 function Movies() {
-    const dispatcher = useDispatch();
+    
     const [movies,setMovies] = useState([]);
     const[visible,setVisible] = useState(4);
     const [searchMovie,setSearchMovie] = useState("");
     const debouncedMovie = useDebouncer(searchMovie);
-    const [loading,isLoading] = useState(false);
+    const [loading,setLoading] = useState(false);
 
     // const getAllMovies = async()=>{
     //     try {
@@ -60,7 +59,7 @@ function Movies() {
         const updateMovieWithDebouncedValue = async()=>{
             // an api call to get all movies
             try {
-                dispatcher(showLoader());
+                setLoading(true)
                 const movies = await getAllMoviesAndNotUpdateState();
                 if(movies){
                     // check if the debouncedvalue has only whitespaces ,if yes then display all movies
@@ -79,9 +78,9 @@ function Movies() {
                         setMovies(filteredArray)
                     }
                 }
-                dispatcher(hideLoader());
+               setLoading(false)
             } catch (error) {
-                dispatcher(hideLoader());
+                setLoading(false)
                 showToast(TOAST_STATUS.ERROR,"Internal error")
             }
            
